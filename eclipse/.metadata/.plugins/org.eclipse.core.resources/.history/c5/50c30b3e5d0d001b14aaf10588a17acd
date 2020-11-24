@@ -1,0 +1,171 @@
+package me.mystra.hud;
+
+import java.awt.Color;
+import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import me.mystra.Mystra;
+import me.mystra.betagui.module.Beta;
+import me.mystra.management.Colors;
+import me.mystra.module.Module;
+import me.mystra.utils.TTFFontRenderer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
+
+public class GuiIngameHook extends GuiIngame {
+	public GuiIngameHook(Minecraft mcIn) {
+		super(mcIn);
+	}
+
+	AtomicInteger nameoftheoffset = new AtomicInteger(12);
+
+	public static FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+	//fr = font on a wrapper
+
+	public static void HUDArrayList() {
+		TTFFontRenderer normal = Mystra.instance.fontManager.getFont("SFB 8");
+		String mode = Mystra.instance.settingsManager.getSettingByName("ArrayLists").getValString();
+		
+			if(mode.equalsIgnoreCase("New")) {
+				final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+				final int[] yDist = {2};
+				final int[] counter = {1};
+				int count = 0;
+				
+				double offset = count*(font.FONT_HEIGHT + 6);
+				AtomicInteger arrayoffset = new AtomicInteger(3);
+				
+				for(Module m: Mystra.instance.moduleManager.getModules()) {
+					m.isToggled();
+					if(m.isToggled()) {
+						drawRect(sr.getScaledWidth() - font.getStringWidth(m.getDisplayName()) - 8, offset, sr.getScaledWidth() - font.getStringWidth(m.getDisplayName()) - 6, 4 + font.FONT_HEIGHT + offset, rainbow(counter[0] * 300));
+						drawRect(sr.getScaledWidth() - font.getStringWidth(m.getDisplayName()) - 6, offset, sr.getScaledWidth(), 4 + font.FONT_HEIGHT + offset, 0xff121212);
+						count++;
+					}
+				}
+				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+					Gui.drawRect(sr.getScaledWidth() + font.getStringWidth(module.getDisplayName()), arrayoffset.get() - 3, sr.getScaledWidth() -font.getStringWidth(module.getDisplayName()) - 7, arrayoffset.get() + 10, rainbow(counter[0] * 300));
+					Gui.drawRect(sr.getScaledWidth() - font.getStringWidth(module.getDisplayName()) - 5, arrayoffset.get() - 3, sr.getScaledWidth() - 1, arrayoffset.get() + 8, 0xff121212);
+					Gui.drawRect(sr.getScaledWidth() - 1, arrayoffset.get() - 3, sr.getScaledWidth(), arrayoffset.get() + 8, rainbow(counter[0] * 300));
+					//drawRect(sr.getScaledWidth() - font.getStringWidth(module.getName()) - 8, offset, sr.getScaledWidth() - font.getStringWidth(module.getName()) - /*Linea De Alado*/ 6,  /*Linea De Alado*/ 4 + font.FONT_HEIGHT + offset, rainbow(counter[0] * 300));
+					//drawRect(sr.getScaledWidth() - font.getStringWidth(module.getName()) - 6, offset, sr.getScaledWidth(), /*Linea De Abajo*/ 4 + font.FONT_HEIGHT + offset, 0xff121212);
+					font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3 - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+					font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3.2F - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+					//font.drawString(module.getDisplayName(), sr.getScaledWidth() - 2 - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300), true);
+					yDist[0] += font.FONT_HEIGHT + 2;
+					arrayoffset.addAndGet(font.FONT_HEIGHT + 2);
+					counter[0]++;
+				});
+			} 
+			
+		if(mode.equalsIgnoreCase("Old")) {
+			final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+			final int[] yDist = {2};
+			final int[] counter = {1};
+			int count = 0;
+			double offset = count*(font.FONT_HEIGHT + 6);
+			AtomicInteger arrayoffset = new AtomicInteger(3);
+			for(Module m: Mystra.instance.moduleManager.getModules()) {
+				m.isToggled();
+				if(m.isToggled()) {
+					/*drawRect(sr.getScaledWidth() - font.getStringWidth(m.getDisplayName()) - 8, offset, sr.getScaledWidth() - font.getStringWidth(m.getDisplayName()) - 6, 4 + font.FONT_HEIGHT + offset, rainbow(counter[0] * 300));
+					drawRect(sr.getScaledWidth() - font.getStringWidth(m.getDisplayName()) - 6, offset, sr.getScaledWidth(), 4 + font.FONT_HEIGHT + offset, 0xff121212);*/
+					count++;
+				}
+			}
+			Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+			Gui.drawRect(sr.getScaledWidth() - font.getStringWidth(module.getDisplayName()) - 5, arrayoffset.get() - 3, sr.getScaledWidth() - 1, arrayoffset.get() + 8, 0xff121212);
+			Gui.drawRect(sr.getScaledWidth() - 1, arrayoffset.get() - 3, sr.getScaledWidth(), arrayoffset.get() + 8, rainbow(counter[0] * 300));
+			//drawRect(sr.getScaledWidth() - Wrapper.fr.getStringWidth(module.getName()) - 8, offset, sr.getScaledWidth() - Wrapper.fr.getStringWidth(module.getName()) - /*Linea De Alado*/ 6,  /*Linea De Alado*/ 4 + Wrapper.fr.FONT_HEIGHT + offset, Rainbow(counter[0] * 300));
+			//drawRecyt(sr.getScaledWidth() - Wrapper.fr.getStringWidth(module.getName()) - 6, offset, sr.getScaledWidth(), /*Linea De Abajo*/ 4 + Wrapper.fr.FONT_HEIGHT + offset, 0xff121212);
+			font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3 - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+			font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3.2F - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+			//font.drawString(module.getDisplayName(), sr.getScaledWidth() - 2 - font.getStringWidth(module.getDisplayName()), yDist[0], Rainbow(counter[0] * 300), true);
+			yDist[0] += font.FONT_HEIGHT + 2;
+			arrayoffset.addAndGet(font.FONT_HEIGHT + 2);
+			counter[0]++;
+			});
+		}
+		
+		if(mode.equalsIgnoreCase("Old2")) {
+			final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+			final int[] yDist = {2};
+			final int[] counter = {1};
+			int count = 0;
+			
+			double offset = count*(font.FONT_HEIGHT + 6);
+			AtomicInteger arrayoffset = new AtomicInteger(3);
+			
+			for(Module m: Mystra.instance.moduleManager.getModules()) {
+				m.isToggled();
+				if(m.isToggled()) {
+					count++;
+				}
+			}
+			for(Beta b: Mystra.instance.betaManager.getBeta()) {
+				b.isToggled();
+				if(b.isToggled()) {
+					count++;
+				}
+			}
+			Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+				Gui.drawRect(sr.getScaledWidth() - font.getStringWidth(module.getDisplayName()) - 5, arrayoffset.get() - 3, sr.getScaledWidth() - 1, arrayoffset.get() + 8, 0x99232323);
+				Gui.drawRect(sr.getScaledWidth() - 1, arrayoffset.get() - 3, sr.getScaledWidth(), arrayoffset.get() + 8, rainbow(counter[0] * 300));
+				Gui.drawRect(sr.getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(module.getDisplayName()) - 5, arrayoffset.get() - 3, sr.getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(module.getDisplayName()) - 7, arrayoffset.get() + 8, rainbow(counter[0] * 300));
+				font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3 - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+				font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3.2F - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+				yDist[0] += font.FONT_HEIGHT + 2;
+				arrayoffset.addAndGet(font.FONT_HEIGHT + 2);
+				counter[0]++;
+			});
+		}
+		
+		if(mode.equalsIgnoreCase("Mods&Dances")) {
+			final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+			final int[] yDist = {2};
+			final int[] counter = {1};
+			int count = 0;
+			
+			double offset = count*(font.FONT_HEIGHT + 6);
+			AtomicInteger arrayoffset = new AtomicInteger(3);
+			
+			for(Module m: Mystra.instance.moduleManager.getModules()) {
+				m.isToggled();
+				if(m.isToggled()) {
+					count++;
+				}
+			}
+			Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+				Gui.drawRect(sr.getScaledWidth() - font.getStringWidth(module.getDisplayName()) - 5, arrayoffset.get() - 3, sr.getScaledWidth() - 1, arrayoffset.get() + 8, 0x99232323);
+				Gui.drawRect(sr.getScaledWidth() - 1, arrayoffset.get() - 3, sr.getScaledWidth(), arrayoffset.get() + 8, rainbow(counter[0] * 300));
+				Gui.drawRect(sr.getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(module.getDisplayName()) - 5, arrayoffset.get() - 3, sr.getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth(module.getDisplayName()) - 7, arrayoffset.get() + 8, rainbow(counter[0] * 300));
+				//font.drawString(module.getDisplayName(), sr.getScaledWidth() - 3 - font.getStringWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+				Mystra.instance.fontManager.getFont("MATURASC").drawString(module.getDisplayName(), sr.getScaledWidth() - 3.2F - Mystra.instance.fontManager.getFont("MATURASC").getWidth(module.getDisplayName()), yDist[0], rainbow(counter[0] * 300));
+				yDist[0] += font.FONT_HEIGHT + 2;
+				arrayoffset.addAndGet(font.FONT_HEIGHT + 2);
+				counter[0]++;
+			});
+		}
+	}
+	
+	
+
+	public static int rainbow(int delay) {
+	      double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
+	      rainbowState %= 360;
+	      return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f).getRGB();
+	}
+	public static void mystraname() {
+		int counter = 0;
+        final ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        if(Mystra.instance.settingsManager.getSettingByName("Advertisement").getValBoolean()){
+        Mystra.instance.fontManager.getFont("SF-UI-Display-Bold").drawStringWithShadow("§lMystra §r§7§lB§o§l1", 10.0f, 3.0f, rainbow(counter*300));
+        //("§r§l§oM§r§lystra §r§7§lB§o§l1", 10, 12 - 10, rainbow(counter));
+        
+        }
+        counter++;
+    }
+}

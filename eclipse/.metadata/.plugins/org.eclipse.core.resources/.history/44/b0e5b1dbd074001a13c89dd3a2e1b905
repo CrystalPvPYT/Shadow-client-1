@@ -1,0 +1,115 @@
+package mystra.main;
+
+import java.awt.Color;
+
+import mystra.gui.UIRenderer;
+import mystra.mods.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+
+public class GuiIngameHook extends GuiIngame{
+	public GuiIngameHook(Minecraft mcIn) {
+		super(mcIn);
+	}
+	
+	
+	public void renderGameOverlay(float partialTicks)
+    {
+		super.renderGameOverlay(partialTicks);
+        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        this.mc.entityRenderer.setupOverlayRendering();
+        GlStateManager.enableBlend();
+        String Client_Name = "Mystra Client";
+
+        int count = 0;
+        
+        int counter =0;
+        
+        GlStateManager.scale(2, 2, 2);
+        this.drawString(mc.fontRendererObj, Client_Name, 2, 12 - 10, rainbow(counter));
+        GlStateManager.scale(0.5, 0.5, 0.5);
+
+        for(Module m: Mystra.getModules()) {
+        	if(m.isToggled()) {
+        		mc.fontRendererObj.drawString(m.getName(), 10, 65 + (count*10), rainbow(counter*300));
+        		count ++;
+        		counter++;
+        		}
+        	};
+        UIRenderer.renderAndUpdateFrames();
+        drawTabGui();
+    	}
+	
+	int count = 0;
+    
+    int counter = 0;
+    		
+	public void drawTabGui(){
+		drawRect(75, 20, 5, 40, Mystra.tabManager.getCurrentTab()==0 ? 0xff0d0d0d : 0xff676c6e);
+		mc.fontRendererObj.drawString("Render", 9, 26 + (count*10), rainbow(counter*300));
+		
+		drawRect(75, 40, 5, 60, Mystra.tabManager.getCurrentTab()==1 ? 0xff0d0d0d : 0xff676c6e);
+		mc.fontRendererObj.drawString("Movement", 9, 46 + (count*10), rainbow(counter*300));
+		
+		drawRect(75, 60, 5, 80, Mystra.tabManager.getCurrentTab()==2 ? 0xff0d0d0d : 0xff676c6e);
+		mc.fontRendererObj.drawString("Combat", 9, 66 + (count*10), rainbow(counter*300));
+		
+		drawRect(75, 80, 5, 100, Mystra.tabManager.getCurrentTab()==3 ? 0xff0d0d0d : 0xff676c6e);
+		mc.fontRendererObj.drawString("Player", 9, 86 + (count*10), rainbow(counter*300));
+		
+		if(Mystra.tabManager.getTabs().get(0).isExpanded()){
+			drawRect(145, 20, 75, 40, Mystra.tabManager.getCurrentRenderMod() == 0 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("ChestESP", 85, 26 + (count*10), rainbow(counter*300));
+			drawRect(145, 40, 75, 60, Mystra.tabManager.getCurrentRenderMod() == 1 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Fullbright", 85, 46 + (count*10), rainbow(counter*300));
+			drawRect(145, 60, 75, 80, Mystra.tabManager.getCurrentRenderMod() == 2 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("MobESP", 85, 66 + (count*10), rainbow(counter*300));
+			drawRect(145, 80, 75, 100, Mystra.tabManager.getCurrentRenderMod() == 3 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Tracers", 85, 86 + (count*10), rainbow(counter*300));
+		}
+		
+		if(Mystra.tabManager.getTabs().get(1).isExpanded()){
+			drawRect(145, 40, 75, 60, Mystra.tabManager.getCurrentMovementMod() == 0 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Sprint", 85,  46 + (count*10), rainbow(counter*300));
+			drawRect(145, 60, 75, 80, Mystra.tabManager.getCurrentMovementMod() == 1 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Step", 85,  66 + (count*10), rainbow(counter*300));
+			drawRect(145, 80, 75, 100, Mystra.tabManager.getCurrentMovementMod() == 2 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Glide", 85,  86 + (count*10), rainbow(counter*300));
+			drawRect(145, 100, 75, 120, Mystra.tabManager.getCurrentMovementMod() == 3 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Flight", 85,  106 + (count*10), rainbow(counter*300));
+			drawRect(145, 120, 75, 140, Mystra.tabManager.getCurrentMovementMod() == 4 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Speed", 85,  126 + (count*10), rainbow(counter*300));
+			drawRect(145, 140, 75, 160, Mystra.tabManager.getCurrentMovementMod() == 5 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Velocity", 85,  146 + (count*10), rainbow(counter*300));
+		}
+		
+		if(Mystra.tabManager.getTabs().get(2).isExpanded()){
+			drawRect(145, 60, 75, 80, Mystra.tabManager.getCurrentCombatMod() == 0 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Killaura", 85, 66 + (count*10), rainbow(counter*300));
+			drawRect(145, 80, 75, 100, Mystra.tabManager.getCurrentCombatMod() == 1 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Criticals", 85, 86 + (count*10), rainbow(counter*300));
+			drawRect(145, 100, 75, 120, Mystra.tabManager.getCurrentCombatMod() == 2 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Aimbot", 85, 106 + (count*10), rainbow(counter*300));
+		}
+		
+		if(Mystra.tabManager.getTabs().get(3).isExpanded()){
+			drawRect(145, 80, 75, 100, Mystra.tabManager.getCurrentPlayerMod() == 0 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Nofall", 85, 86 + (count*10), rainbow(counter*300));
+			drawRect(145, 100, 75, 120, Mystra.tabManager.getCurrentPlayerMod() == 1 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("ChestStealer", 85, 106 + (count*10), rainbow(counter*300));
+			drawRect(145, 120, 75, 140, Mystra.tabManager.getCurrentPlayerMod() == 2 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("Timer", 85, 126 + (count*10), rainbow(counter*300));
+			drawRect(145, 140, 75, 160, Mystra.tabManager.getCurrentPlayerMod() == 3 ? 0xff0d0d0d:0xff676c6e);
+			mc.fontRendererObj.drawString("FastPlace", 85, 146 + (count*10), rainbow(counter*300));
+		}
+		
+	}
+	
+	public static int rainbow(int delay) {
+	      double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
+	      rainbowState %= 360;
+	      return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f).getRGB();
+	}
+}

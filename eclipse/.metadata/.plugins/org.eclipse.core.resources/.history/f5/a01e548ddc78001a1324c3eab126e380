@@ -1,0 +1,38 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.Wrapper;
+
+public class Step extends Module{
+	
+
+	public Step() {
+		super("Step", 0, Category.MOVEMENT);
+	}
+	
+	public void onUpdate(){
+		if(this.getState()){
+			Wrapper.mc.getMinecraft().thePlayer.stepHeight = 1F;
+		}else{
+			Wrapper.mc.getMinecraft().thePlayer.stepHeight = 0.5f;
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Step Enabled", 1));
+    	super.onEnable();
+    }
+	
+	@Override
+	public void onDisable() {
+		NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Step Disabled", 1));
+		super.onDisable();
+	}
+
+}

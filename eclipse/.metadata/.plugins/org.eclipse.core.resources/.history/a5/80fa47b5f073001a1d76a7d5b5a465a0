@@ -1,0 +1,37 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.Wrapper;
+
+import org.lwjgl.input.Keyboard;
+
+public class FastPlace extends Module {
+	public FastPlace() {
+		super("Fastplace", 0, Category.PLAYER);
+	}
+
+	public void onUpdate() {
+		if (this.getState()) {
+			Wrapper.mc.rightClickDelayTimer = 0;
+		}
+	}
+
+	public void onDisable() {
+		Wrapper.mc.rightClickDelayTimer = 6;
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "FastPlace Enabled", 1));
+    	super.onEnable();
+    }
+	
+	@Override
+	public void onDisable() {
+		NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Aimbot Disabled", 1));
+		super.onDisable();
+	}
+}

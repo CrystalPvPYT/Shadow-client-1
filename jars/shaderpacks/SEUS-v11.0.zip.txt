@@ -1,0 +1,6 @@
+#Sun May 03 20:09:17 CEST 2020
+shadowDistance=180.0
+ENABLE_SOFT_SHADOWS=true
+shadowMapResolution=4096
+SMOOTH_CLOUDS=true
+MOTION_BLUR=true

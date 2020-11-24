@@ -1,0 +1,103 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.utils.MoveUtil;
+
+public class LongJump extends Module{
+	
+	public static String mode = "CubeCraft";
+	private double prevY = 0;
+	private int i = 0;
+	protected boolean boosted = false;
+	protected double startY = 0;
+	protected MoveUtil move;
+	protected double motionVa = 2.8;
+
+	public LongJump() {
+		super("LongJump", Keyboard.KEY_H, Category.MOVEMENT);	
+	}
+	
+	public void onUpdate() {
+		this.setName("Speed");
+		if(!this.isToggled()) {
+			return;
+		}
+		
+		if(mode.equalsIgnoreCase("CubeCraft")) {
+			CubeCraft();
+	}
+	}
+
+	public void CubeCraft() {
+		if(!this.isToggled()) {
+			return;
+		}
+	}
+	
+	@Override
+	public void onDisable() {
+		this.boosted = false;
+		this.mc.timer.timerSpeed = 1.0F;
+		this.motionVa = 2.8F;
+		this.mc.thePlayer.motionY = 0;
+		super.onDisable();
+	}
+	
+	@Override
+	public void onEnable() {
+		this.startY = this.mc.thePlayer.posY;
+		this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY - 4, this.mc.thePlayer.posZ);
+		super.onEnable();
+	}
+	
+	protected void cubecraft() {
+		if (this.mc.gameSettings.keyBindForward.pressed) {
+
+			if (this.mc.thePlayer.hurtTime > 0) {
+
+				if (!this.boosted) {
+
+					if (this.mc.thePlayer.onGround) {
+
+						this.mc.thePlayer.jump();
+						
+					} else {
+
+						double x = this.move.instance.getPosForSetPosX(this.motionVa);
+						double z = this.move.instance.getPosForSetPosZ(this.motionVa);
+
+						if (this.mc.thePlayer.posY >= this.startY - 1.7) {
+
+							this.mc.timer.timerSpeed = 0.2F;
+
+							this.mc.thePlayer.setPosition(this.mc.thePlayer.posX + x, this.mc.thePlayer.posY,
+									this.mc.thePlayer.posZ + z);
+
+						} else {
+
+							this.mc.timer.timerSpeed = 1.0F;
+
+							this.toggle();
+
+						}
+					}
+
+					this.boosted = true;
+
+				}
+
+				if (this.boosted) {
+
+					if (this.motionVa >= 0.50) {
+						this.motionVa = this.motionVa - 0.15;
+					}
+
+					this.boosted = false;
+
+				}
+			}
+		}
+	}
+}

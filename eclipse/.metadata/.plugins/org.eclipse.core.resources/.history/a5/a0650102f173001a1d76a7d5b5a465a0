@@ -1,0 +1,27 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+public class Nofall extends Module{
+	public Nofall() {
+		super("Nofall", 0, Category.PLAYER);
+	}
+
+	public void onUpdate() {
+		if(this.isToggled()) {
+			if(mc.thePlayer.fallDistance > 2F) {
+				mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer(true));
+			}
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Nofall Toggled", 1));
+    	super.onEnable();
+    }
+}

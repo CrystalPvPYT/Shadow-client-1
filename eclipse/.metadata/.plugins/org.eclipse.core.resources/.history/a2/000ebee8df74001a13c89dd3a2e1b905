@@ -1,0 +1,21 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.clickgui.ClickGUI;
+import mystra.main.Category;
+import net.superblaubeere27.clientbase.modules.ModuleCategory;
+
+public class ClickGUIModule extends Module {
+    public static final ClickGUI clickGui = new ClickGUI();
+
+    public ClickGUIModule() {
+        super("ClickGUI", Keyboard.KEY_RSHIFT, Category.OTHER);
+    }
+
+    @Override
+    protected void onEnable() {
+        mc.displayGuiScreen(clickGui);
+        setState(false);
+    }
+}

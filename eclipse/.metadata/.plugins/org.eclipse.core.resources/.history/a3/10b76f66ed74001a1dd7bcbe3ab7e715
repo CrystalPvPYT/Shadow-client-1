@@ -1,0 +1,59 @@
+package mystra.mods;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventTarget;
+import com.darkmagician6.eventapi.types.EventType;
+
+import mystra.main.Category;
+import net.minecraft.util.Vec3;
+
+public class SetbackDetector extends Module {
+    public SetbackDetector() {
+		super("SetbackDetector", Keyboard.KEY_B, Category.MOVEMENT);
+	}
+
+	private List<Vec3> lastLocations = new ArrayList<>();
+    private List<Long> lastSetBacks = new ArrayList<>();
+
+
+    @EventTarget
+    private void onMove(MotionUpdateEvent event) {
+        if (event.getEventType() != EventType.POST) return;
+
+        List<Long> remove = new ArrayList<>();
+
+        for (Long lastSetBack : lastSetBacks) {
+            if (System.currentTimeMillis() - lastSetBack > 5000) {
+                remove.add(lastSetBack);
+            }
+        }
+        for (Long aLong : remove) {
+            lastSetBacks.remove(aLong);
+        }
+
+//        System.out.println(lastSetBacks);
+
+        lastLocations.add(new Vec3(mc.thePlayer.posX, mc.thePlayer.posY, mc.thePlayer.posZ));
+
+        while (lastLocations.size() > 30) {
+            lastLocations.remove(0);
+        }
+    }
+
+    @EventTarget
+    private void onPacket(PacketEvent event) {
+        if (event.getPacket() instanceof S08PacketPlayerPosLook) {
+            S08PacketPlayerPosLook p = (S08PacketPlayerPosLook) event.getPacket();
+            boolean setback = lastLocations.stream().anyMatch(loc -> p.getX() == loc.xCoord && p.getY() == loc.yCoord && p.getZ() == loc.zCoord);
+
+            if (setback) {
+                lastSetBacks.add(System.currentTimeMillis());
+                if (lastSetBacks.size() < 3)
+                    NotificationManager.show(new Notification(NotificationType.WARNING, getName(), "Flag detected", 1));
+            }
+        }
+    }

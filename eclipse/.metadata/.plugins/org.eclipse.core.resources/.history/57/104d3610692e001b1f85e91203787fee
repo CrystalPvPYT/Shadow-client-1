@@ -1,0 +1,5 @@
+package me.shadow.hud.notifications;
+
+public enum NotificationType {
+    INFO, WARNING, ERROR;
+}

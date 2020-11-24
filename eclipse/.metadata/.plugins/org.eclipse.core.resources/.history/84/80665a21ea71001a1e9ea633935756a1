@@ -1,0 +1,28 @@
+package mystra.commands;
+
+import mystra.command.Command;
+import mystra.main.Mystra;
+
+public class Help extends Command{
+
+	@Override
+	public String getAlias() {
+		return "help";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Shows all Mystra Commands";
+	}
+
+	@Override
+	public String getSyntax() {
+		return ". help";
+	}
+
+	@Override
+	public void onCommand(String command, String[] args) throws Exception {
+		
+	}
+
+}

@@ -1,0 +1,57 @@
+package mystra.gui;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mystra.main.Mystra;
+import mystra.mods.Module;
+import net.minecraft.client.MainWindow;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.AbstractGui;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.dimension.DimensionType;
+
+public class IngameOverlay extends AbstractGui {
+	
+	private MainWindow window = Minecraft.getInstance().mainWindow;
+	private FontRenderer font = Minecraft.getInstance().fontRenderer;
+	
+	public List<String> bottomLeftList = new ArrayList<>();
+	
+	public IngameOverlay() {
+	}
+	
+	/*--------------------------------- Array List ---------------------------------*/
+	public void drawArrayList() {
+		if(Minecraft.getInstance().gameSettings.showDebugInfo) return;
+		List<String> lines = new ArrayList<>();
+		
+		for(Module m: Mystra.getModules()) if(m.isToggled()) lines.add(m.getName());
+		
+		lines.sort((a, b) -> Integer.compare(font.getStringWidth(b), font.getStringWidth(a)));
+		
+		int count = 0;
+		int color = 0x40bbff;
+		for(String s: lines) {
+			fill(0, 1+(count*10),font.getStringWidth(s)+3, 11+(count*10), 0x50000000);
+			font.drawStringWithShadow(s, 2, 2+(count*10), color);
+			color -= 200/lines.size();
+			count++;
+		}
+	}
+	/*-------------------------------------------------------------------------------*/
+	
+	
+	
+	/*--------------------------------- Bottom Left ---------------------------------*/
+	public void addFPS() {
+		int fps = Minecraft.getDebugFPS();
+		bottomLeftList.add("FPS: " + getColorString(fps, 120, 60, 30, 15, 10, false) + fps);
+	}
+
+	private String getColorString(int fps, int i, int j, int k, int l, int m, boolean b) {
+		return null;
+	}
+	
+	}

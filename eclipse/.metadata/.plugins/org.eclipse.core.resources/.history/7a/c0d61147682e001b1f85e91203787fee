@@ -1,0 +1,5 @@
+package me.shadow.event;
+
+public enum UpdateState {
+	PRE, POST;
+}

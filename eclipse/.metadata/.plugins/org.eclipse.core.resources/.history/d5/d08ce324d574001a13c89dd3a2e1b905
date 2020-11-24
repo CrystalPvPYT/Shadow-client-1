@@ -1,0 +1,31 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import net.minecraft.util.EnumFacing;
+
+public class Tower extends Module{
+
+	public Tower() {
+		super("Tower", Keyboard.KEY_J, Category.MOVEMENT);
+	}{
+	
+	if(mc.thePlayer.onGround) {
+		mc.timer.timerSpeed = 0.8F;
+	}
+	
+		if(d == 0) {
+			mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + 1.6, mc.thePlayer.posZ);
+			d++;
+		}else {
+			mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + 0.65, mc.thePlayer.posZ);
+		}
+	}else {
+		mc.timer.timerSpeed = 1.0F;
+	}
+	
+	if(isValidBlock(pos)) {
+		doRotationAndPlaceBlock(pos, EnumFacing.UP);
+	}
+}

@@ -1,0 +1,24 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.util.GuiManagerDisplayScreen;
+import org.lwjgl.input.Keyboard;
+
+import mystra.gui.UIRenderer;
+import mystra.main.Category;
+import mystra.main.Mystra;
+
+public class ClickGui extends Module{
+
+	public ClickGui() {
+		super("ClickGui", Keyboard.KEY_RSHIFT, Category.OTHER);
+	}
+	
+	@Override
+	public void onEnable() {
+		if(!(mc.currentScreen instanceof GuiManagerDisplayScreen)) {
+			mc.displayGuiScreen(new GuiManagerDisplayScreen(Mystra.guiManager));
+			UIRenderer.renderAndUpdateFrames();
+		}
+	}
+
+}

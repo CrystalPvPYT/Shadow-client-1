@@ -1,0 +1,5 @@
+package mystra.tabgui;
+
+public class TabFour extends Tab {
+
+}

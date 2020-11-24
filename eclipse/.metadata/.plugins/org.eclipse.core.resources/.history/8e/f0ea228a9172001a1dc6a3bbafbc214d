@@ -1,0 +1,33 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class Autosoup extends Module{
+	private DoubleValue health = new DoubleValue("Health", 10, 1, 20);
+
+	public Autosoup() {
+		super("Autoclicker", Keyboard.KEY_G, Category.COMBAT);
+	}
+	
+        @Override
+        public void onUpdate() {
+            if (maxCPS.getValue() < minCPS.getValue()) {
+                maxCPS.setValue(minCPS.getValue());
+            }
+            if (timer.hasReached(delay)) {
+                timer.reset();
+                KeyBinding.onTick(mc.gameSettings.keyBindAttack.getKeyCode());
+
+                double min = minCPS.getValue();
+                double delta = maxCPS.getValue() - min;
+
+                double nextDelay = 1 / (min + Math.random() * delta);
+                delay = (int) Math.floor(nextDelay * 1000);
+            }
+        }
+    });
+}
+
+}

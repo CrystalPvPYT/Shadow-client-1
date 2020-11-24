@@ -1,0 +1,121 @@
+package me.mystra.module.combat;
+
+import java.awt.Color;
+
+import org.lwjgl.opengl.GL11;
+
+import me.mystra.Mystra;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.Event3D;
+import me.mystra.event.events.EventSpeed;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.potion.Potion;
+
+public class TargetStrafe extends Module {
+    public static int direction = 1;
+    public static boolean canMove;
+    public TargetStrafe() {
+        super("TargetStrafe", 0, Category.COMBAT);
+    }
+    @EventTarget
+    public void onMove(EventSpeed event) {
+    	if(isToggled()) {
+    		if(Mystra.instance.moduleManager.getModuleByName("Aura").isToggled()) {
+    			if(Aura.ThisIsTheEntityThatThePlayerIsHittingTo == null) {
+    				return;
+    			}
+    			float rotations[] = getRotationsEntity(Aura.ThisIsTheEntityThatThePlayerIsHittingTo);
+    			double movespeed2 = getBaseMoveSpeed();
+    			if(Aura.ThisIsTheEntityThatThePlayerIsHittingTo.getDistanceToEntity(mc.thePlayer) < 1.5) {
+    				this.strafe(event, movespeed2, rotations[0], direction, 0.1D);
+    			} else {
+	    			if(Aura.ThisIsTheEntityThatThePlayerIsHittingTo.getDistanceToEntity(mc.thePlayer) > 1.5) {
+	    				if(mc.gameSettings.keyBindRight.isPressed()) {
+	    		    		this.direction = 1;
+	    		    	}
+	    				canMove = true;
+	    				if(canMove == true) {
+	    					this.strafe(event, movespeed2, rotations[0], direction, 0.0D);
+	    				}
+	    			} else {
+	    				if(canMove == true) {
+	    					this.strafe(event, movespeed2, rotations[0], direction, 0.1D);
+	    				}
+	    				canMove = false;
+	    			}
+    			}
+    		} else {
+    			canMove = false;
+    		}
+    	}
+    }
+    public static double getBaseMoveSpeed() {
+        double baseSpeed = 0.2873;
+        if (mc.thePlayer.isPotionActive(Potion.moveSpeed)) {
+            int amplifier = mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).getAmplifier();
+            baseSpeed *= 1.0 + 0.2 * (double)(amplifier + 1);
+        }
+        return baseSpeed;
+    }
+    public static void strafe(EventSpeed event, double movespeed, float yaw, double strafe, double forward) {
+    	double fow = forward;
+    	double stra = strafe;
+    	float ya = yaw;
+    	if (fow != 0.0D) {
+            if (stra > 0.0D) {
+            	fow += ((fow > 0.0D) ? -45 : 45);
+            } else if (stra < 0.0D) {
+            	fow += ((fow > 0.0D) ? 45 : -45);
+            }
+            stra = 0.0D;
+            if (fow > 0.0D) {
+            	fow = 1.0D;
+            } else if (fow < 0.0D) {
+            	fow = -1.0D;
+            }
+        }
+        if (stra > 0.0D) {
+        	stra = 1.0D;
+        } else if (stra < 0.0D) {
+        	stra = -1.0D;
+        }
+        double mx = Math.cos(Math.toRadians((fow + 90.0F)));
+        double mz = Math.sin(Math.toRadians((fow + 90.0F)));
+        event.setX(fow * movespeed * mx + stra * movespeed * mz);
+        event.setZ(fow * movespeed * mz - stra * movespeed * mx);
+    }
+    public static float[] getRotationsEntity(EntityLivingBase entity) {
+        return getRotations(entity.posX + randomNumber(0.03D, -0.03D), entity.posY + entity.getEyeHeight() - 0.4D + randomNumber(0.07D, -0.07D), entity.posZ + randomNumber(0.03D, -0.03D));
+    }
+    public static double randomNumber(double max, double min) {
+        return Math.random() * (max - min) + min;
+    }
+    public static float[] getRotations(double posX, double posY, double posZ) {
+        EntityLivingBase player = mc.thePlayer;
+        double x = posX - player.posX;
+        double y = posY - player.posY + player.getEyeHeight();
+        double z = posZ - player.posZ;
+        double dist = Math.sqrt(x * x + z * z);
+        float yaw = (float)(Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
+        float pitch = (float)-(Math.atan2(y, dist) * 180.0D / Math.PI);
+        return new float[] { yaw, pitch };
+    }
+    @Override
+    public void onEnable() {
+    	super.onEnable();
+    }
+    
+    @Override
+    public void onDisable() {
+    	super.onDisable();
+    }
+}
+
+
+
+

@@ -1,0 +1,22 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.utils.Wrapper;
+
+import org.lwjgl.input.Keyboard;
+
+public class FastPlace extends Module {
+	public FastPlace() {
+		super("Fastplace", 0, Category.PLAYER);
+	}
+
+	public void onUpdate() {
+		if (this.getState()) {
+			Wrapper.mc.rightClickDelayTimer = 0;
+		}
+	}
+
+	public void onDisable() {
+		Wrapper.mc.rightClickDelayTimer = 6;
+	}
+}

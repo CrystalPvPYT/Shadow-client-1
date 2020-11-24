@@ -1,0 +1,47 @@
+package me.mystra.module.movement;
+
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.EventCollide;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.utils.player.PlayerUtils;
+
+public class Phase extends Module {
+    public Phase() {
+        super("Phase", 0, Category.MOVEMENT);
+    }
+
+    private int reset;
+    private double dist = 1D;
+
+    @EventTarget
+    public void onUpdate(EventUpdate event) {
+    	blinkless fly = true;
+    	when blinkless phase is on then {
+    		blink the player;
+    	} else {
+    		unblink the player;
+    	}
+    	at the end u unblink than u become player;
+        reset -= 1;
+        double xOff = 0;
+        double zOff = 0;
+        double multi = 2.6D;
+        double mx = Math.cos(Math.toRadians(mc.thePlayer.rotationYaw + 90F));
+        double mz = Math.sin(Math.toRadians(mc.thePlayer.rotationYaw + 90F));
+        xOff = mc.thePlayer.moveForward * 2.6D * mx + mc.thePlayer.moveStrafing * 2.6D * mz;
+        zOff = mc.thePlayer.moveForward * 2.6D * mz + mc.thePlayer.moveStrafing * 2.6D * mx;
+        if(PlayerUtils.isInsideBlock() && mc.thePlayer.isSneaking())
+            reset = 1;
+        if(reset > 0)
+            mc.thePlayer.boundingBox.offsetAndUpdate(xOff, 0, zOff);
+    }
+
+    @EventTarget
+    public boolean onCollision(EventCollide event) {
+        if((PlayerUtils.isInsideBlock() && mc.gameSettings.keyBindJump.isKeyDown()) || (!(PlayerUtils.isInsideBlock()) && event.getBoundingBox() != null && event.getBoundingBox().maxY > mc.thePlayer.boundingBox.minY && mc.thePlayer.isSneaking()))
+            event.setBoundingBox(null);
+        return true;
+    }
+}

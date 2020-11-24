@@ -1,0 +1,13 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import net.minecraft.util.EnumFacing;
+
+public class Tower extends Module{
+
+	public Tower() {
+		super("Tower", Keyboard.KEY_J, Category.MOVEMENT);
+	}
+}

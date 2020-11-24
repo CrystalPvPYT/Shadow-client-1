@@ -1,0 +1,100 @@
+package net.minecraft.client.gui;
+
+import java.awt.Color;
+import java.io.IOException;
+import java.net.Proxy;
+
+import org.lwjgl.input.Keyboard;
+
+import com.mojang.authlib.Agent;
+import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
+import com.mojang.authlib.yggdrasil.YggdrasilUserAuthentication;
+
+import net.minecraft.client.resources.I18n;
+import net.minecraft.util.Session;
+
+public class GuiAltLogin extends GuiScreen {
+
+	private GuiScreen parent;
+	private String status;
+	private GuiTextField loginField;
+	
+	public GuiAltLogin(GuiScreen guiMainMenu) {
+		parent = guiMainMenu;
+	}
+	
+	@Override
+	public void initGui() {
+		this.status = "§7Waiting...";
+		int width = 100, height = 20, offset = (5 / 2);
+		buttonList.add(new GuiButton(0, this.width / 2 - width / 2, this.height - height - offset, width, height, "Login"));
+		buttonList.add(new GuiButton(1, this.width / 2 - width / 2, this.height - (height + offset) * 2, width, height, I18n.format("gui.back", new Object[0])));
+		loginField = new GuiTextField(2, fontRendererObj, this.width / 40 - 120, this.height / 4, 250, 20);
+		loginField.setFocused(true);
+		loginField.setText("");
+	}
+	
+	@Override
+	protected void keyTyped(char typedChar, int keyCode) throws IOException {
+		loginField.textboxKeyTyped(typedChar, keyCode);
+		if(keyCode == Keyboard.KEY_ESCAPE) {
+			actionPerformed(buttonList.get(1));
+		}
+		if(keyCode == Keyboard.KEY_RETURN) {
+			actionPerformed(buttonList.get(0));
+		}
+	}
+	
+	@Override
+	protected void actionPerformed(GuiButton button) throws IOException {
+		if(button.id == 0) {
+			if(loginField.getText() != null && !loginField.getText().isEmpty()) {
+				if(!loginField.getText().contains(" ")) {
+					try {
+						final String args[] = loginField.getText().split(":");
+						if(args[0].contains("@")) {
+							final YggdrasilUserAuthentication authentication = (YggdrasilUserAuthentication) new YggdrasilAuthenticationService(Proxy.NO_PROXY, "").createUserAuthentication(Agent.MINECRAFT);
+							authentication.setUsername(args[0]);
+							authentication.setPassword(args[1]);
+							try {
+								authentication.logIn();
+								
+								mc.session = new Session(authentication.getSelectedProfile().getName(), authentication.getSelectedProfile().getId().toString(), authentication.getAuthenticatedToken(), "mojang");
+								System.out.println(status = "§aLogged in successfully as §b" + mc.session.getUsername());
+							} catch (Exception e) {
+								System.out.println(status = "§cERROR: ALT HAS INVAILD INITIALS");
+							}
+						}else {
+							System.out.println(status = "§cERROR: ACCOUNT IS NOT PREMIUM");
+						}
+					}catch (Exception e) {
+						System.out.println(status = "§cERROR: INVAILD ACCOUNT");
+					}
+				}else {
+					System.out.println(status = "§cERROR: INVALID ACCOUNT");
+				}
+			}else {
+				System.out.println(status = "§cERROR: NO DETAILS IN FEILD");
+			}
+		}else if(button.id == 1){
+			mc.displayGuiScreen(parent);
+		}
+	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
+		this.drawCenteredString(this.fontRendererObj, "Alt Login", this.width / 2, 10, Color.magenta.getRGB());
+		this.drawCenteredString(this.fontRendererObj, this.status, this.width / 2, 20, Color.white.getRGB());
+		this.drawCenteredString(this.fontRendererObj, "MystraAccounts Format:", this.width / 2, 170, Color.gray.getRGB());
+		this.drawCenteredString(this.fontRendererObj, "email:password", this.width / 2, 180, Color.gray.getRGB());
+		loginField.drawTextBox();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+	
+	@Override
+	public void updateScreen() {
+		loginField.updateCursorCounter();
+	}
+	
+}

@@ -1,0 +1,5 @@
+package me.mystra.betagui.module;
+
+public enum Category {
+    COMBAT, MOVEMENT
+}

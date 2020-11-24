@@ -1,0 +1,43 @@
+package mystra.events;
+
+import com.darkmagician6.eventapi.events.Cancellable;
+import com.darkmagician6.eventapi.events.Event;
+
+import net.minecraft.network.Packet;
+
+public class ReadPacketEvent implements Event, Cancellable{
+	
+	private Packet packet;
+	
+	private PacketState state;
+	
+	private boolean isCancelled;
+	
+	public ReadPacketEvent(Packet packet, PacketState state) {
+		this.packet = packet;
+		this.state = state;
+	}
+	
+	public PacketState getState() {
+		return this.state;
+	}
+	
+	public Packet getPacket() {
+		return this.packet;
+	}
+
+	@Override
+	public boolean isCancelled() {
+		return false;
+	}
+
+	@Override
+	public void setCancelled(boolean cancelled) {
+		isCancelled = cancelled;
+	}
+	
+	public enum PacketState {
+		PRE, POST
+	}
+
+}

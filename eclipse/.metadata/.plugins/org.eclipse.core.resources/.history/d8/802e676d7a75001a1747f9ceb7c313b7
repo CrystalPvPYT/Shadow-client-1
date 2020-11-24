@@ -1,0 +1,119 @@
+package mystra.mods;
+
+import java.lang.reflect.Field;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventTarget;
+
+import mystra.events.MotionUpdateEvent;
+import mystra.main.Category;
+import mystra.utils.BlockUtil;
+import mystra.utils.TimeHelper;
+import mystra.valuesystem.BooleanValue;
+import mystra.valuesystem.NumberValue;
+import net.minecraft.block.BlockAir;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Vec3;
+
+public class Scaffold extends Module {
+    
+	public Scaffold() {
+		super("Scaffold", Keyboard.KEY_N, Category.MOVEMENT);
+	}
+    
+	private BlockPos currentPos;
+    private EnumFacing currentFacing;
+    private boolean rotated = false;
+    private TimeHelper timer = new TimeHelper();
+    private NumberValue<Integer> delay = new NumberValue<Integer>("Delay", 0, 50, 600);
+
+
+    @EventTarget
+    public void onMotionUpdate(MotionUpdateEvent e) {
+        if (!getState()) return;
+
+
+        if (e.getState() == MotionUpdateEvent.State.PRE) {
+            rotated = false;
+            currentPos = null;
+            currentFacing = null;
+
+            BlockPos pos = new BlockPos(mc.thePlayer.posX, mc.thePlayer.posY - 1.0D, mc.thePlayer.posZ);
+            if (mc.theWorld.getBlockState(pos).getBlock() instanceof BlockAir) {
+                setBlockAndFacing(pos);
+
+                if (currentPos != null) {
+                    float facing[] = BlockUtil.getDirectionToBlock(currentPos.getX(), currentPos.getY(), currentPos.getZ(), currentFacing);
+
+                    float yaw = facing[0];
+                    float pitch = Math.min(90, facing[1] + 9);
+
+                    rotated = true;
+                    e.setYaw(yaw);
+                    e.setPitch(pitch);
+                }
+            }
+        }
+        if (e.getState() == MotionUpdateEvent.State.POST) {
+            if (currentPos != null) {
+                if (timer.hasTimeReached(delay.getObject())) {
+                    if (mc.thePlayer.getCurrentEquippedItem() != null && mc.thePlayer.getCurrentEquippedItem().getItem() instanceof ItemBlock) {
+                        if (mc.playerController.onPlayerRightClick(mc.thePlayer, mc.theWorld, mc.thePlayer.getCurrentEquippedItem(), currentPos, currentFacing, new Vec3(currentPos.getX(), currentPos.getY(), currentPos.getZ()))) {
+                            timer.setLastMS();
+                            mc.thePlayer.swingItem();
+                            mc.thePlayer.motionX = 0;
+                            mc.thePlayer.motionZ = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void setSneaking(boolean b) {
+        KeyBinding sneakBinding = mc.gameSettings.keyBindSneak;
+        try {
+            Field field = sneakBinding.getClass().getDeclaredField("pressed");
+            field.setAccessible(true);
+            field.setBoolean(sneakBinding, b);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        setSneaking(false);
+    }
+
+
+    private void setBlockAndFacing(BlockPos var1) {
+        if (mc.theWorld.getBlockState(var1.add(0, -1, 0)).getBlock() != Blocks.air) {
+            this.currentPos = var1.add(0, -1, 0);
+            currentFacing = EnumFacing.UP;
+        } else if (mc.theWorld.getBlockState(var1.add(-1, 0, 0)).getBlock() != Blocks.air) {
+            this.currentPos = var1.add(-1, 0, 0);
+            currentFacing = EnumFacing.EAST;
+        } else if (mc.theWorld.getBlockState(var1.add(1, 0, 0)).getBlock() != Blocks.air) {
+            this.currentPos = var1.add(1, 0, 0);
+            currentFacing = EnumFacing.WEST;
+        } else if (mc.theWorld.getBlockState(var1.add(0, 0, -1)).getBlock() != Blocks.air) {
+            this.currentPos = var1.add(0, 0, -1);
+            currentFacing = EnumFacing.SOUTH;
+        } else if (mc.theWorld.getBlockState(var1.add(0, 0, 1)).getBlock() != Blocks.air) {
+            this.currentPos = var1.add(0, 0, 1);
+            currentFacing = EnumFacing.NORTH;
+        } else {
+            currentPos = null;
+            currentFacing = null;
+        }
+    }
+
+
+
+}

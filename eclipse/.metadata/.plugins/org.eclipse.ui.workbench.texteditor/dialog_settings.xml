@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="Mystra"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="Shadow"/>
+			<item value="isCurrentView"/>
+			<item value="Mystra"/>
+			<item value="//TabGui created by non_hacker"/>
+			<item value="addChat"/>
+			<item value="block"/>
+			<item value="target"/>
+			<item value="mode"/>
+			<item value="circle"/>
+			<item value="getClosest"/>
+			<item value="getClos"/>
+			<item value="mc"/>
+			<item value="Axis"/>
+			<item value="getFov"/>
+			<item value="renderStringAt"/>
+		</list>
+		<list key="replacehistory">
+			<item value="Mystra"/>
+			<item value="Shadow"/>
+			<item value=""/>
+			<item value="ThisIsTheEntityThatThePlayerIsHittingTo"/>
+			<item value="Minecraft.getMinecraft()"/>
+			<item value="MovementUtils"/>
+			<item value="isPressed"/>
+			<item value="FlyAddon"/>
+			<item value="mc.thePlayer"/>
+			<item value="Minecraft.getMinecraft().thePlayer"/>
+			<item value="RenderUtils"/>
+			<item value="pos.getAbsoluteY() + 32"/>
+			<item value="pos.getAbsoluteY() + 15"/>
+			<item value="pos.getAbsoluteY() + 25"/>
+			<item value="pos.getAbsoluteY() + 13"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1119"/>
+		<item key="DIALOG_Y_ORIGIN" value="354"/>
+		<item key="DIALOG_WIDTH" value="283"/>
+		<item key="DIALOG_HEIGHT" value="382"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="280"/>
+		<item key="DIALOG_Y_ORIGIN" value="412"/>
+	</section>
+</section>

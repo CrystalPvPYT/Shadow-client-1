@@ -1,0 +1,229 @@
+package me.mystra.hud.draggablehud.hudmods.impl;
+
+import java.awt.Color;
+
+import me.mystra.Mystra;
+import me.mystra.hud.draggablehud.ScreenPosition;
+import me.mystra.hud.draggablehud.hudmods.ModDraggable;
+import me.mystra.module.combat.KillAura;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.EntityLivingBase;
+
+public class TargetHud extends ModDraggable {
+	private static ScreenPosition pos = ScreenPosition.fromRelativePosition(0.50, 0.50);
+	@Override
+	public int getWidth() {
+		return 50;
+	}
+
+	@Override
+	public int getHeight() {
+		return 50;
+		// Ok.. try ._.
+	}
+
+	@Override
+	public void render(ScreenPosition pos) {
+		if(Mystra.instance.moduleManager.getModuleByName("KillAura").isToggled()) {
+			if(Mystra.instance.settingsManager.getSettingByName("TargetHUD").getValBoolean()) {
+				if(KillAura.target == null) {
+					return;
+				}
+				if(KillAura.target.getDistanceToEntity(mc.thePlayer) < 8F) {
+					Gui.drawRect(pos.getAbsoluteX() - 36, pos.getAbsoluteY() - 1, pos.getAbsoluteX() + 101, pos.getAbsoluteY() + 36, new Color(0, 0, 0, 185).getRGB());
+					Gui.drawRect(pos.getAbsoluteX() + 100, pos.getAbsoluteY(), pos.getAbsoluteX(), pos.getAbsoluteY() + 35, new Color(0, 0, 0, 102).getRGB());
+					Gui.drawRect(pos.getAbsoluteX() - 35, pos.getAbsoluteY(), pos.getAbsoluteX(), pos.getAbsoluteY() + 35, new Color(0, 0, 0, 150).getRGB());
+					renderEntityHealth();
+					Minecraft.getMinecraft().fontRendererObj.drawString("Name: " + KillAura.target.getName(), pos.getAbsoluteX() + 2, pos.getAbsoluteY() + 2, -1);
+					Minecraft.getMinecraft().fontRendererObj.drawString("You Have To Win!", pos.getAbsoluteX() + 2, pos.getAbsoluteY() + 12, -1);
+					Minecraft.getMinecraft().fontRendererObj.drawString("Health: " + KillAura.target.getHealth(), pos.getAbsoluteX() + 40, pos.getAbsoluteY() + 26, -1);
+				}
+			}
+		}
+	}
+	@Override
+	public void renderDummy(ScreenPosition pos) {
+		Gui.drawRect(pos.getAbsoluteX() - 36, pos.getAbsoluteY() - 1, pos.getAbsoluteX() + 101, pos.getAbsoluteY() + 36, new Color(0, 0, 0, 185).getRGB());
+		Gui.drawRect(pos.getAbsoluteX() + 100, pos.getAbsoluteY(), pos.getAbsoluteX(), pos.getAbsoluteY() + 35, new Color(0, 0, 0, 102).getRGB());
+		Gui.drawRect(pos.getAbsoluteX() - 35, pos.getAbsoluteY(), pos.getAbsoluteX(), pos.getAbsoluteY() + 35, new Color(0, 0, 0, 150).getRGB());
+		//Gui.drawRect(pos.getAbsoluteX() + 100, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, new Color(255, 0, 0, 255).getRGB());
+		renderEntityHealth();
+		Minecraft.getMinecraft().fontRendererObj.drawString("Name: ", pos.getAbsoluteX() + 2, pos.getAbsoluteY() + 2, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawString("You Have To Win!", pos.getAbsoluteX() + 2, pos.getAbsoluteY() + 12, -1);
+		Minecraft.getMinecraft().fontRendererObj.drawString("Health: ", pos.getAbsoluteX() + 40, pos.getAbsoluteY() + 26, -1);
+		super.renderDummy(pos);
+	}
+	@Override
+	public void save(ScreenPosition pos) {
+		this.pos = pos;
+	}
+
+	@Override
+	public ScreenPosition load() {
+		return pos;
+	}
+	public static void drawEntityOnScreen(int posX, int posY, int scale, float mouseX, float mouseY, EntityLivingBase ent, boolean rotate) {
+	    GlStateManager.enableDepth();
+	    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+	    GlStateManager.enableColorMaterial();
+	    GlStateManager.pushMatrix();
+	    GlStateManager.translate(posX, posY, 50.0F);
+	    GlStateManager.scale(-scale, scale, scale);
+	    GlStateManager.rotate(180.0F, 0.0F, 0.0F, 1.0F);
+	    float f = ent.renderYawOffset;
+	    float f1 = ent.rotationYaw;
+	    float f2 = ent.rotationPitch;
+	    float f3 = ent.prevRotationYawHead;
+	    float f4 = ent.rotationYawHead;
+	    GlStateManager.rotate(135.0F, 0.0F, 1.0F, 0.0F);
+	    RenderHelper.enableStandardItemLighting();
+	    GlStateManager.rotate(-135.0F, 0.0F, 1.0F, 0.0F);
+	    if (rotate) {
+	      ent.renderYawOffset = (float)Math.atan(((posX - mouseX) / 40.0F)) * 20.0F;
+	      ent.rotationYaw = (float)Math.atan(((posX - mouseX) / 40.0F)) * 40.0F;
+	      GlStateManager.rotate(-((float)Math.atan(((posY - mouseY) / 40.0F) - ent.getEyeHeight())) * 20.0F, 
+	          1.0F, 0.0F, 0.0F);
+	      ent.rotationPitch = -((float)Math.atan(((posY - mouseY) / 40.0F) - ent.getEyeHeight())) * 20.0F;
+	    } else {
+	      ent.renderYawOffset = 0.0F;
+	      ent.rotationYaw = 0.0F;
+	      ent.rotationPitch = 0.0F;
+	    } 
+	    
+	    ent.rotationYawHead = ent.rotationYaw;
+	    ent.prevRotationYawHead = ent.rotationYaw;
+	    GlStateManager.translate(0.0F, 0.0F, 0.0F);
+	    RenderManager rendermanager = Minecraft.getMinecraft().getRenderManager();
+	    rendermanager.setPlayerViewY(180.0F);
+	    rendermanager.setRenderShadow(false);
+
+	    
+	    rendermanager.doRenderEntity(ent, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F, false);
+	    rendermanager.setRenderShadow(true);
+	    ent.renderYawOffset = f;
+	    ent.rotationYaw = f1;
+	    ent.rotationPitch = f2;
+	    ent.prevRotationYawHead = f3;
+	    ent.rotationYawHead = f4;
+	    GlStateManager.popMatrix();
+	    RenderHelper.disableStandardItemLighting();
+	    GlStateManager.disableRescaleNormal();
+	    GlStateManager.setActiveTexture(OpenGlHelper.lightmapTexUnit);
+	    GlStateManager.disableTexture2D();
+	    GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
+	    GlStateManager.disableDepth();
+	}
+	protected static int getHealthColor(int hp) {
+		if (hp > 20) {
+			return GuiIngame.getColor(0, 255, 0);
+		}
+		if (hp > 15) {
+			return GuiIngame.getColor(50, 255, 0);
+		}
+		if (hp > 14) {
+			return GuiIngame.getColor(75, 255, 0);
+		}
+		if (hp > 13) {
+			return GuiIngame.getColor(100, 255, 0);
+		}
+		if (hp > 13) {
+			return GuiIngame.getColor(150, 255, 0);
+		}
+		if (hp > 10) {
+			return GuiIngame.getColor(255, 255, 0);
+		}
+		if (hp > 5) {
+			return GuiIngame.getColor(207, 181, 59);
+		}
+		if (hp > 2) {
+			return GuiIngame.getColor(225, 0, 0);
+		}
+		if (hp < 1) {
+			return GuiIngame.getColor(255, 0, 0);
+		}
+		return GuiIngame.getColor(255, 0, 0);
+	}
+	public static void renderEntityHealth() {
+		if(KillAura.target == null ) {
+			return;
+		}
+		if(KillAura.target.getHealth() > 20) {
+			Gui.drawRect(pos.getAbsoluteX() + 100, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 19) {
+			Gui.drawRect(pos.getAbsoluteX() + 100, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 18) {
+			Gui.drawRect(pos.getAbsoluteX() + 90, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 17) {
+			Gui.drawRect(pos.getAbsoluteX() + 85, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 16) {
+			Gui.drawRect(pos.getAbsoluteX() + 80, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 15) {
+			Gui.drawRect(pos.getAbsoluteX() + 75, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 14) {
+			Gui.drawRect(pos.getAbsoluteX() + 70, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 13) {
+			Gui.drawRect(pos.getAbsoluteX() + 65, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 12) {
+			Gui.drawRect(pos.getAbsoluteX() + 60, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 11) {
+			Gui.drawRect(pos.getAbsoluteX() + 55, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 10) {
+			Gui.drawRect(pos.getAbsoluteX() + 50, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 9) {
+			Gui.drawRect(pos.getAbsoluteX() + 45, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 8) {
+			Gui.drawRect(pos.getAbsoluteX() + 40, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 7) {
+			Gui.drawRect(pos.getAbsoluteX() + 35, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 6) {
+			Gui.drawRect(pos.getAbsoluteX() + 30, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 5) {
+			Gui.drawRect(pos.getAbsoluteX() + 25, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 4) {
+			Gui.drawRect(pos.getAbsoluteX() + 20, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 3) {
+			Gui.drawRect(pos.getAbsoluteX() + 15, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 2) {
+			Gui.drawRect(pos.getAbsoluteX() + 10, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 1) {
+			Gui.drawRect(pos.getAbsoluteX() + 5, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 0.8) {
+			Gui.drawRect(pos.getAbsoluteX() + 4, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 0.5) {
+			Gui.drawRect(pos.getAbsoluteX() + 3, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 0.3) {
+			Gui.drawRect(pos.getAbsoluteX() + 2, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+		if(KillAura.target.getHealth() > 0.1) {
+			Gui.drawRect(pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 35, pos.getAbsoluteX() + 1, pos.getAbsoluteY() + 23, getHealthColor((int) KillAura.target.getHealth()));
+		}
+	}
+}

@@ -1,0 +1,15 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class Scaffold extends Module{
+
+	public Scaffold() {
+		super("Scaffold", Keyboard.KEY_X, Category.MOVEMENT);
+	}
+	
+	
+
+}

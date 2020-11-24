@@ -1,0 +1,5 @@
+package mystra.main;
+
+public enum Category {
+	PLAYER, RENDER, COMBAT, MOVEMENT, OTHER
+}

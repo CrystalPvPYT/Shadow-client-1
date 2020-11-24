@@ -1,0 +1,31 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class AntiKB extends Module{
+	
+	private final SliderSetting strength = new SliderSetting("Strength", 1,
+			0.01, 1, 0.01, ValueDisplay.PERCENTAGE);
+
+	public AntiKB() {
+		super("AntiKB", Keyboard.KEY_K, Category.MOVEMENT);
+		}
+	
+	@Override
+	public void initSettings()
+	{
+		addSetting(strength);
+	}
+	
+	public float getKnockbackModifier()
+	{
+		return isActive() ? 1 - strength.getValueF() : 1;
+	}
+}
+	
+	
+
+}

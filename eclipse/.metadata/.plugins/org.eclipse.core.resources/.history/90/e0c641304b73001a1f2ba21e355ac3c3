@@ -1,0 +1,5 @@
+package mystra.gui;
+
+public class UIRenderer {
+
+}

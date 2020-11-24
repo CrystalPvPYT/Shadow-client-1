@@ -1,0 +1,84 @@
+package mystra.gui;
+
+import java.util.ArrayList;
+
+import mystra.main.Category;
+import mystra.main.Mystra;
+import mystra.mods.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.Gui;
+
+public class MystraTabGui {
+	
+	public static FontRenderer font = Minecraft.getMinecraft().fontRendererObj;
+	
+	private ArrayList<String> mods = new ArrayList();
+    private ArrayList<String> category = new ArrayList();
+
+    private int selectedMod, selectedTab;
+
+    private int start, start1 = start + 14, end;
+
+    public static int screen = 0;
+    
+    public MystraTabGui() {
+        Category[] arrayofCategorys;
+        int j = (arrayofCategorys = Category.values()).length;
+
+        for(int i = 0; i < j; i++) {
+            Category category = arrayofCategorys[i];
+
+            if(category.name().equalsIgnoreCase("Gui")) {
+                continue;
+            }
+            this.category.add(category.toString().substring(0,1) + category.toString().substring(1, category.toString().length()).toLowerCase());
+        }
+    }
+    
+    public void drawTabGui() {
+        int count = 0;
+        int counter = 0;
+       
+        for(Category c : Category.values()) {
+            if(!c.name().equalsIgnoreCase("Gui")) {
+                int y = 14 + (count * 13);
+                int yZ = 98 + ((count + 1) * 13);
+               
+                HUDUtils.drawBorderRect(6, y, 65, y + 13, !c.name().equalsIgnoreCase(category.get(this.selectedTab)) ? 0xbb151515 : Rainbow(counter * 1), !c.name().equalsIgnoreCase(category.get(this.selectedTab)) ? 0xbb151515 : Rainbow(counter * 1), 0);
+                Gui.drawRect(6, y, 5, y + 13, Rainbow(counter * 1));
+               
+                count++;
+                counter++;
+            }
+        }
+        int categoryCount = 0;
+       
+        for(String s : this.category) {
+            font.arrayList.drawCenteredString(s, 35, 17 + categoryCount * 13, -1);
+            categoryCount++;
+        }
+        if(screen == 1) {
+            int modCount = 0;
+           
+            for(Module mod: getModsForCategory()) {
+                String color;
+                if(mod.isToggled()) {
+                    color = "\247f";
+                } else {
+                    color = "\2477";
+                }
+                String name = color + mod.getName();
+                int y = 14 + (modCount * 13);
+                int yZ = 62 + ((modCount + 1) * 13);
+               
+                HUDUtils.drawBorderRect(66, y, 70 + this.getLongestModWidth(), y + 13, !mod.getName().equalsIgnoreCase(this.getModsForCategory().get(this.selectedMod).getName()) ? Rainbow(counter * 1) : 0xbb151515, !mod.getName().equalsIgnoreCase(this.getModsForCategory().get(this.selectedMod).getName()) ? 0xbb151515 : Rainbow(counter * 1), 0);
+                //Mystra.instance.FONT_MANAGER.arrayList.drawCenteredString(name, 80 + (this.getLongestModWidth() / 3), y + 3, 0xFFFFFFFF);
+                Mystra.instance.FONT_MANAGER.arrayList.drawString(name, 70, y + 3, 0xFFFFFFFF);
+                // FontUtil
+                Gui.drawRect(65, y, 66, y + 13, Rainbow(counter * 1));
+                modCount++;
+            }
+        }
+    }
+}

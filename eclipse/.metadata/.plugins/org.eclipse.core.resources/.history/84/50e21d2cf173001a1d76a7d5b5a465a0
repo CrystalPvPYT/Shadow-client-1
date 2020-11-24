@@ -1,0 +1,33 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+
+public class Sprint extends Module{
+	public Sprint() {
+		super("Sprint", 0, Category.MOVEMENT);
+	}
+
+	@Override
+	public void onUpdate() {
+		if(this.isToggled()) {
+			mc.thePlayer.setSprinting(true);
+		}else{
+			mc.thePlayer.setSprinting(false);
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Sprint Disabled", 1));
+    	super.onEnable();
+    }
+	
+	@Override
+	public void onDisable() {
+		NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Sprint Disabled", 1));
+		super.onDisable();
+	}
+}

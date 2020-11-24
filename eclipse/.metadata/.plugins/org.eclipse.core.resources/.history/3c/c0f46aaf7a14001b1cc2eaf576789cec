@@ -1,0 +1,24 @@
+package me.mystra.betagui.module;
+
+import java.util.ArrayList;
+
+import me.mystra.betagui.module.impl.Aura2;
+import me.mystra.betagui.module.impl.Wave;
+
+public class BetaManager {
+    private ArrayList<Beta> beta = new ArrayList<Beta>();
+
+    public BetaManager() {
+    	
+        // COMBAT
+    	beta.add(new Aura2());
+    	beta.add(new Wave());
+    }
+
+    public ArrayList<Beta> getBeta() {
+        return beta;
+    }
+    public Beta getBetaByName(String name) {
+        return beta.stream().filter(beta -> beta.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+    }
+}

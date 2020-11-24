@@ -1,0 +1,26 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+
+import mystra.main.Category;
+import mystra.utils.Wrapper;
+import mystra.values.Value;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+public class Step extends Module{
+	
+	Value stepHeight = new Value("Step Height", 1, 1, 5, ValueDisplay.INTEGER);
+
+	public Step() {
+		super("Step", 0, Category.MOVEMENT);
+	}
+	
+	public void onUpdate(){
+		if(this.getState()){
+			Wrapper.mc.getMinecraft().thePlayer.stepHeight = (float) stepHeight.getValue();
+		}else{
+			Wrapper.mc.getMinecraft().thePlayer.stepHeight = 0.5f;
+		}
+	}
+
+}

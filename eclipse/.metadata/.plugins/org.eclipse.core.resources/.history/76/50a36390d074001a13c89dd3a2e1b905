@@ -1,0 +1,11 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class ShaderESP extends Module{
+
+	public ShaderESP() {
+		super("ShaderESP", 0, Category.RENDER);
+	}
+
+}

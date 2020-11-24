@@ -1,0 +1,493 @@
+package me.mystra.module.combat;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import me.mystra.Mystra;
+import me.mystra.clickgui.settings.Setting;
+import me.mystra.event.EventManager;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.Event3D;
+import me.mystra.event.events.EventSendPacket;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.utils.MathUtils;
+import me.mystra.utils.TimeHelper;
+import me.mystra.utils.render.RenderUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.monster.EntityGolem;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.network.play.client.C03PacketPlayer;
+import net.minecraft.network.play.client.C07PacketPlayerDigging;
+import net.minecraft.network.play.client.C0APacketAnimation;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
+
+public class Aura extends Module {
+	private float delay;
+	private int switchI;
+	public static float range;
+	private TimeHelper timerUtil = new TimeHelper();
+    private TimeHelper switchTimer = new TimeHelper();
+	public static EntityLivingBase ThisIsTheEntityThatThePlayerIsHittingTo;
+	public boolean IsHittingEntityFakeBoolean = false;
+	private TimeHelper timeHelper = new TimeHelper();
+	public float yaw, pitch;
+
+	public Aura() {
+		super("Aura", Keyboard.KEY_R, Category.COMBAT);
+
+		ArrayList<String> options = new ArrayList<>();
+        options.add("Normal");
+        
+        ArrayList<String> modes = new ArrayList<>();
+        modes.add("Multi");
+        modes.add("Single");
+
+        Mystra.instance.settingsManager.rSetting(new Setting("Aura Mode", this, "Single", modes));
+        
+        Mystra.instance.settingsManager.rSetting(new Setting("CircleESP Mode", this, "Normal", options));
+		Mystra.instance.settingsManager.rSetting(new Setting("Delay", this, 8.0, 1, 100.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Range", this, 4.0, 1.0, 6.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Max Targets", this, 3, 1, 5, true));
+		Mystra.instance.settingsManager.rSetting(new Setting("Switch Speed", this, 300, 100, 1000, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("CircleESP Range", this, 1.80, 1.0, 6.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Aura Min Speed", this, 90.0, 0, 180.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Aura Max Speed", this, 180.0, 0, 180.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("AuraCircleESP", this, true));
+		Mystra.instance.settingsManager.rSetting(new Setting("Animals", this, false));
+        Mystra.instance.settingsManager.rSetting(new Setting("AutoBlock", this, true));
+        Mystra.instance.settingsManager.rSetting(new Setting("Invisibles", this, false));
+        Mystra.instance.settingsManager.rSetting(new Setting("Monsters", this, false));
+        Mystra.instance.settingsManager.rSetting(new Setting("Players", this, true));
+        Mystra.instance.settingsManager.rSetting(new Setting("Teams", this, false));
+        Mystra.instance.settingsManager.rSetting(new Setting("Villagers", this, false));
+        Mystra.instance.settingsManager.rSetting(new Setting("Rotations", this, true));
+        Mystra.instance.settingsManager.rSetting(new Setting("Aimlock", this, false));
+        Mystra.instance.settingsManager.rSetting(new Setting("Predict", this, true));
+        Mystra.instance.settingsManager.rSetting(new Setting("TargetHUD", this, true));
+        Mystra.instance.settingsManager.rSetting(new Setting("Dynamic Timing", this, false));
+
+	}
+
+	@EventTarget
+	public void onEvent(EventUpdate e) {
+		delay = ((float) Mystra.instance.settingsManager.getSettingByName("Delay").getValDouble());
+		range = ((float) Mystra.instance.settingsManager.getSettingByName("Range").getValDouble());
+	}
+
+	@EventTarget
+	public void onUpdate(EventUpdate event) {
+		String modes = Mystra.instance.settingsManager.getSettingByName("Aura Mode").getValString();
+		final long ping = getMc().getCurrentServerData() == null ? 0 : Math.min(50, Math.max(getMc().getCurrentServerData().pingToServer, 110));
+        final int pingDelay = Math.round(ping / 10);
+		if(modes.equalsIgnoreCase("Multi")) {
+			for (Object o : mc.theWorld.loadedEntityList) {
+				if (o instanceof EntityLivingBase) {
+					if (o != mc.thePlayer) {
+						EntityLivingBase e = (EntityLivingBase) o;
+						
+						boolean block = check(e) && Mystra.instance.settingsManager.getSettingByName("AutoBlock").getValBoolean() && mc.thePlayer.getHeldItem() != null && mc.thePlayer.getHeldItem().getItem() != null && mc.thePlayer.getHeldItem().getItem() instanceof ItemSword;
+						
+						if(block && e.getDistanceToEntity(mc.thePlayer) < range) {
+				        	this.mc.thePlayer.setItemInUse(this.mc.thePlayer.getHeldItem(), this.mc.thePlayer.getHeldItem().getMaxItemUseDuration());
+						}
+						
+						if (check(e) && (timeHelper.isDelayComplete(1000 / delay))) {
+							attack(e);
+							ThisIsTheEntityThatThePlayerIsHittingTo = e;
+						}
+					}
+				}
+			}
+		}
+		
+		if(modes.equalsIgnoreCase("Single")) {
+			if (event.isPre()) {
+                if (ThisIsTheEntityThatThePlayerIsHittingTo != null) {
+                    final float[] rots = getRotationsToEnt(ThisIsTheEntityThatThePlayerIsHittingTo, getMc().thePlayer);
+                    event.setYaw(rots[0]);
+                    event.setPitch(rots[1]);
+                }
+            }
+            if (!event.isPre()) {
+                final ArrayList<EntityLivingBase> targs = new ArrayList<>();
+                getMc().theWorld.getLoadedEntityList().stream().filter(entity -> entity instanceof EntityLivingBase).filter(entity -> isTargetable((EntityLivingBase) entity, getMc().thePlayer, false)).forEach(potentialTarget -> {
+                    if (targs.size() < Mystra.instance.settingsManager.getSettingByName("Max Targets").getValDouble()) {
+                        targs.add((EntityLivingBase) potentialTarget);
+                    }
+                });
+                if (switchTimer.sleep((long) Mystra.instance.settingsManager.getSettingByName("Switch Speed").getValDouble()) && !targs.isEmpty()) {
+                    if (switchI + 1 > targs.size() - 1 || targs.size() < 2) {
+                        switchI = 0;
+                    } else {
+                        switchI++;
+                    }
+                }
+                if (!targs.isEmpty()) ThisIsTheEntityThatThePlayerIsHittingTo = targs.get(Math.min(switchI, targs.size() - 1));
+                if (ThisIsTheEntityThatThePlayerIsHittingTo != null) {
+                    if (!isTargetable(ThisIsTheEntityThatThePlayerIsHittingTo, getMc().thePlayer, false)) ThisIsTheEntityThatThePlayerIsHittingTo = null;
+                }
+                if (ThisIsTheEntityThatThePlayerIsHittingTo != null && getMc().thePlayer != null) {
+                    final float[] rots = getRotationsToEnt(ThisIsTheEntityThatThePlayerIsHittingTo, getMc().thePlayer);
+                    event.setYaw(rots[0]);
+                    event.setPitch(rots[1]);
+                    if (Mystra.instance.settingsManager.getSettingByName("Dynamic Timing").getValBoolean()) {
+                        if (ThisIsTheEntityThatThePlayerIsHittingTo.hurtResistantTime == 0) {
+                            if (timerUtil.sleep(ping * 3)) attackEntity(ThisIsTheEntityThatThePlayerIsHittingTo, false);
+                        } else if (ThisIsTheEntityThatThePlayerIsHittingTo.hurtResistantTime <= 9 + pingDelay) attackEntity(ThisIsTheEntityThatThePlayerIsHittingTo, false);
+                    } else if (timerUtil.sleep(1000 / getCPS())) attackEntity(ThisIsTheEntityThatThePlayerIsHittingTo, false);
+                } else {
+                    timerUtil.reset();
+                }
+            }
+            if (!event.isPre() && canBlock() && nearbyTargets(true)) {
+                getMc().playerController.sendUseItem(getMc().thePlayer, getMc().theWorld, getMc().thePlayer.getHeldItem());
+            }
+		}
+		if(ThisIsTheEntityThatThePlayerIsHittingTo == null) {
+			return;
+		}
+		final float[] rotationsCurrent = new float[] { Mystra.ROTATION_UTIL.serverYaw, Mystra.ROTATION_UTIL.serverPitch };
+		final float[] rotationsInstant = Mystra.ROTATION_UTIL.getRotations(ThisIsTheEntityThatThePlayerIsHittingTo, Mystra.instance.settingsManager.getSettingByName("Predict").getValBoolean(), 1);
+		final float[] rotationsSmooth = Mystra.ROTATION_UTIL.smoothRotation(rotationsCurrent, rotationsInstant, calculateRotationSpeed() + (int) (ThreadLocalRandom.current().nextInt(5)));
+		event.setPitch(rotationsSmooth[1]);
+		event.setYaw(rotationsSmooth[0]);
+		/*this.yaw = rot[0];
+		this.pitch = rot[1];*/
+		this.IsHittingEntityFakeBoolean = true;
+	}
+	
+	private boolean isTargetable(EntityLivingBase entity, EntityPlayerSP clientPlayer, boolean b) {
+        return entity.getUniqueID() != clientPlayer.getUniqueID() && entity.isEntityAlive() && !(entity instanceof EntityPlayer && isTeammate((EntityPlayer) entity)) && !AntiBot.getBots().contains(entity) && !Moonx.INSTANCE.getFriendManager().isFriend(entity.getName()) && !(entity.isInvisible() && !invisibles.isEnabled()) && (clientPlayer.getDistanceToEntity(entity) <= (b ? blockrange.getValue() : range.getValue()) || Mode.getValue() == mode.AAC && clientPlayer.getDistanceToEntity(entity) <= (b ? blockrange.getValue() : 6)) && (entity instanceof EntityPlayer && players.isEnabled() || (entity instanceof EntityMob || entity instanceof EntityGolem) && monsters.isEnabled() || ((entity instanceof EntityVillager || entity instanceof EntityAnimal) && animals.isEnabled()));
+    }
+	
+	private boolean nearbyTargets(boolean block) {
+        for (Object e : getMc().theWorld.loadedEntityList) {
+            if (e instanceof EntityLivingBase && isTargetable((EntityLivingBase) e, getMc().thePlayer, block)) {
+                return true;
+            }
+        }
+        return false;
+    }
+	
+	private int getCPS() {
+        return MathUtils.getRandomInRange(cps.getLeftVal(), cps.getRightVal());
+    }
+
+	private boolean check(EntityLivingBase e) {
+		if (e.isInvisible())
+			if(Mystra.instance.settingsManager.getSettingByName("Invisibles").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if (e instanceof EntityPlayer)
+			if(Mystra.instance.settingsManager.getSettingByName("Players").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if (e instanceof EntityAnimal)
+			if(Mystra.instance.settingsManager.getSettingByName("Animals").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if (e instanceof EntityMob)
+			if(Mystra.instance.settingsManager.getSettingByName("Monsters").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if (e instanceof EntityVillager)
+			if(Mystra.instance.settingsManager.getSettingByName("Villagers").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if(e.isOnSameTeam(mc.thePlayer) && Mystra.instance.settingsManager.getSettingByName("Teams").getValBoolean())
+            return false;
+		/*if (e.getHealth() <= 0)
+			if(Mystra.instance.settingsManager.getSettingByName("AfterDeath").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}*/
+		if (e.ticksExisted > 0)
+			return false;
+		if (e.getEntityId() > 1070000000)
+			return false;
+		return true;
+	}
+	
+	private void attackEntity(Entity entity, boolean dura) {
+        if (canBlock()) {
+            getMc().playerController.syncCurrentPlayItem();
+            getMc().thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging(C07PacketPlayerDigging.Action.RELEASE_USE_ITEM, BlockPos.ORIGIN, EnumFacing.DOWN));
+        }
+        if (dura) {
+            getMc().thePlayer.sendQueue.addToSendQueue(new C0APacketAnimation());
+            getMc().thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(ThisIsTheEntityThatThePlayerIsHittingTo, C02PacketUseEntity.Action.ATTACK));
+        } else {
+            getMc().thePlayer.swingItem();
+            getMc().thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(entity, C02PacketUseEntity.Action.ATTACK));
+        }
+        float f1 = 0.0f;
+        final boolean flag = getMc().thePlayer.fallDistance > 0.0f && !getMc().thePlayer.onGround && !getMc().thePlayer.isOnLadder() && !getMc().thePlayer.isInWater() && !getMc().thePlayer.isPotionActive(Potion.blindness) && getMc().thePlayer.ridingEntity == null && ThisIsTheEntityThatThePlayerIsHittingTo instanceof EntityLivingBase;
+        if (ThisIsTheEntityThatThePlayerIsHittingTo != null) {
+            f1 = EnchantmentHelper.func_152377_a(getMc().thePlayer.getHeldItem(), ThisIsTheEntityThatThePlayerIsHittingTo.getCreatureAttribute());
+        } else {
+            f1 = EnchantmentHelper.func_152377_a(getMc().thePlayer.getHeldItem(), EnumCreatureAttribute.UNDEFINED);
+        }
+        if (flag) {
+            getMc().thePlayer.onCriticalHit(ThisIsTheEntityThatThePlayerIsHittingTo);
+        }
+        if (f1 > 0.0f) {
+            getMc().thePlayer.onEnchantmentCritical(ThisIsTheEntityThatThePlayerIsHittingTo);
+        }
+    }
+	
+	public boolean isTeammate(EntityPlayer target) {
+        if (!Mystra.instance.settingsManager.getSettingByName("Teams").getValBoolean()) return false;
+        boolean teamChecks = false;
+        EnumChatFormatting myCol = null;
+        EnumChatFormatting enemyCol = null;
+        if (target != null) {
+            for (EnumChatFormatting col : EnumChatFormatting.values()) {
+                if (col == EnumChatFormatting.RESET)
+                    continue;
+                if (getMc().thePlayer.getDisplayName().getFormattedText().contains(col.toString()) && myCol == null) {
+                    myCol = col;
+                }
+                if (target.getDisplayName().getFormattedText().contains(col.toString()) && enemyCol == null) {
+                    enemyCol = col;
+                }
+            }
+            try {
+                if (myCol != null && enemyCol != null) {
+                    teamChecks = myCol != enemyCol;
+                } else {
+                    if (getMc().thePlayer.getTeam() != null) {
+                        teamChecks = !getMc().thePlayer.isOnSameTeam(target);
+                    } else {
+                        if (getMc().thePlayer.inventory.armorInventory[3].getItem() instanceof ItemBlock) {
+                            teamChecks = !ItemStack.areItemStacksEqual(getMc().thePlayer.inventory.armorInventory[3], target.inventory.armorInventory[3]);
+                        }
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return teamChecks;
+    }
+	
+	private void attack(EntityLivingBase e) {
+		if (e.getDistanceToEntity(mc.thePlayer) <= range) {
+			if (IsHittingEntityFakeBoolean) {
+				mc.thePlayer.swingItem();
+				mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(e, C02PacketUseEntity.Action.ATTACK));
+				timeHelper.setLastMS();
+				ThisIsTheEntityThatThePlayerIsHittingTo = null;
+				IsHittingEntityFakeBoolean = false;
+			}
+		}
+	}
+	
+	public static float[] getRotationsNeeded(Entity entity) {
+		float yaw;
+		float pitch;
+		double diffX = entity.posX - Minecraft.getMinecraft().thePlayer.posX;
+		double diffY;
+		if ((entity instanceof EntityLivingBase)) {
+			EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
+			diffY = entityLivingBase.posY + entityLivingBase.getEyeHeight() * 0.9D - (Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight());
+		} else {
+			diffY = (entity.boundingBox.minY + entity.boundingBox.maxY) / 2.0D - (Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight());
+		}
+		double diffZ = entity.posZ - Minecraft.getMinecraft().thePlayer.posZ;
+		double dist = MathHelper.sqrt_double(diffX * diffX + diffZ * diffZ);
+		yaw = (float) (Math.atan2(diffZ, diffX) * 180.0D / 3.141592653589793D) - 90.0F;
+		pitch = (float) -(Math.atan2(diffY, dist) * 180.0D / 3.141592653589793D);
+		return new float[] {
+				Minecraft.getMinecraft().thePlayer.rotationYaw + MathHelper.wrapAngleTo180_float(yaw - Minecraft.getMinecraft().thePlayer.rotationYaw), Minecraft.getMinecraft().thePlayer.rotationPitch + MathHelper.wrapAngleTo180_float(pitch - Minecraft.getMinecraft().thePlayer.rotationPitch) 
+		};
+	}
+	@EventTarget
+	public void onSendPacket(EventSendPacket event) {
+		Packet packet = event.getPacket();
+		if(ThisIsTheEntityThatThePlayerIsHittingTo == null) {
+			return;
+		}
+		if(ThisIsTheEntityThatThePlayerIsHittingTo.getDistanceToEntity(mc.thePlayer) <= range) {
+			final float[] rotationsCurrent = new float[] { Mystra.ROTATION_UTIL.serverYaw, Mystra.ROTATION_UTIL.serverPitch };
+			final float[] rotationsInstant = Mystra.ROTATION_UTIL.getRotations(ThisIsTheEntityThatThePlayerIsHittingTo, Mystra.instance.settingsManager.getSettingByName("Predict").getValBoolean(), 1);
+			final float[] rotationsSmooth = Mystra.ROTATION_UTIL.smoothRotation(rotationsCurrent, rotationsInstant, calculateRotationSpeed() + (int) (ThreadLocalRandom.current().nextInt(5)));
+			
+			if(packet instanceof C03PacketPlayer)
+	            if(Mystra.instance.settingsManager.getSettingByName("Rotations").getValBoolean()) {
+					final float yaw = rotationsSmooth[0];
+					final float pitch = rotationsSmooth[1];
+					//Mystra.ROTATION_UTIL.setRotations(yaw, pitch);
+					if (!Mystra.instance.settingsManager.getSettingByName("Aimlock").getValBoolean()) {
+						Mystra.ROTATION_UTIL.setRotations(yaw, pitch);
+						event.setRotation(yaw, pitch);
+					} else {
+						Mystra.ROTATION_UTIL.setRotations(yaw, pitch);
+						getMc().thePlayer.setRotations(yaw, pitch);
+					}
+
+					getMc().thePlayer.setHeadRotations(yaw, pitch);
+					getMc().thePlayer.renderYawOffset = yaw;
+
+					if (ThisIsTheEntityThatThePlayerIsHittingTo == null)
+						return;
+
+					getMc().thePlayer.setHeadRotations(yaw, pitch);
+			}
+		}
+	}
+	
+	@EventTarget
+	public void onRender3D(Event3D event) {
+		if(this.isToggled()) {
+			if(Aura.ThisIsTheEntityThatThePlayerIsHittingTo == null) {
+				return;
+			}
+			if(Mystra.instance.settingsManager.getSettingByName("AuraCircleESP").getValBoolean() && !Mystra.instance.settingsManager.getSettingByName("CircleESP").getValBoolean()) {
+				if(Aura.ThisIsTheEntityThatThePlayerIsHittingTo.getDistanceToEntity(mc.thePlayer) < Mystra.instance.settingsManager.getSettingByName("Range").getValDouble()) {
+					RenderUtils.drawCircle(Aura.ThisIsTheEntityThatThePlayerIsHittingTo, event.getPartialTicks(), Mystra.instance.settingsManager.getSettingByName("CircleESP Range").getValDouble() + 0.002, novoline(300));
+					RenderUtils.drawCircle(Aura.ThisIsTheEntityThatThePlayerIsHittingTo, event.getPartialTicks(), Mystra.instance.settingsManager.getSettingByName("CircleESP Range").getValDouble() + 0.006, novoline(300));
+					RenderUtils.drawCircle(Aura.ThisIsTheEntityThatThePlayerIsHittingTo, event.getPartialTicks(), Mystra.instance.settingsManager.getSettingByName("CircleESP Range").getValDouble(), novoline(300));
+				}
+			}
+		}
+	}
+	
+	private float calculateRotationSpeed() {
+		if (Mystra.instance.settingsManager.getSettingByName("Aura Min Speed").getValDouble() == Mystra.instance.settingsManager.getSettingByName("Aura Max Speed").getValDouble()) {
+			return 180;
+		}
+		return (float) ThreadLocalRandom.current().nextDouble(Mystra.instance.settingsManager.getSettingByName("Aura Min Speed").getValDouble(), Mystra.instance.settingsManager.getSettingByName("Aura Max Speed").getValDouble());
+	}
+	
+	public static void drawCircleESP(Entity entity, float partialTicks, double rad) {
+		String mode = Mystra.instance.settingsManager.getSettingByName("CircleESP Mode").getValString();
+        GL11.glPushMatrix();
+        GL11.glDisable(3553);
+        GL11.glEnable(2848);
+        GL11.glEnable(2881);
+        GL11.glEnable(2832);
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glHint(3154, 4354);
+        GL11.glHint(3155, 4354);
+        GL11.glHint(3153, 4354);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        GL11.glLineWidth(1.0F);
+        GL11.glBegin(3);
+        double x = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * partialTicks - Minecraft.getMinecraft().getRenderManager().viewerPosX;
+        double y = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * partialTicks - Minecraft.getMinecraft().getRenderManager().viewerPosY;
+        double z = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * partialTicks - Minecraft.getMinecraft().getRenderManager().viewerPosZ;
+        float r = 0.003921569F * Color.WHITE.getRed();
+        float g = 0.003921569F * Color.WHITE.getGreen();
+        float b = 0.003921569F * Color.WHITE.getBlue();
+        double pix2 = 6.283185307179586D;
+        int[] counter = {1};
+        for (int i = 0; i <= 120; i++) {
+            GL11.glColor4f(255, 255, 255, 255);
+            if (mode.equalsIgnoreCase("Normal")) {
+            	GL11.glVertex3d(x + rad * Math.cos(i * 6.283185307179586D / 45.0D), y, z + rad * Math.sin(i * 6.283185307179586D / 45.0D));
+            } 
+            counter[0] -= 1;
+        }
+        GL11.glEnd();
+        GL11.glDepthMask(true);
+        GL11.glEnable(2929);
+        GL11.glEnable(2848);
+        GL11.glEnable(2881);
+        GL11.glEnable(2832);
+        GL11.glEnable(3042);
+        GL11.glBlendFunc(770, 771);
+        GL11.glHint(3154, 4354);
+        GL11.glHint(3155, 4354);
+        GL11.glHint(3153, 4354);
+        GL11.glEnable(3553);
+        GL11.glPopMatrix();
+    }
+	
+	public static int novoline(int delay) {
+	      double novolineState = Math.ceil((System.currentTimeMillis() + delay) / 10.0);
+	      novolineState %= 360;
+	      return Color.getHSBColor((float) (novolineState / 180.0f), 0.3f, 1.0f).getRGB();
+	}
+	
+	private boolean canBlock() {
+        return Mystra.instance.settingsManager.getSettingByName("AutoBlock").getValBoolean() && getMc().thePlayer.getHeldItem() != null && getMc().thePlayer.getHeldItem().getItem() instanceof ItemSword;
+    }
+	
+	public final boolean isTeamMate(EntityLivingBase entity) {
+		if (!(entity instanceof EntityPlayer))
+			return false;
+		if (mc.thePlayer.getTeam() != null && entity.getTeam() != null) {
+			if (mc.thePlayer.isOnSameTeam(entity)) {
+				return true;
+			}
+		}
+
+		if (mc.thePlayer.getDisplayName() != null && entity.getDisplayName() != null) {
+			final String playerName = mc.thePlayer.getDisplayName().getFormattedText().replace("§r", "");
+			final String entityName = entity.getDisplayName().getFormattedText().replace("§r", "");
+			if (playerName.isEmpty() || entityName.isEmpty())
+				return false;
+			return playerName.charAt(1) == entityName.charAt(1);
+		}
+
+		return false;
+	}
+	
+	private float[] getRotationsToEnt(Entity ent, EntityPlayerSP playerSP) {
+        final double differenceX = ent.posX - playerSP.posX;
+        final double differenceY = (ent.posY + ent.height) - (playerSP.posY + playerSP.height);
+        final double differenceZ = ent.posZ - playerSP.posZ;
+        final float rotationYaw = (float) (Math.atan2(differenceZ, differenceX) * 180.0D / Math.PI) - 90.0f;
+        final float rotationPitch = (float) (Math.atan2(differenceY, playerSP.getDistanceToEntity(ent)) * 180.0D / Math.PI);
+        final float finishedYaw = playerSP.rotationYaw + MathHelper.wrapAngleTo180_float(rotationYaw - playerSP.rotationYaw);
+        final float finishedPitch = playerSP.rotationPitch + MathHelper.wrapAngleTo180_float(rotationPitch - playerSP.rotationPitch);
+        return new float[]{finishedYaw, -finishedPitch};
+    }
+	
+	public void onEnable(){
+		EventManager.register(this);
+		TimeHelper.reset();
+	}
+	
+	public void onDisable(){
+		EventManager.unregister(this);
+		ThisIsTheEntityThatThePlayerIsHittingTo = null;
+		IsHittingEntityFakeBoolean = false;
+		TimeHelper.reset();
+	}
+}

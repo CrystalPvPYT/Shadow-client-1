@@ -1,0 +1,104 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 08.05.20 20:28
+Description: Updating screen events
+
+java.lang.IllegalArgumentException: Parameter 'directory' is not a directory
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:545)
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:521)
+	at net.minecraft.client.resources.ResourcePackRepository.func_183028_i(ResourcePackRepository.java:253)
+	at net.minecraft.client.resources.ResourcePackRepository.downloadResourcePack(ResourcePackRepository.java:217)
+	at net.minecraft.client.network.NetHandlerPlayClient$3$1.confirmClicked(NetHandlerPlayClient.java:1778)
+	at net.minecraft.client.gui.GuiYesNo.actionPerformed(GuiYesNo.java:63)
+	at net.minecraft.client.gui.GuiScreen.mouseClicked(GuiScreen.java:507)
+	at net.minecraft.client.gui.GuiScreen.handleMouseInput(GuiScreen.java:603)
+	at net.minecraft.client.gui.GuiScreen.handleInput(GuiScreen.java:572)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1792)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1119)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:427)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at org.apache.commons.io.FileUtils.validateListFilesParameters(FileUtils.java:545)
+	at org.apache.commons.io.FileUtils.listFiles(FileUtils.java:521)
+	at net.minecraft.client.resources.ResourcePackRepository.func_183028_i(ResourcePackRepository.java:253)
+	at net.minecraft.client.resources.ResourcePackRepository.downloadResourcePack(ResourcePackRepository.java:217)
+	at net.minecraft.client.network.NetHandlerPlayClient$3$1.confirmClicked(NetHandlerPlayClient.java:1778)
+	at net.minecraft.client.gui.GuiYesNo.actionPerformed(GuiYesNo.java:63)
+	at net.minecraft.client.gui.GuiScreen.mouseClicked(GuiScreen.java:507)
+	at net.minecraft.client.gui.GuiScreen.handleMouseInput(GuiScreen.java:603)
+	at net.minecraft.client.gui.GuiScreen.handleInput(GuiScreen.java:572)
+
+-- Affected screen --
+Details:
+	Screen name: net.minecraft.client.gui.GuiYesNo
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 4 total; [EntityPlayerSP['CrystalPvP_YT'/256932, l='MpServer', x=1,50, y=43,00, z=0,50], EntityOtherPlayerMP['ElKacklai'/256653, l='MpServer', x=4,84, y=43,00, z=15,50], EntityOtherPlayerMP['Htxshoota'/256499, l='MpServer', x=2,31, y=43,00, z=-1,06], EntityOtherPlayerMP['devflashy'/256398, l='MpServer', x=-29,63, y=39,00, z=45,13]]
+	Chunk stats: MultiplayerChunkCache: 1089, 1089
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 10000,00,11,00,10000,00 - World: (10000,11,10000), Chunk: (at 0,0,0 in 625,625; contains blocks 10000,0,10000 to 10015,255,10015), Region: (19,19; contains chunks 608,608 to 639,639, blocks 9728,0,9728 to 10239,255,10239)
+	Level time: 34926 game time, 105902197 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 122 total; [EntityPlayerSP['CrystalPvP_YT'/256932, l='MpServer', x=1,50, y=43,00, z=0,50], EntityOtherPlayerMP['ElKacklai'/256653, l='MpServer', x=4,84, y=43,00, z=15,50], EntityItem['item.item.swordDiamond'/256779, l='MpServer', x=-30,94, y=39,00, z=13,31], EntityItem['item.item.potion'/256783, l='MpServer', x=-31,78, y=39,00, z=14,22], EntityItem['item.item.potion'/256782, l='MpServer', x=-31,16, y=39,00, z=13,47], EntityItem['item.item.potion'/256787, l='MpServer', x=-32,47, y=39,00, z=13,66], EntityItem['item.item.potion'/256786, l='MpServer', x=-32,34, y=39,00, z=13,25], EntityItem['item.item.potion'/256785, l='MpServer', x=-31,72, y=39,00, z=12,75], EntityItem['item.item.potion'/256791, l='MpServer', x=-31,56, y=39,00, z=12,94], EntityItem['item.item.potion'/256788, l='MpServer', x=-32,72, y=39,00, z=13,69], EntityItem['item.item.potion'/256795, l='MpServer', x=-31,72, y=39,00, z=14,25], EntityItem['item.item.potion'/256792, l='MpServer', x=-31,16, y=39,00, z=13,72], EntityItem['item.item.potion'/256798, l='MpServer', x=-32,56, y=39,00, z=13,75], EntityItem['item.item.potion'/256797, l='MpServer', x=-32,63, y=39,00, z=13,25], EntityItem['item.item.potion'/256796, l='MpServer', x=-31,81, y=39,00, z=13,06], EntityItem['item.item.potion'/256807, l='MpServer', x=-32,69, y=39,00, z=12,41], EntityItem['item.item.potion'/256806, l='MpServer', x=-31,28, y=39,00, z=14,38], EntityItem['item.item.potion'/256804, l='MpServer', x=-32,59, y=39,00, z=13,31], EntityItem['item.item.potion'/256808, l='MpServer', x=-32,63, y=39,00, z=12,22], EntityItem['item.item.bootsIron'/256815, l='MpServer', x=-31,63, y=39,00, z=12,25], EntityItem['item.item.potion'/256814, l='MpServer', x=-31,84, y=39,00, z=13,91], EntityItem['item.item.potion'/256812, l='MpServer', x=-31,13, y=39,00, z=12,75], EntityItem['item.item.chestplateChain'/256563, l='MpServer', x=-4,44, y=42,08, z=-1,88], EntityItem['item.item.helmetIron'/256818, l='MpServer', x=-30,97, y=39,00, z=12,81], EntityItem['item.item.chestplateIron'/256817, l='MpServer', x=-32,19, y=39,00, z=12,97], EntityItem['item.item.leggingsIron'/256816, l='MpServer', x=-32,28, y=39,00, z=12,81], EntityItem['item.item.bow'/256567, l='MpServer', x=-4,50, y=42,00, z=-1,63], EntityItem['item.item.swordWood'/256566, l='MpServer', x=-4,50, y=42,24, z=-1,88], EntityItem['item.item.bootsChain'/256565, l='MpServer', x=-4,16, y=42,81, z=-1,88], EntityItem['item.item.leggingsCloth'/256564, l='MpServer', x=-4,66, y=42,00, z=-1,50], EntityItem['item.item.potion'/256570, l='MpServer', x=-5,19, y=41,88, z=0,31], EntityItem['item.item.potion'/256569, l='MpServer', x=-5,28, y=41,88, z=0,53], EntityOtherPlayerMP['Htxshoota'/256499, l='MpServer', x=2,31, y=43,00, z=-1,06], EntityItem['item.item.arrow'/256568, l='MpServer', x=-4,78, y=42,00, z=-1,38], EntityItem['item.item.potion'/256575, l='MpServer', x=-5,69, y=41,88, z=0,00], EntityItem['item.item.potion'/256572, l='MpServer', x=-5,50, y=41,88, z=0,84], EntityItem['item.item.potion'/256579, l='MpServer', x=-5,13, y=42,28, z=1,41], EntityItem['item.item.potion'/256578, l='MpServer', x=-6,63, y=42,00, z=0,66], EntityItem['item.item.potion'/256576, l='MpServer', x=-5,53, y=42,00, z=1,88], EntityItem['item.item.potion'/256581, l='MpServer', x=-5,31, y=41,88, z=0,44], EntityItem['item.item.potion'/256580, l='MpServer', x=-5,78, y=41,88, z=0,97], EntityOtherPlayerMP['devflashy'/256398, l='MpServer', x=-29,63, y=39,00, z=45,13], EntityOtherPlayerMP['devflashy'/256398, l='MpServer', x=-29,63, y=39,00, z=45,13], EntityOtherPlayerMP['ElKacklai'/256653, l='MpServer', x=4,84, y=43,00, z=15,50], EntityItemFrame['entity.ItemFrame.name'/256403, l='MpServer', x=7,50, y=36,50, z=2,97], EntityItemFrame['entity.ItemFrame.name'/256402, l='MpServer', x=6,50, y=36,50, z=2,97], EntityItemFrame['entity.ItemFrame.name'/256401, l='MpServer', x=4,03, y=36,50, z=0,50], EntityItemFrame['entity.ItemFrame.name'/256400, l='MpServer', x=4,03, y=36,50, z=1,50], EntityItemFrame['entity.ItemFrame.name'/256407, l='MpServer', x=8,97, y=36,50, z=0,50], EntityItemFrame['entity.ItemFrame.name'/256406, l='MpServer', x=8,97, y=36,50, z=1,50], EntityItemFrame['entity.ItemFrame.name'/256405, l='MpServer', x=6,50, y=37,50, z=2,97], EntityItemFrame['entity.ItemFrame.name'/256404, l='MpServer', x=5,50, y=36,50, z=2,97], EntityItemFrame['entity.ItemFrame.name'/256411, l='MpServer', x=-9,97, y=28,50, z=9,50], EntityItemFrame['entity.ItemFrame.name'/256410, l='MpServer', x=-9,97, y=28,50, z=10,50], EntityItemFrame['entity.ItemFrame.name'/256409, l='MpServer', x=-9,97, y=28,50, z=6,50], EntityItem['item.tile.oreEmerald'/256408, l='MpServer', x=1,50, y=106,00, z=0,50], EntityItemFrame['entity.ItemFrame.name'/256415, l='MpServer', x=-3,50, y=28,50, z=4,03], EntityItemFrame['entity.ItemFrame.name'/256414, l='MpServer', x=-9,97, y=28,50, z=8,50], EntityItemFrame['entity.ItemFrame.name'/256413, l='MpServer', x=-9,97, y=28,50, z=7,50], EntityItemFrame['entity.ItemFrame.name'/256412, l='MpServer', x=-5,50, y=28,50, z=4,03], EntityItemFrame['entity.ItemFrame.name'/256419, l='MpServer', x=-2,03, y=36,50, z=8,50], EntityItemFrame['entity.ItemFrame.name'/256418, l='MpServer', x=-6,97, y=44,50, z=5,50], EntityItemFrame['entity.ItemFrame.name'/256417, l='MpServer', x=-5,97, y=44,50, z=6,50], EntityItemFrame['entity.ItemFrame.name'/256416, l='MpServer', x=-7,50, y=28,50, z=4,03], EntityItemFrame['entity.ItemFrame.name'/256423, l='MpServer', x=-5,97, y=36,50, z=4,50], EntityItemFrame['entity.ItemFrame.name'/256422, l='MpServer', x=-4,50, y=44,50, z=7,97], EntityItemFrame['entity.ItemFrame.name'/256421, l='MpServer', x=-3,50, y=44,50, z=8,97], EntityItemFrame['entity.ItemFrame.name'/256420, l='MpServer', x=-4,97, y=36,50, z=8,50], EntityItemFrame['entity.ItemFrame.name'/256427, l='MpServer', x=8,97, y=36,50, z=-9,50], EntityItemFrame['entity.ItemFrame.name'/256426, l='MpServer', x=8,97, y=36,50, z=-8,50], EntityItem['item.item.potion'/256938, l='MpServer', x=0,16, y=43,00, z=-0,21], EntityItemFrame['entity.ItemFrame.name'/256425, l='MpServer', x=-8,50, y=44,50, z=2,97], EntityItemFrame['entity.ItemFrame.name'/256424, l='MpServer', x=-10,97, y=44,50, z=2,50], EntityItemFrame['entity.ItemFrame.name'/256431, l='MpServer', x=3,50, y=36,50, z=-4,97], EntityItem['item.item.potion'/256943, l='MpServer', x=2,00, y=43,00, z=0,42], EntityItemFrame['entity.ItemFrame.name'/256430, l='MpServer', x=8,97, y=36,50, z=-4,50], EntityItem['item.item.potion'/256942, l='MpServer', x=1,90, y=43,00, z=0,32], EntityItemFrame['entity.ItemFrame.name'/256429, l='MpServer', x=8,97, y=36,50, z=-5,50], EntityItem['item.item.potion'/256941, l='MpServer', x=0,63, y=42,87, z=0,88], EntityItemFrame['entity.ItemFrame.name'/256428, l='MpServer', x=8,97, y=36,50, z=-6,50], EntityItem['item.item.potion'/256940, l='MpServer', x=2,38, y=42,75, z=0,13], EntityItemFrame['entity.ItemFrame.name'/256435, l='MpServer', x=2,50, y=36,50, z=-4,97], EntityItemFrame['entity.ItemFrame.name'/256434, l='MpServer', x=1,50, y=36,50, z=-4,97], EntityItemFrame['entity.ItemFrame.name'/256433, l='MpServer', x=3,50, y=36,50, z=-0,03], EntityItemFrame['entity.ItemFrame.name'/256432, l='MpServer', x=0,50, y=36,50, z=-4,97], EntityItemFrame['entity.ItemFrame.name'/256439, l='MpServer', x=4,03, y=36,50, z=-5,50], EntityItemFrame['entity.ItemFrame.name'/256438, l='MpServer', x=4,03, y=36,50, z=-8,50], EntityItemFrame['entity.ItemFrame.name'/256437, l='MpServer', x=8,97, y=36,50, z=-0,50], EntityItemFrame['entity.ItemFrame.name'/256436, l='MpServer', x=8,97, y=36,50, z=-3,50], EntityItemFrame['entity.ItemFrame.name'/256443, l='MpServer', x=1,50, y=36,50, z=-0,03], EntityItemFrame['entity.ItemFrame.name'/256442, l='MpServer', x=8,97, y=36,50, z=-1,50], EntityItemFrame['entity.ItemFrame.name'/256441, l='MpServer', x=0,50, y=36,50, z=-0,03], EntityItemFrame['entity.ItemFrame.name'/256440, l='MpServer', x=4,03, y=36,50, z=-9,50], EntityItemFrame['entity.ItemFrame.name'/256447, l='MpServer', x=-5,97, y=36,50, z=-1,50], EntityItemFrame['entity.ItemFrame.name'/256446, l='MpServer', x=-5,97, y=36,50, z=-0,50], EntityItemFrame['entity.ItemFrame.name'/256445, l='MpServer', x=1,50, y=39,50, z=-14,97], EntityItemFrame['entity.ItemFrame.name'/256444, l='MpServer', x=2,50, y=36,50, z=-0,03], EntityItemFrame['entity.ItemFrame.name'/256451, l='MpServer', x=-0,50, y=36,50, z=-4,97], EntityItemFrame['entity.ItemFrame.name'/256450, l='MpServer', x=-0,50, y=36,50, z=-0,03], EntityItemFrame['entity.ItemFrame.name'/256449, l='MpServer', x=-5,97, y=36,50, z=-4,50], EntityItemFrame['entity.ItemFrame.name'/256448, l='MpServer', x=-5,97, y=36,50, z=-2,50], EntityArmorStand['Collectable'/256455, l='MpServer', x=-57,50, y=39,00, z=40,50], EntityItemFrame['entity.ItemFrame.name'/256454, l='MpServer', x=-5,50, y=44,50, z=-3,97], EntityItemFrame['entity.ItemFrame.name'/256453, l='MpServer', x=-10,97, y=44,50, z=-1,50], EntityItemFrame['entity.ItemFrame.name'/256452, l='MpServer', x=-5,97, y=36,50, z=-3,50], EntityItemFrame['entity.ItemFrame.name'/256459, l='MpServer', x=-110,97, y=51,50, z=35,50], EntityArmorStand['Collectable'/256458, l='MpServer', x=-49,50, y=59,00, z=-88,50], EntityArmorStand['Collectable'/256457, l='MpServer', x=-104,50, y=56,00, z=19,50], EntityArmorStand['Collectable'/256456, l='MpServer', x=42,50, y=51,00, z=77,50], EntityArmorStand['Collectable'/256463, l='MpServer', x=-37,50, y=49,00, z=-166,50], EntityArmorStand['Collectable'/256462, l='MpServer', x=162,50, y=34,00, z=-71,19], EntityItemFrame['entity.ItemFrame.name'/256461, l='MpServer', x=-108,50, y=51,50, z=38,97], EntityItemFrame['entity.ItemFrame.name'/256460, l='MpServer', x=-110,97, y=51,50, z=34,50], EntityItemFrame['entity.ItemFrame.name'/256467, l='MpServer', x=-206,03, y=46,50, z=127,50], EntityItemFrame['entity.ItemFrame.name'/256466, l='MpServer', x=-206,03, y=46,50, z=126,50], EntityArmorStand['Collectable'/256465, l='MpServer', x=92,50, y=44,00, z=218,50], EntityArmorStand['Collectable'/256464, l='MpServer', x=5,50, y=39,00, z=-197,50], EntityItemFrame['entity.ItemFrame.name'/256470, l='MpServer', x=-206,03, y=46,50, z=129,50], EntityItemFrame['entity.ItemFrame.name'/256469, l='MpServer', x=-206,03, y=46,50, z=128,50], EntityArmorStand['Collectable'/256468, l='MpServer', x=-230,50, y=70,00, z=46,50], EntityArmorStand['Collectable'/256474, l='MpServer', x=-227,50, y=46,00, z=116,50], EntityOtherPlayerMP['Htxshoota'/256499, l='MpServer', x=2,31, y=43,00, z=-1,06]]
+	Retry entities: 0 total; []
+	Server brand: Travertine (git:Travertine-Bootstrap:1.14-SNAPSHOT:279c631:101) <- Paper
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:403)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2774)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:448)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 
+	Java Version: 1.8.0_241, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 624318160 bytes (595 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	Launched Version: mcp
+	LWJGL: 2.9.4
+	OpenGL: GeForce RTX 2080 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: §5Such§8PvP §8[§7256x§8].zip
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 
+	OptiFine Version: OptiFine_1.8.8_HD_U_I7
+	Render Distance Chunks: 12
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 432.00
+	OpenGlRenderer: GeForce RTX 2080 SUPER/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 12

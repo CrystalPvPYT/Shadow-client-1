@@ -1,0 +1,43 @@
+package mystra.commands;
+
+import mystra.command.Command;
+import mystra.main.Mystra;
+import mystra.mods.Speed;
+
+public class SpeedMode extends Command{
+
+	@Override
+	public String getAlias() {
+		return "speedmode";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Changes speed mode";
+	}
+
+	@Override
+	public String getSyntax() {
+		return ".toggle <mode>";
+	}
+
+	@Override
+	public void onCommand(String command, String[] args) throws Exception {		
+		if(args.length != 1) {
+			Mystra.addChatMessage("Syntex error, try: speed <Mode> / <List>");
+			return;
+		}else {
+			if(args[0].equalsIgnoreCase("Y-Port") || args[0].equalsIgnoreCase("Timer")) {
+				Speed.mode = args[0];
+				Mystra.addChatMessage("§aSuccessfully set Speed to &b" + args[0]);
+			}else {
+				Mystra.addChatMessage("§cUnknown Mode.");
+			}
+			
+			if(args[0].equalsIgnoreCase("list")) {
+				Mystra.addChatMessage("§aY-Port, Timer");
+			}
+		}
+	}
+
+}

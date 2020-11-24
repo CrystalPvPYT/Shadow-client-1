@@ -1,0 +1,33 @@
+package me.shadow.management.file.files;
+
+import me.shadow.Shadow;
+import me.shadow.management.command.commands.Friend;
+import me.shadow.management.file.ClientFile;
+
+public class FriendsFile extends ClientFile {
+
+	public FriendsFile(String path) {
+		super(path);
+	}
+	
+	public void saveFriends() {
+		String content = "";
+		for (Friend friend : Shadow.instance.friendManager.getFriends()) {
+			content += friend.getUsername() + (friend.getAlias().isEmpty() ? "":  ":" + friend.getAlias()) + "\n";
+		}
+		saveFile(content);
+	}
+	
+	public void readFriends() {
+		final String content = loadFile();
+		if (content.isEmpty()) return;
+		final String[] lines = content.split("\n");
+		for (String line : lines) {
+			if (line.contains(":")) {
+				Shadow.instance.friendManager.add(line.split(":")[0], line.split(":")[1]);
+			} else {
+				Shadow.instance.friendManager.add(line);
+			}
+		}
+	}
+}

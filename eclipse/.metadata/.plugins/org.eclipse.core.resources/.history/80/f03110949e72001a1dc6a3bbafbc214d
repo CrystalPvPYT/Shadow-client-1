@@ -1,0 +1,73 @@
+package mystra.utils;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.model.IBakedModel;
+import net.minecraft.item.ItemStack;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+
+public enum DrawUtils {
+
+    instance;
+
+    //Credits to StaticCode
+
+    protected Minecraft mc = Minecraft.getMinecraft();
+
+    public void drawBox(int text, Color c) {
+        Tessellator tess = Tessellator.getInstance();
+        WorldRenderer wr = tess.getWorldRenderer();
+        wr.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        wr.pos((double) (-text - 1), -2.0D, 0.0D).color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha())
+                .endVertex();
+        wr.pos((double) (-text - 1), 9.0D, 0.0D).color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        wr.pos((double) (text + 2), 9.0D, 0.0D).color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        wr.pos((double) (text + 2), -2.0D, 0.0D).color(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha()).endVertex();
+        tess.draw();
+    }
+
+    public void renderItem(ItemStack item, int x, int y, int z) {
+        GL11.glPushMatrix();
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc(516, 0.1F);
+        GlStateManager.enableBlend();
+        GL11.glBlendFunc(770, 771);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        IBakedModel ibakedmodel = this.mc.getRenderItem().getItemModelMesher().getItemModel(item);
+        this.mc.getRenderItem().textureManager.bindTexture(TextureMap.locationBlocksTexture);
+        GlStateManager.scale(16.0F, 16.0F, 0.0F);
+        GL11.glTranslated((double) (((float) x - 7.85F) / 16.0F), (double) ((float) (-5 + y) / 16.0F),
+                (double) ((float) z / 16.0F));
+        GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
+        GlStateManager.disableLighting();
+        ibakedmodel.getItemCameraTransforms().applyTransform(ItemCameraTransforms.TransformType.GUI);
+        if (ibakedmodel.isBuiltInRenderer()) {
+            GlStateManager.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+            GlStateManager.translate(-0.5F, -0.5F, -0.5F);
+            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+            GlStateManager.enableRescaleNormal();
+            TileEntityItemStackRenderer.instance.renderByItem(item);
+        } else {
+            this.mc.getRenderItem().renderModel(ibakedmodel, -1);
+        }
+
+        GlStateManager.enableAlpha();
+        GlStateManager.disableRescaleNormal();
+        GlStateManager.disableLighting();
+        GlStateManager.popMatrix();
+    }
+
+    public double i(double prev, double cur) {
+        return prev + (cur - prev) * this.mc.entityRenderer.ticks;
+    }
+
+}

@@ -1,0 +1,14 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.valuesystem.ModeValue;
+
+public class Derp extends Module{
+	
+	private ModeValue mode = new ModeValue("Mode", "Beyblade", "Beyblade", "Random");
+	private NumberValue<dloat> speed = new NumberValue<>("Speed", "10f", "1f", "100f");
+	public Derp() {
+		super("Derp", 0, Category.PLAYER);
+	}
+
+}

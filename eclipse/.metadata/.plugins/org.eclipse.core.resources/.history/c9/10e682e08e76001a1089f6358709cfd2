@@ -1,0 +1,114 @@
+package mystra.mods;
+
+import java.util.ArrayList;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.utils.Wrapper;
+import mystra.valuesystem.BooleanValue;
+import mystra.mods.Module;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+public class Flight extends Module {
+	
+	public static String HypixelFly = "HypixelBhop";
+	public static String VanillaFly = "VanillaFly";
+	public static float flyHackSpeed = 0.1f;
+	protected int state = 0;
+	
+	private BooleanValue hypixelfly = new BooleanValue("HypixelFly", false);
+	private BooleanValue vanillafly = new BooleanValue("VanillaFly", false);
+	
+
+	public Flight() {
+		super("Flight", Keyboard.KEY_F, Category.MOVEMENT);
+
+	}
+	
+	public void onUpdate() {
+		if(!this.isToggled()) {
+			return;
+		}
+		
+		if(HypixelFly.equalsIgnoreCase("HypixelFly")) {
+			onHypixelFly();
+		}
+		
+		if(VanillaFly.equalsIgnoreCase("VanillaFly")) {
+			onVanillaFly();
+		}
+	}
+	
+	@Override
+	public void onVanillaFly() {
+		if(!this.isToggled()) {
+			return;
+		}
+		if(vanillafly.getObject()) {
+			mc.thePlayer.capabilities.isFlying = true;
+			
+			if(mc.gameSettings.keyBindJump.isPressed()){
+				mc.thePlayer.motionY += 0.2;
+			}
+			
+			if(mc.gameSettings.keyBindSneak.isPressed()){
+				mc.thePlayer.motionY -= 0.2;
+			}
+			
+			if(mc.gameSettings.keyBindForward.isPressed()){
+				mc.thePlayer.capabilities.setFlySpeed(flyHackSpeed);
+			}
+			this.setName("Flight | §7Vanilla");
+			super.onVanillaFly();
+		}
+	}
+	
+	@Override
+	public void onHypixelFly() {
+		if (this.mc.thePlayer.onGround) {
+			this.mc.thePlayer.jump();
+		} else {
+			this.mc.thePlayer.motionY = 0;
+			this.state += 1;
+			switch (this.state) {
+			case 1:
+				this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY + 1.0E-12D,
+						this.mc.thePlayer.posZ);
+				break;
+			case 2:
+				this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY - 1.0E-12D,
+						this.mc.thePlayer.posZ);
+				break;
+			case 3:
+				this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY + 1.0E-12D,
+						this.mc.thePlayer.posZ);
+				this.state = 0;
+				break;
+			default:
+				break;
+			}
+		}
+		this.setName("Flight | §7Vanilla");
+		super.onHypixelFly();
+	}
+	
+	public void onDisable() {
+		this.setName("Flight");
+			Wrapper.mc.thePlayer.capabilities.isFlying = false;
+			NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Flight Disabled", 1));
+			super.onDisable();
+		}
+	
+	@Override
+    public void onEnable() {
+		this.setName("Flight");
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Flight Enabled", 1));
+    	super.onEnable();
+    }
+}

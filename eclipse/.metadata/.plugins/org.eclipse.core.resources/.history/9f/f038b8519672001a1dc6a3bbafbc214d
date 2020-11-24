@@ -1,0 +1,39 @@
+package mystra.main;
+
+import org.newdawn.slick.opengl.renderer.Renderer;
+
+import mystra.gui.UIRenderer;
+import mystra.mods.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+
+public class GuiIngameHook extends GuiIngame{
+	public GuiIngameHook(Minecraft mcIn) {
+		super(mcIn);
+	}
+
+	public void renderGameOverlay(float partialTicks)
+    {
+		super.renderGameOverlay(partialTicks);
+        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        this.mc.entityRenderer.setupOverlayRendering();
+        GlStateManager.enableBlend();
+
+        int count = 0;
+
+        for(Module m: Mystra.getModules()) {
+        	if(m.isToggled()) {
+        		int count = 0;
+        		int color = 0x40bbff;
+        		for(String s: lines) {
+        			fill(0, 1+(count*10),font.getStringWidth(s)+3, 11+(count*10), 0x50000000);
+        			font.drawStringWithShadow(s, 2, 2+(count*10), color);
+        			color -= 200/lines.size();
+        	}
+        }
+        UIRenderer.renderAndUpdateFrames();
+    }
+	
+}

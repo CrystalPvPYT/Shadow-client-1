@@ -1,0 +1,11 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class ClickGui extends Module{
+
+	public ClickGui() {
+		super("ClickGui", 0, Category.OTHER);
+		}
+
+}

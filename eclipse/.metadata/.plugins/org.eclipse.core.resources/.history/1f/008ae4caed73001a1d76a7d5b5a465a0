@@ -1,0 +1,33 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.util.GuiManagerDisplayScreen;
+import org.lwjgl.input.Keyboard;
+
+import mystra.gui.UIRenderer;
+import mystra.main.Category;
+import mystra.main.Mystra;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+
+public class ClickGui extends Module{
+
+	public ClickGui() {
+		super("ClickGui", Keyboard.KEY_RSHIFT, Category.OTHER);
+	}
+	
+	@Override
+	public void onEnable() {
+		if(!(mc.currentScreen instanceof GuiManagerDisplayScreen)) {
+			mc.displayGuiScreen(new GuiManagerDisplayScreen(Mystra.guiManager));
+			UIRenderer.renderAndUpdateFrames();
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "ClickGui Toggled", 1));
+    	super.onEnable();
+    }
+
+}

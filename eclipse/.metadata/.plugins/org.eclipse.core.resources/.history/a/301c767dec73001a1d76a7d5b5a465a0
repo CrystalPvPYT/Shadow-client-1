@@ -1,0 +1,33 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import net.minecraft.client.Minecraft;
+
+public class AntiKnockback extends Module {
+	
+	if(this == Minecraft.getMinecraft().thePlayer) {
+		System.out.println("Jump");
+		NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Toggled AntiKnockback", 1));
+	}
+
+	public AntiKnockback() {
+		super("AntiKnockback", Keyboard.KEY_K, Category.MOVEMENT);
+	}
+	public void onRender() {
+		if(this.isToggled())
+		{
+			if(mc.thePlayer.hurtTime > 0)
+			{
+				mc.thePlayer.motionX = 0.05;
+				mc.thePlayer.motionY = 0.05;
+				mc.thePlayer.motionZ = 0.05;
+			}
+		}
+	}
+
+}

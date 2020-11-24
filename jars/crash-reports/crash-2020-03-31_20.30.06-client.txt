@@ -1,0 +1,90 @@
+---- Minecraft Crash Report ----
+// Uh... Did I do that?
+
+Time: 31.03.20 20:30
+Description: Unexpected error
+
+java.lang.IllegalStateException: Not building!
+	at net.minecraft.client.renderer.WorldRenderer.finishDrawing(WorldRenderer.java:554)
+	at net.minecraft.client.renderer.Tessellator.draw(Tessellator.java:26)
+	at mystra.utils.RenderUtils.drawBoundingBox(RenderUtils.java:145)
+	at mystra.utils.RenderUtils.drawEntityESP(RenderUtils.java:312)
+	at mystra.mods.PlayerESP.render(PlayerESP.java:52)
+	at mystra.mods.PlayerESP.player(PlayerESP.java:47)
+	at mystra.mods.PlayerESP.onRender(PlayerESP.java:29)
+	at mystra.main.Mystra.onRender(Mystra.java:75)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1484)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1319)
+	at net.minecraft.client.renderer.EntityRenderer.func_181560_a(EntityRenderer.java:1147)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1134)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:425)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.client.renderer.WorldRenderer.finishDrawing(WorldRenderer.java:554)
+	at net.minecraft.client.renderer.Tessellator.draw(Tessellator.java:26)
+	at mystra.utils.RenderUtils.drawBoundingBox(RenderUtils.java:145)
+	at mystra.utils.RenderUtils.drawEntityESP(RenderUtils.java:312)
+	at mystra.mods.PlayerESP.render(PlayerESP.java:52)
+	at mystra.mods.PlayerESP.player(PlayerESP.java:47)
+	at mystra.mods.PlayerESP.onRender(PlayerESP.java:29)
+	at mystra.main.Mystra.onRender(Mystra.java:75)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorldPass(EntityRenderer.java:1484)
+	at net.minecraft.client.renderer.EntityRenderer.renderWorld(EntityRenderer.java:1319)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 5 total; [EntityPlayerSP['CrystalPvP_YT'/73846, l='MpServer', x=-3,81, y=21,00, z=7,21], EntityOtherPlayerMP['niintendonerd'/68954, l='MpServer', x=-1,81, y=22,00, z=0,59], EntityOtherPlayerMP['§8NPC-9AEIyz'/430, l='MpServer', x=-6,50, y=22,00, z=13,50], EntityOtherPlayerMP['§8NPC-lh9NQh'/433, l='MpServer', x=-12,50, y=22,00, z=7,50], EntityOtherPlayerMP['§8NPC-0n8HMh'/437, l='MpServer', x=-14,50, y=22,00, z=0,50]]
+	Chunk stats: MultiplayerChunkCache: 10, 10
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 0,00,22,00,0,00 - World: (0,22,0), Chunk: (at 0,1,0 in 0,0; contains blocks 0,0,0 to 15,255,15), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 60707899 game time, 36483 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 22 total; [EntityItemFrame['entity.ItemFrame.name'/354, l='MpServer', x=-6,50, y=21,50, z=11,97], EntityOtherPlayerMP['§8NPC-9AEIyz'/430, l='MpServer', x=-6,50, y=22,00, z=13,50], EntityArmorStand['§b§lSurvival Games'/431, l='MpServer', x=-6,50, y=24,00, z=13,50], EntityArmorStand['§ePunch to warp'/432, l='MpServer', x=-6,50, y=23,75, z=13,50], EntityOtherPlayerMP['§8NPC-lh9NQh'/433, l='MpServer', x=-12,50, y=22,00, z=7,50], EntityPlayerSP['CrystalPvP_YT'/73846, l='MpServer', x=-3,81, y=21,00, z=7,21], EntityArmorStand['§b§lSkyWars'/434, l='MpServer', x=-12,50, y=24,00, z=7,50], EntityArmorStand['§9ELFOURLY §738 seconds ago'/73715, l='MpServer', x=-7,50, y=16,75, z=11,50], EntityArmorStand['§ePunch to warp'/435, l='MpServer', x=-12,50, y=23,75, z=7,50], EntityOtherPlayerMP['niintendonerd'/68954, l='MpServer', x=-1,81, y=22,00, z=0,59], EntityArmorStand['§bOld Woman Hat'/73717, l='MpServer', x=-7,50, y=16,25, z=11,50], EntityOtherPlayerMP['§8NPC-0n8HMh'/437, l='MpServer', x=-14,50, y=22,00, z=0,50], EntityArmorStand['§eHudson Pet'/73716, l='MpServer', x=-7,50, y=16,50, z=11,50], EntityArmorStand['§b§lBedWars'/438, l='MpServer', x=-14,50, y=24,00, z=0,50], EntityArmorStand['Armor Stand'/73719, l='MpServer', x=-7,50, y=14,69, z=11,50], EntityOtherPlayerMP['§8NPC-9AEIyz'/430, l='MpServer', x=-6,50, y=22,00, z=13,50], EntityArmorStand['§ePunch to warp'/439, l='MpServer', x=-14,50, y=23,75, z=0,50], EntityItemFrame['entity.ItemFrame.name'/344, l='MpServer', x=-12,97, y=21,50, z=0,50], EntityOtherPlayerMP['§8NPC-lh9NQh'/433, l='MpServer', x=-12,50, y=22,00, z=7,50], EntityOtherPlayerMP['niintendonerd'/68954, l='MpServer', x=-1,81, y=22,00, z=0,59], EntityOtherPlayerMP['§8NPC-0n8HMh'/437, l='MpServer', x=-14,50, y=22,00, z=0,50], EntityItemFrame['entity.ItemFrame.name'/350, l='MpServer', x=-10,97, y=21,50, z=7,50]]
+	Retry entities: 0 total; []
+	Server brand: BeeCord (1.7.x ? 1.15.x) <- Spigot
+	Server type: Non-integrated multiplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:380)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2755)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:454)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_241, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 529483824 bytes (504 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 98
+	Launched Version: mcp
+	LWJGL: 2.9.4
+	OpenGL: GeForce RTX 2080 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 

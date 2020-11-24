@@ -1,0 +1,50 @@
+package mystra.mods;
+
+import java.awt.Color;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Optional;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventTarget;
+
+import mystra.main.Category;
+import mystra.utils.RenderUtils;
+import mystra.valuesystem.NumberValue;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.network.play.client.C07PacketPlayerDigging;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
+
+	public class Nuker extends Module{
+
+	    public Nuker() {
+	        super("Nuker", Keyboard.KEY_N, Category.PLAYER);
+	    }
+
+	    public void onClickBlock(int i, int j, int k, int l){
+	    	if(this.isToggled()) {
+	    		return;
+	    	}
+	        if(mc.thePlayer.capabilities.isCreativeMode){
+	            int size = 5; for(int x = -size; x < size + 3; x++) 
+	            { 
+	                for(int z = -size; z < size + 3; z++) 
+	                { 
+	                    for(int y = -size; y < size + 3; y++) 
+	                    { 
+	                        mc.thePlayer.sendQueue.addToSendQueue(new C07PacketPlayerDigging());
+	                    } 
+	                }
+	            } 
+	        }
+	    }
+	}

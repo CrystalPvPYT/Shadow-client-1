@@ -1,0 +1,5 @@
+package mystra.command;
+
+public class CommandManager {
+
+}

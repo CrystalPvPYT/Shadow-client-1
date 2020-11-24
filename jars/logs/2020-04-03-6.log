@@ -1,0 +1,24 @@
+[17:41:01] [Client thread/INFO]: Setting user: Player785
+[17:41:01] [Client thread/INFO]: (Session ID is token:0:Player785)
+[17:41:02] [Client thread/INFO]: LWJGL Version: 2.9.4
+[17:41:03] [Client thread/INFO]: Reloading ResourceManager: Default, §5Such§8PvP §8[§7256x§8].zip
+[17:41:03] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[17:41:03] [Thread-6/INFO]: Initializing LWJGL OpenAL
+[17:41:03] [Thread-6/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[17:41:03] [Thread-6/INFO]: OpenAL initialized.
+[17:41:03] [Sound Library Loader/INFO]: Sound engine started
+[17:41:05] [Client thread/INFO]: Created: 4096x2048 textures-atlas
+[17:41:09] [Server thread/INFO]: Starting integrated minecraft server version 1.8.8
+[17:41:09] [Server thread/INFO]: Generating keypair
+[17:41:09] [Server thread/INFO]: Preparing start region for level 0
+[17:41:10] [Server thread/INFO]: Changing view distance to 20, from 10
+[17:41:10] [Server thread/INFO]: Player785[local:E:f17e57e5] logged in with entity id 24 at (-359.5439639984885, 66.11163305637575, 1444.071374712282)
+[17:41:10] [Server thread/INFO]: Player785 joined the game
+[17:41:11] [Server thread/INFO]: Saving and pausing game...
+[17:41:11] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[17:41:12] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[17:41:12] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End
+[17:41:16] [Server thread/INFO]: Saving and pausing game...
+[17:41:16] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[17:41:16] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[17:41:16] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End

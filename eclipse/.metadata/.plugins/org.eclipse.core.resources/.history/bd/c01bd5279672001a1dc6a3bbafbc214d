@@ -1,0 +1,28 @@
+package mystra.gui;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import mystra.main.Mystra;
+import mystra.mods.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.BlockPos;
+
+public class IngameOverlay extends GuiScreen {
+	
+	
+	public IngameOverlay() {
+	}
+	
+	public void addFPS() {
+		int fps = Minecraft.getDebugFPS();
+		bottomLeftList.add("FPS: " + getColorString(fps, 120, 60, 30, 15, 10, false) + fps);
+	}
+
+	private String getColorString(int fps, int i, int j, int k, int l, int m, boolean b) {
+		return null;
+	}
+	
+	}

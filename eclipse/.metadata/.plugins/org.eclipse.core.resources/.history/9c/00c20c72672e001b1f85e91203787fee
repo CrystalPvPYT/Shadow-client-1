@@ -1,0 +1,5 @@
+package me.shadow.module;
+
+public enum Category {
+    COMBAT, MOVEMENT, RENDER, PLAYER, MISC
+}

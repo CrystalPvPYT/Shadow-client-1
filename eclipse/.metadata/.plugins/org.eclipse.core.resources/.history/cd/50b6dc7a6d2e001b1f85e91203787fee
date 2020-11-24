@@ -1,0 +1,12 @@
+package me.shadow.module.movement;
+
+import org.lwjgl.input.Keyboard;
+
+import me.shadow.module.Category;
+import me.shadow.module.Module;
+
+public class Jesus extends Module{
+	public Jesus() {
+		super("Jesus", Keyboard.KEY_L, Category.MOVEMENT);
+	}
+}

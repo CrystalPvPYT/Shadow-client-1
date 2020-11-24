@@ -1,0 +1,62 @@
+package mystra.mods;
+
+import java.util.Iterator;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.values.Value;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+
+public class Killaura extends Module {
+	
+	Value KillauraSpeed = new Value("Killaura Speed", 1, 1, 5, ValueDisplay.INTEGER);
+	
+    public Killaura() {
+		super("KillAura", Keyboard.KEY_R, Category.COMBAT);
+	}
+   
+    @Override
+    public void onUpdate() {
+       
+        if(!this.isToggled())
+            return;
+       
+        for(Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
+            Object theObject = entities.next();
+            if(theObject instanceof EntityLivingBase) {
+                EntityLivingBase entity = (EntityLivingBase) theObject;
+               
+                if(entity instanceof EntityPlayerSP) continue;
+               
+                if(mc.thePlayer.getDistanceToEntity(entity) <= 4.2173613F) {
+                    if(entity.isEntityAlive()) {
+                        mc.playerController.attackEntity(mc.thePlayer, entity( KillauraSpeed.getValue();
+                        mc.thePlayer.swingItem();
+                        continue;
+                    }
+                }
+            }
+        }
+        super.onUpdate();
+    }
+    
+    @Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Killaura Enabled", 1));
+    	super.onEnable();
+    }
+    
+    @Override
+    public void onDisable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Killaura Disabled", 1));
+    	super.onDisable();
+    }
+}

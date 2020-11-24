@@ -1,0 +1,26 @@
+package mystra.mods;
+
+import com.darkmagician6.eventapi.types.EventType;
+
+import mystra.events.MotionUpdateEvent;
+import mystra.main.Category;
+import mystra.valuesystem.BooleanValue;
+import mystra.valuesystem.ModeValue;
+import mystra.valuesystem.NumberValue;
+
+public class Derp extends Module{
+	
+	private ModeValue mode = new ModeValue("Mode", "Beyblade", "Beyblade", "Random");
+	private NumberValue<Float> speed = new NumberValue("Speed", 10f, 1f, 100f);
+	private BooleanValue silent = new BooleanValue("Silent", false);
+	
+	public Derp() {
+		super("Derp", 0, Category.PLAYER);
+	}
+	
+	@EventTarget
+	public void onMotionUpdate(MotionUpdateEvent event) {
+		if(!getState() || event.getEventType() != (silent.getObject() ? EventType.PRE : EventType.POST)) return;
+	}
+
+}

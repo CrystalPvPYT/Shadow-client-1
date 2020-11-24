@@ -1,0 +1,5 @@
+ackage mystra.utils;
+
+public @interface SideOnly {
+
+}

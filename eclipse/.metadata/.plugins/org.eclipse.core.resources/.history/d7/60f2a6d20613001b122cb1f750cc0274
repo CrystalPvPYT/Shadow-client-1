@@ -1,0 +1,81 @@
+package me.mystra.module.player;
+
+import me.mystra.Mystra;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.utils.TimeHelper;
+import net.minecraft.client.gui.Gui;
+import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
+import net.minecraft.network.play.client.C09PacketHeldItemChange;
+
+public class AutoPlay extends Module {
+    boolean cansend = false;
+    TimeHelper delay = new TimeHelper();
+
+    public AutoPlay() {
+        super("AutoPlay", 0, Category.PLAYER);
+    }
+
+
+    private String getServerMessage() {
+        if (this.mc.getCurrentServerData().serverIP.equalsIgnoreCase("cubecraft.net")) {
+            return "/playagain now";
+        }
+        if (this.mc.getCurrentServerData().serverIP.equalsIgnoreCase("hypixel.net")) {
+            return "/play solo_insane";
+        }
+        if (this.mc.getCurrentServerData().serverIP.equalsIgnoreCase("mooncraft.es")) {
+        	return "/sw autojoin";
+        }
+        return null;
+    }
+
+    @EventTarget
+    public void onUpdate(EventUpdate event) {
+        if (this.mc.getCurrentServerData() == null) {
+            return;
+        }
+        /*
+         *  CHECKING IF PLAYER IS DEAD (IF DEAD THEN SEND TO NEXT GAME)
+         */
+        if ((this.mc.thePlayer.isDead) || (this.mc.thePlayer.getHealth() == 0.0F) || (this.mc.thePlayer.isSpectator()) || (this.mc.thePlayer.capabilities.allowFlying)) {
+            this.cansend = true;
+        }
+        
+        if (this.delay.hasReached(1000)) {
+                    C09PacketHeldItemChange localC09PacketHeldItemChange1 = new C09PacketHeldItemChange(i);
+                    this.mc.thePlayer.sendQueue.getNetworkManager().sendPacket(localC09PacketHeldItemChange1);
+                    try {
+                        this.mc.thePlayer.sendQueue.addToSendQueue(new C08PacketPlayerBlockPlacement(this.mc.thePlayer.inventoryContainer.getSlot(i).getStack()));
+                    } catch (Exception localException) {
+                    }
+                    C09PacketHeldItemChange localC09PacketHeldItemChange2 = new C09PacketHeldItemChange(this.mc.thePlayer.inventory.currentItem);
+                    this.mc.thePlayer.sendQueue.getNetworkManager().sendPacket(localC09PacketHeldItemChange2);
+                    Mystra.addChatMessage("Send to New Game");
+                    this.cansend = false;
+                }
+            } else if (this.mc.getCurrentServerData().serverIP.equalsIgnoreCase("hypixel.net")) {
+                if (this.cansend) {
+                    if (getServerMessage() == null) {
+                    	Mystra.addChatMessage("AutoPlay does not work on this server");
+                    } else {
+                        this.mc.thePlayer.sendChatMessage(getServerMessage());
+                        Mystra.addChatMessage("Sending to New Game");
+                    }
+                    this.cansend = false;
+                }
+            } else if ((this.mc.thePlayer.ticksExisted < 13) && (this.mc.thePlayer.ticksExisted > 9) && (this.cansend)) {
+                if (getServerMessage() == null) {
+                	Mystra.addChatMessage("AutoPlay does not work on this server");
+                } else {
+                    this.mc.thePlayer.sendChatMessage(getServerMessage());
+                    Mystra.addChatMessage("Sending to New Game");
+                }
+                this.cansend = false;
+            }
+            this.delay.reset();
+        }
+    }
+}

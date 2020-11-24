@@ -1,0 +1,131 @@
+package mystra.mods;
+
+import java.util.Iterator;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.TimeHelper;
+import mystra.utils.Wrapper;
+import mystra.valuesystem.BooleanValue;
+import mystra.valuesystem.NumberValue;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MathHelper;
+
+public class Killaura extends Module {
+	
+	private int ticks = 0;
+	private static String MultiAura = "MultiAura";
+	private static String HeadLock = "Head Lock";
+	private static String CPS = "CPS";
+	private static String Reach = "Reach";
+	private TimeHelper timer = new TimeHelper();
+	private float yaw;
+    private float pitch;
+	
+	private BooleanValue multiaura = new BooleanValue("MultiAura", true);
+	private BooleanValue headlock = new BooleanValue("Head Lock", false);
+	private NumberValue<Integer> cps = new NumberValue<Integer>("CPS", 13, 0, 20);
+	private NumberValue<Integer> reach = new NumberValue<Integer>("Reach", 4, 0, 8);	
+    public Killaura() {
+		super("KillAura", Keyboard.KEY_R, Category.COMBAT);
+	}
+   
+    @Override
+    public void onUpdate() {
+        if(!this.isToggled())
+            return;
+        
+        if(MultiAura.equalsIgnoreCase("MultiAura")) {
+			onMultiAura();
+		}
+    }
+        public void onMultiAura() {
+        		if(!this.isToggled()) {
+        			return;
+        		}
+        		ticks++;
+        		if(ticks > 10 - cps.getObject())
+        		if(multiaura.getObject()) {
+            for(Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
+                Object theObject = entities.next();
+                if(theObject instanceof EntityLivingBase) {
+                    EntityLivingBase entity = (EntityLivingBase) theObject;
+                   
+                    if(entity instanceof EntityPlayerSP) continue;
+                   
+                    if(Wrapper.mc.thePlayer.getDistanceToEntity(entity) <= reach.getObject()) {
+                        if(entity.isEntityAlive()) {
+                            mc.playerController.attackEntity(mc.thePlayer, entity);
+                            mc.thePlayer.swingItem();
+                            ticks = 0;
+                            continue;
+                        }
+                    }
+                }
+                setName("Killaura | §7MultiAura");
+                super.onUpdate();
+            }
+        }
+     }
+        
+        public void HeadLock(Entity entity, float i, float j) {
+        	if(!this.isToggled()) {
+        		return;
+        	}
+        	if(headlock.getObject()) {
+        		double xPos = entity.posX - mc.thePlayer.posX;
+                double yPos = entity.posY - mc.thePlayer.posY;
+                double k;
+
+                if (entity instanceof EntityLivingBase) {
+                    EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
+                    k = entityLivingBase.posY + entityLivingBase.getEyeHeight() - (mc.thePlayer.posY - mc.thePlayer.getEyeHeight());
+                } else {
+                    k = (entity.getEntityBoundingBox().minY + entity.getEntityBoundingBox().maxY) / 2D - (mc.thePlayer.posY + mc.thePlayer.getEyeHeight());
+                }
+
+                float m = (float) (Math.atan2(yPos, xPos) * 180D / Math.PI) - 90F;
+                float n = (float) (Math.atan2(k - ((entity instanceof EntityLiving) ? 0.5F : 0F), l) * 180D / Math.PI);
+                pitch = changeRoation(mc.thePlayer.rotationPitch, n, j);
+                yaw = changeRoation(mc.thePlayer.rotationYaw, m, i);
+                    mc.thePlayer.rotationPitch = pitch;
+                    mc.thePlayer.rotationYaw = yaw;
+                }
+        	}
+        
+        private float changeRoation(float rotationYaw, float m, float i) {
+
+            return 0;
+        }
+    @Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Killaura Enabled", 1));
+    	super.onEnable();
+    }
+    
+    @Override
+    public void onDisable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Killaura Disabled", 1));
+    	super.onDisable();
+    }
+    
+    private void speed() {
+    	if (timer.hasTimeReached(cps.getObject())) {
+    		return;
+    	}
+    }
+    
+    private void getRange() {
+    	if(timer.hasTimeReached(reach.getObject())) {
+		return;
+    	}
+    }
+}

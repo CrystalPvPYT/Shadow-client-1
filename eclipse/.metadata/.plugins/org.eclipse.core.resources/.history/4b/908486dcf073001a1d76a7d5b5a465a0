@@ -1,0 +1,29 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+
+public class Fullbright extends Module{
+
+	public Fullbright() {
+		super("Fullbright", 0, Category.RENDER);
+	}
+	
+	@Override
+	public void onUpdate() {
+		if(isToggled()) {
+			mc.gameSettings.gammaSetting = 100f;
+		}else {
+			mc.gameSettings.gammaSetting = 0f;
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Fullbright Toggled", 1));
+    	super.onEnable();
+    }
+
+}

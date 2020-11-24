@@ -1,0 +1,108 @@
+---- Minecraft Crash Report ----
+// Surprise! Haha. Well, this is awkward.
+
+Time: 04.05.20 20:16
+Description: Ticking entity
+
+java.lang.NullPointerException: Ticking entity
+	at net.minecraft.block.BlockLiquid.getCollisionBoundingBox(BlockLiquid.java:125)
+	at net.minecraft.block.Block.addCollisionBoxesToList(Block.java:495)
+	at net.minecraft.world.World.getCollidingBoundingBoxes(World.java:1303)
+	at net.minecraft.entity.Entity.moveEntity(Entity.java:686)
+	at net.minecraft.entity.passive.EntitySquid.moveEntityWithHeading(EntitySquid.java:220)
+	at net.minecraft.entity.EntityLivingBase.onLivingUpdate(EntityLivingBase.java:2023)
+	at net.minecraft.entity.EntityLiving.onLivingUpdate(EntityLiving.java:474)
+	at net.minecraft.entity.passive.EntitySquid.onLivingUpdate(EntitySquid.java:136)
+	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:1825)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:300)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1879)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:702)
+	at net.minecraft.world.World.updateEntity(World.java:1848)
+	at net.minecraft.world.World.updateEntities(World.java:1700)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:540)
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:775)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:685)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:245)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:564)
+	at java.lang.Thread.run(Unknown Source)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at net.minecraft.block.BlockLiquid.getCollisionBoundingBox(BlockLiquid.java:125)
+	at net.minecraft.block.Block.addCollisionBoxesToList(Block.java:495)
+	at net.minecraft.world.World.getCollidingBoundingBoxes(World.java:1303)
+	at net.minecraft.entity.Entity.moveEntity(Entity.java:686)
+	at net.minecraft.entity.passive.EntitySquid.moveEntityWithHeading(EntitySquid.java:220)
+	at net.minecraft.entity.EntityLivingBase.onLivingUpdate(EntityLivingBase.java:2023)
+	at net.minecraft.entity.EntityLiving.onLivingUpdate(EntityLiving.java:474)
+	at net.minecraft.entity.passive.EntitySquid.onLivingUpdate(EntitySquid.java:136)
+	at net.minecraft.entity.EntityLivingBase.onUpdate(EntityLivingBase.java:1825)
+	at net.minecraft.entity.EntityLiving.onUpdate(EntityLiving.java:300)
+	at net.minecraft.world.World.updateEntityWithOptionalForce(World.java:1879)
+	at net.minecraft.world.WorldServer.updateEntityWithOptionalForce(WorldServer.java:702)
+	at net.minecraft.world.World.updateEntity(World.java:1848)
+
+-- Entity being ticked --
+Details:
+	Entity Type: Squid (net.minecraft.entity.passive.EntitySquid)
+	Entity ID: 5
+	Entity Name: Squid
+	Entity's Exact location: 508,45, 59,00, 90,55
+	Entity's Block location: 508,00,59,00,90,00 - World: (508,59,90), Chunk: (at 12,3,10 in 31,5; contains blocks 496,0,80 to 511,255,95), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Entity's Momentum: 0,00, 0,00, 0,00
+	Entity's Rider: ~~ERROR~~ NullPointerException: null
+	Entity's Vehicle: ~~ERROR~~ NullPointerException: null
+Stacktrace:
+	at net.minecraft.world.World.updateEntities(World.java:1700)
+	at net.minecraft.world.WorldServer.updateEntities(WorldServer.java:540)
+
+-- Affected level --
+Details:
+	Level name: mcpworld
+	All players: 0 total; []
+	Chunk stats: ServerChunkCache: 627 Drop: 0
+	Level seed: -1587754402
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: true
+	Level generator options: 
+	Level spawn location: 584,00,64,00,166,00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 537383 game time, 48067 day time
+	Level dimension: 0
+	Level storage version: 0x04ABD - Anvil
+	Level weather: Rain time: 22592 (now: false), thunder time: 18663 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: true
+Stacktrace:
+	at net.minecraft.server.MinecraftServer.updateTimeLightAndEntities(MinecraftServer.java:775)
+	at net.minecraft.server.MinecraftServer.tick(MinecraftServer.java:685)
+	at net.minecraft.server.integrated.IntegratedServer.tick(IntegratedServer.java:245)
+	at net.minecraft.server.MinecraftServer.run(MinecraftServer.java:564)
+	at java.lang.Thread.run(Unknown Source)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 
+	Java Version: 1.8.0_241, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 691774336 bytes (659 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 8, tcache: 0, allocated: 13, tallocated: 99
+	Profiler Position: N/A (disabled)
+	Player Count: 0 / 8; []
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Very likely; Jar signature invalidated
+	OptiFine Version: OptiFine_1.8.8_HD_U_I7
+	Render Distance Chunks: 16
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 432.00
+	OpenGlRenderer: GeForce RTX 2080 SUPER/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 12

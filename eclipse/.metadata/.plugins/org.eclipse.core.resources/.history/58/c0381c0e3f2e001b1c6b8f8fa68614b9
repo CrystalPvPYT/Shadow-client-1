@@ -1,0 +1,225 @@
+package me.mystra.module.combat;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+
+import org.lwjgl.input.Keyboard;
+
+import me.mystra.Mystra;
+import me.mystra.clickgui.settings.Setting;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.EventPreMotionUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.module.combat.killaura.AuraUtils;
+import me.mystra.utils.TimeHelper;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.network.play.client.C02PacketUseEntity.Action;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.Vec3;
+
+public class KillAura extends Module {
+	
+	public static boolean KillauraHeadsnap = false; 
+
+	public KillAura() {
+		super("KillAura", Keyboard.KEY_NONE, Category.COMBAT);
+		
+		Mystra.instance.settingsManager.rSetting(new Setting("Hit Range", this, 180.0, 0, 180.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Hits per second", this, 180.0, 0, 180.0, false));
+	}
+
+	public static TimeHelper timer = new TimeHelper();
+	public static EntityLivingBase en = null;
+	static ArrayList<EntityLivingBase> ens = new ArrayList<EntityLivingBase>();
+	boolean attack = false;
+	/**
+	 * For "Switch" mode
+	 */
+	private ArrayList<EntityLivingBase> lastEns = new ArrayList<EntityLivingBase>();
+	public static boolean walls = true;
+
+	double x;
+	double y;
+	double z;
+
+	float rotationYaw = 0;
+    float rotationPitch = 0;
+	
+	ArrayList<Vec3> positions = new ArrayList<Vec3>();
+	ArrayList<Vec3> positionsBack = new ArrayList<Vec3>();
+	
+	public static EntityLivingBase getCurrentTarget() {
+		 return en;
+	}
+
+
+
+	@Override
+	public void onEnable() {
+		en = null;
+		lastEns.clear();
+		ens.clear();
+		AuraUtils.targets.clear();
+		positions.clear();
+		positionsBack.clear();
+		super.onToggle();
+	}
+
+	@EventTarget
+	public void onUpdate(EventPreMotionUpdate event) {
+		String mode = Mystra.instance.settingsManager.getSettingByName("KillAura Mode").getValString();
+		attack = false;
+		//setRotations();
+		positions.clear();
+		positionsBack.clear();
+		if (en != null) {
+			if ((mode.equalsIgnoreCase("Single") || mode.equalsIgnoreCase("Switch"))) {
+				float[] rots = AuraUtils.getFacePosEntity(en);
+				event.yaw = rots[0];
+				event.pitch = rots[1];
+				mc.thePlayer.renderYawOffset = event.getYaw();
+				mc.thePlayer.rotationYawHead = event.getYaw();
+				 // event.setYaw(rotationYaw);
+					//event.setPitch(rotationPitch);
+			       //mc.thePlayer.rotationYawHead = rotationYaw;
+			       // mc.thePlayer.rotationPitch = rotationPitch;
+			}
+		}
+		AuraUtils.targets.clear();
+		if (!AuraUtils.hasEntity(en)) {
+			AuraUtils.targets.add(en);
+		}
+		if (!timer.hasTimeReached(1000 / 12)) {
+			return;
+		}
+		if (mode.equalsIgnoreCase("Single")) {
+			EntityLivingBase newEn = null;
+			newEn = AuraUtils.getClosestEntity((float) 4.3);
+			if (newEn == null) {							
+				en = null;
+				return;
+			}
+			if (mc.thePlayer.getDistanceToEntity(newEn) > 4.3) {
+				newEn = null;
+				en = null;
+				attack = false;
+				return;
+			}
+			en = newEn;
+			if (en == null) {
+				return;
+			}
+			float[] rots = AuraUtils.getFacePosEntity(en);
+			event.yaw = rots[0];
+			event.pitch = rots[1];
+			mc.thePlayer.renderYawOffset = event.getYaw();
+			mc.thePlayer.rotationYawHead = event.getYaw();
+			attack = true;
+		}
+		if (mode.equalsIgnoreCase("Multi")) {
+			ens = AuraUtils.getClosestEntities((float) 4.3);
+			if (ens.isEmpty()) {
+				return;
+			}
+			for (EntityLivingBase en : ens) {
+				float[] rots = AuraUtils.getFacePosEntity(en);
+				event.yaw = rots[0];
+				event.pitch = rots[1];
+			}
+			AuraUtils.targets = ens;
+			attack = true;
+		}
+		if (mode.equalsIgnoreCase("Switch")) {
+			ens = AuraUtils.getClosestEntities((float) 4.3);
+			if (Xatz.java8) {
+				ens.sort(new Comparator<EntityLivingBase>() {
+					public int compare(EntityLivingBase o1, EntityLivingBase o2) {
+						if (mc.thePlayer.getDistanceToEntity(o1) > mc.thePlayer.getDistanceToEntity(o2)) {
+							return 1;
+						}
+						if (mc.thePlayer.getDistanceToEntity(o1) < mc.thePlayer.getDistanceToEntity(o2)) {
+							return -1;
+						}
+						if (mc.thePlayer.getDistanceToEntity(o1) == mc.thePlayer.getDistanceToEntity(o2)) {
+							return 0;
+						}
+						return 0;
+					};
+				});
+			}
+			boolean choseEntity = false;
+			for (EntityLivingBase en : ens) {
+				if (!attackedEntity(en)) {
+					this.en = en;
+					choseEntity = true;
+					lastEns.add(en);
+					attack = true;
+					float[] rots = AuraUtils.getFacePosEntity(en);
+					event.yaw = rots[0];
+					event.pitch = rots[1];
+					break;
+				} else {
+					continue;
+				}
+			}
+			if (!choseEntity) {
+				en = AuraUtils.getClosestEntity((float) 4.3);
+				if (en == null) {
+					return;
+				}
+				attack = true;
+				lastEns.clear();
+			}
+		}
+		if (attack) {
+			timer.reset();
+		}
+	}
+	
+	
+	 public void setRotations() {
+	        if (en == null)
+	            return;
+	        float[] smoothRotations = aurautil.faceEntitySmooth(rotationYaw, rotationPitch, aurautil.rotations(en)[0], aurautil.rotations(en)[1], 90, 90);
+	        rotationYaw = aurautil.updateRotation(mc.thePlayer.rotationYaw, smoothRotations[0], 180);
+	        rotationPitch = smoothRotations[1];
+	        if(rotationPitch > 90) {
+	            rotationPitch = 90;
+	        } else if (rotationPitch < -90) {
+	            rotationPitch = -90;
+	        }
+	    }
+	 
+	 AuraUtils aurautil = new AuraUtils();
+
+	public boolean attackedEntity(EntityLivingBase en) {
+		for (EntityLivingBase entity : lastEns) {
+			if (entity.isEntityEqual(en)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	
+	public String getModeName() {
+		return "Mode: ";
+	}
+
+	// public static boolean doBlock() {
+	// return en != null || !ens.isEmpty();
+	// }
+	//
+	public static boolean doBlock() {
+		return en != null || (Mystra.instance.settingsManager.getSettingByName("KillAura Mode").getValString().equals("Multi") && !ens.isEmpty());
+	}
+
+	public static boolean getShouldChangePackets() {
+		return en != null && !Mystra.instance.settingsManager.getSettingByName("KillAura Mode").getValString().equals("Multi")
+				&& !KillAura.KillauraHeadsnap;
+	}
+
+}

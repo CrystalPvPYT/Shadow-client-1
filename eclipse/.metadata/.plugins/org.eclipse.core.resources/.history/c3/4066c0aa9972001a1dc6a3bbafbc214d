@@ -1,0 +1,10 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class HypixelBhop extends Module{
+
+	public HypixelBhop() {
+		super("HypixelBhop", 0, Category.MOVEMENT);
+	}
+}

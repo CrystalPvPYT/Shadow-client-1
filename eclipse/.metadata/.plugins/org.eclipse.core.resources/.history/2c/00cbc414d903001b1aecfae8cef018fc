@@ -1,0 +1,44 @@
+package me.mystra.module.misc;
+
+import me.mystra.Mystra;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.Event2D;
+import me.mystra.event.events.EventReceivePacket;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import net.minecraft.network.play.server.S02PacketChat;
+
+public class KillCounter extends Module {
+    public KillCounter(String name, int key, Category category) {
+		super("KillCounter", 0, Category.MISC);
+	}
+
+	private static int count = 0;
+
+
+    @EventTarget
+    public void onRender2D(Event2D event) {
+        CFontRenderer font = Fonts.elliot17;
+        int y = font.getHeight() + 11;
+
+
+        font.drawStringWithShadow("KillCount: " + count, 4, y, -1);
+    }
+    @EventTarget
+    public void onPacket(EventReceivePacket event) {
+        if (event.getPacket() instanceof S02PacketChat) {
+            S02PacketChat packet = (S02PacketChat) event.getPacket();
+            String message = TextFormatting.getTextWithoutFormattingCodes(packet.getChatComponent().getUnformattedText());
+            if (message != null && message.length() > 0) {
+                String[] text = message.split(" ");
+                if ((text[1].equalsIgnoreCase("killed") || text[1].equalsIgnoreCase("shot")) && text[0].startsWith(mc.thePlayer.getName() + "(")) {
+                    count++;
+                }
+            }
+        }
+    }
+
+    public static void setCount(int negro) {
+        count = negro;
+    }
+}

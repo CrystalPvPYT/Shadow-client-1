@@ -1,0 +1,47 @@
+package mystra.main;
+
+import java.awt.Color;
+
+import mystra.gui.UIRenderer;
+import mystra.mods.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+
+public class GuiIngameHook extends GuiIngame{
+	public GuiIngameHook(Minecraft mcIn) {
+		super(mcIn);
+	}
+	
+	
+	public void renderGameOverlay(float partialTicks)
+    {
+		super.renderGameOverlay(partialTicks);
+        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        this.mc.entityRenderer.setupOverlayRendering();
+        GlStateManager.enableBlend();
+
+        int count = 0;
+        
+        int counter = 1;
+        
+        this.drawString(mc.fontRendererObj, "Mystra Client", 2, 12 - 10, rainbow(counter));
+   
+
+        for(Module m: Mystra.getModules()) {
+        	if(m.isToggled()) {
+        		mc.fontRendererObj.drawString(m.getName(), 10, 20 + (count*10), rainbow(counter*300));
+        		count ++;
+                counter++;
+        		}
+        	};
+        UIRenderer.renderAndUpdateFrames();
+    	}
+	
+	public static int rainbow(int delay) {
+	      double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);
+	      rainbowState %= 360;
+	      return Color.getHSBColor((float) (rainbowState / 360.0f), 0.8f, 0.7f).getRGB();
+	}
+}

@@ -1,0 +1,11 @@
+package me.shadow.event.events;
+
+import me.shadow.event.Event;
+
+public class EventMouse extends Event {
+
+	public int getButtonID() {
+		return 1;
+	}
+
+}

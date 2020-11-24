@@ -1,0 +1,28 @@
+package me.shadow.module.misc;
+
+import java.util.ArrayList;
+
+import me.mystra.Mystra;
+import me.shadow.clickgui.settings.Setting;
+import me.shadow.module.Category;
+import me.shadow.module.Module;
+
+public class Cosmetics extends Module {
+	
+	public Cosmetics() {
+		super("Cosmetics", 0, Category.MISC);
+		
+		ArrayList<String> options = new ArrayList<>();
+
+		Shadow.instance.settingsManager.rSetting(new Setting("Hat", this, true));
+		Shadow.instance.settingsManager.rSetting(new Setting("Cape", this, true));
+	}
+	@Override
+	public void onEnable() {
+		super.onEnable();
+	}
+	@Override
+	public void onDisable() {
+		super.onDisable();
+	}
+}

@@ -1,0 +1,124 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventTarget;
+
+import mystra.events.MotionUpdateEvent;
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.MathHelper;
+
+public class Speed extends Module{
+	
+	public static String mode = "Y-Port";
+	private double prevY = 0;
+	private int i = 0;
+
+	public Speed() {
+		super("Speed", Keyboard.KEY_V, Category.MOVEMENT);	
+	}
+	
+	public void onUpdate() {
+		this.setName("Speed");
+		if(!this.isToggled()) {
+			return;
+		}
+		
+		if(mode.equalsIgnoreCase("Y-Port")) {
+			onWalkingupdate();
+		}
+		
+		if(mode.equalsIgnoreCase("Timer")) {
+			timer();
+		}
+		
+		if(mode.equalsIgnoreCase("Bhop")) {
+			Bhop();
+		}
+	}
+	
+
+	public void onWalkingupdate() {
+		if(!this.isToggled()) {
+			return;
+		}
+		
+		if(mc.gameSettings.keyBindForward.isKeyDown() || mc.gameSettings.keyBindRight.isPressed() || mc.gameSettings.keyBindRight.isPressed() || mc.gameSettings.keyBindBack.isPressed()) {
+			if(!mc.thePlayer.isInWater() & !mc.thePlayer.isInLava()) {
+			if(mc.thePlayer.onGround) {
+				mc.thePlayer.jump();
+			}else {
+				mc.thePlayer.motionY = -1;
+			}
+		}
+			super.onWalkingupdate();
+	}
+}
+	public void timer() {
+		mc.timer.timerSpeed = 2.2F;
+	}
+	
+	public void setSpeed(float speed) {
+		mc.thePlayer.motionX = (-(Math.sin(this.getPlayerDirection()) * speed));
+		mc.thePlayer.motionZ = (Math.cos(this.getPlayerDirection()) * speed);
+		mc.thePlayer.setPositionAndUpdate(mc.thePlayer.posX - (double) (MathHelper.sin(this.getPlayerDirection()) * 0.0005F), this.prevY, mc.thePlayer.posZ + (double) (MathHelper.cos(this.getPlayerDirection ()) * 0.0005F));
+	}
+	
+	public float getPlayerDirection() {
+		float yaw = mc.thePlayer.rotationYaw;
+		if(mc.thePlayer.moveForward < 0.0F) {
+			yaw += 180.0F;
+		}
+		float forward = 1.0F;
+		if(mc.thePlayer.moveForward < 0.0F) {
+			forward = -0.5F;
+		}else if (mc.thePlayer.moveForward > 0.0F) {
+			forward = 0.5F;
+		}
+		if(mc.thePlayer.moveStrafing > 0.0F) {
+			yaw -= 90.0F * forward;
+		}
+		if(mc.thePlayer.moveStrafing < 0.0F) {
+			yaw += 90.0F * forward;
+		}
+		yaw *= 0.01598576234F;
+		
+		return yaw;
+	}
+	public void Bhop() {
+		if(!this.isToggled()) {
+			return;
+		}
+		if(mc.thePlayer.onGround) {
+		if(mc.thePlayer.moveForward != 0 || mc.thePlayer.moveStrafing != 0) {
+			mc.thePlayer.jump();
+			}
+			mc.timer.timerSpeed = 1.1f;
+			mc.thePlayer.motionX /= 5f;
+			mc.thePlayer.motionZ /= 5f;
+			mc.thePlayer.motionY += 0.03f;
+		}else {
+			mc.timer.timerSpeed = 1.1f;
+			mc.thePlayer.moveStrafing *= 0.1;
+			mc.thePlayer.jumpMovementFactor = 0.045f;
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Speed Enabled", 1));
+    	super.onEnable();
+    }
+	
+	@Override
+	public void onDisable() {
+		mc.timer.timerSpeed = 1f;
+		mc.thePlayer.jumpMovementFactor = 0.03f;
+		NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Speed Disabled", 1));
+		super.onDisable();
+	}
+}

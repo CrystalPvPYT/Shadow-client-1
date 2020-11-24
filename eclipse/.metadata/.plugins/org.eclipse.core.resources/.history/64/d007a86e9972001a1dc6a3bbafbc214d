@@ -1,0 +1,42 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class HypixelBhop extends Module{
+
+	public HypixelBhop() {
+		super("HypixelBhop", 0, Category.MOVEMENT);
+	}
+	
+	protected int state = 0;
+    @Override
+	public void onDisable() {
+		this.state = 0;
+		super.onDisable();
+	}			
+	protected void hypixel() {
+		if (this.mc.thePlayer.onGround) {
+			this.mc.thePlayer.jump();
+		} else {
+			this.mc.thePlayer.motionY = 0;
+			this.state += 1;
+			switch (this.state) {
+			case 1:
+				this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY + 1.0E-12D,
+						this.mc.thePlayer.posZ);
+				break;
+			case 2:
+				this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY - 1.0E-12D,
+						this.mc.thePlayer.posZ);
+				break;
+			case 3:
+				this.mc.thePlayer.setPosition(this.mc.thePlayer.posX, this.mc.thePlayer.posY + 1.0E-12D,
+						this.mc.thePlayer.posZ);
+				this.state = 0;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+}

@@ -1,0 +1,5 @@
+package me.shadow.event.events;
+
+import me.shadow.event.Event;
+
+public class EventPostMotionUpdate extends Event {}

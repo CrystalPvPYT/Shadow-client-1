@@ -1,0 +1,5 @@
+package mystra.events;
+
+public class PacketEvent {
+
+}

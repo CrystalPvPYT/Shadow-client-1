@@ -1,0 +1,12 @@
+package me.shadow.module.player;
+
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+
+public class BedNuker extends Module {
+
+	public BedNuker() {
+		super("BedNuker", 0, Category.PLAYER);
+	}
+
+}

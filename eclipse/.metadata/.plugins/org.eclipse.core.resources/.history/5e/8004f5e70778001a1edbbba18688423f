@@ -1,0 +1,31 @@
+package mystra.gui;
+
+import java.util.ArrayList;
+
+import mystra.main.Category;
+
+public class MystraTabGui {
+	
+	private ArrayList<String> mods = new ArrayList();
+    private ArrayList<String> category = new ArrayList();
+
+    private int selectedMod, selectedTab;
+
+    private int start, start1 = start + 14, end;
+
+    public static int screen = 0;
+    
+    public MystraTabGui() {
+        Category[] arrayofCategorys;
+        int j = (arrayofCategorys = Category.values()).length;
+
+        for(int i = 0; i < j; i++) {
+            Category category = arrayofCategorys[i];
+
+            if(category.name().equalsIgnoreCase("Gui")) {
+                continue;
+            }
+            this.category.add(category.toString().substring(0,1) + category.toString().substring(1, category.toString().length()).toLowerCase());
+        }
+    }
+}

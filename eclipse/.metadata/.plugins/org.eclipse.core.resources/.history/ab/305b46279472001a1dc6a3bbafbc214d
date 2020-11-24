@@ -1,0 +1,11 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class CrystalAura extends Module{
+
+	public CrystalAura() {
+		super("CrystalAura", 0, Category.COMBAT);
+	}
+
+}

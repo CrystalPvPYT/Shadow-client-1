@@ -1,0 +1,693 @@
+package me.mystra.module.movement;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+
+import org.lwjgl.input.Keyboard;
+
+import me.mystra.Mystra;
+import me.mystra.clickgui.settings.Setting;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.EventPreMotionUpdate;
+import me.mystra.event.events.EventReceivePacket;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.hud.notification.NotificationPublisher;
+import me.mystra.hud.notification.NotificationType;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.utils.BlockUtils;
+import me.mystra.utils.MathUtils;
+import me.mystra.utils.MovementUtils;
+import me.mystra.utils.TimeHelper;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
+import net.minecraft.block.BlockLiquid;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.client.C07PacketPlayerDigging;
+import net.minecraft.network.play.client.C08PacketPlayerBlockPlacement;
+import net.minecraft.network.play.client.C09PacketHeldItemChange;
+import net.minecraft.network.play.server.S08PacketPlayerPosLook;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovementInput;
+import net.minecraft.util.Timer;
+
+public class Speed extends Module {
+	
+	public static TimeHelper lastCheck = new TimeHelper();
+	
+	public static TimeHelper timer;
+	
+	//NCP
+	private int level = 1;
+    private double moveSpeed = 0.2873;
+    public static double moveSpeed2;
+    private static double lastDist;
+    private int timerDelay;
+	
+	//AAC
+	private int airMoves;
+	double speed;
+	double Motion;
+	
+	//HYPIXEL
+	private boolean boosted;
+
+	//INT
+	int spoofSlot;
+	private int state;
+	private int stage;
+	private static int stage1 = 1;
+	
+	//PIKANETWORK
+
+	public Speed() {
+        super("Speed", Keyboard.KEY_V, Category.MOVEMENT);
+    }
+
+    @Override
+    public void setup() {
+        ArrayList<String> options = new ArrayList<>();
+        
+        //AAC
+        options.add("AAC");
+        options.add("AAC2");
+        options.add("AAC3");
+        options.add("AAC4");
+        options.add("AACBHop");
+        options.add("AACBHop2");
+        options.add("AACYPort");
+        
+        //SPARTAN
+        options.add("SpartanYPort");
+        
+        //NCP
+        options.add("NCPHop");
+        
+        //PIKANETWORK
+        options.add("PikaBHop");
+        
+        //HYPIXEL
+        options.add("HypixelBHop");
+        options.add("Hypixel");
+        
+        //OTHER
+        options.add("HiveHop");
+        options.add("Mineplex");
+        
+        Mystra.instance.settingsManager.rSetting(new Setting("Speed Mode", this, "HiveHop", options));
+        Mystra.instance.settingsManager.rSetting(new Setting("Speed LagBack", this, false));
+    }
+    
+    @EventTarget
+    public void onUpdate(EventUpdate event) {
+    	String mode = Mystra.instance.settingsManager.getSettingByName("Speed Mode").getValString();
+    	this.setDisplayName("Speed §7| " + mode);
+    }
+    @EventTarget
+    public void onPre(EventPreMotionUpdate event) {
+    	float forward1 = MovementInput.moveForward;
+        float strafe1 = MovementInput.moveStrafe;
+        float yaw1 = Module.mc.thePlayer.rotationYaw;
+    	String mode = Mystra.instance.settingsManager.getSettingByName("Speed Mode").getValString();
+    	
+
+        if(mode.equalsIgnoreCase("Y-Port")) {
+        	this.setDisplayName("Speed §7| " + "Y-Port");
+	        if(isOnLiquid()) {
+	            return;
+	        }
+	        if(mc.thePlayer.onGround && (mc.thePlayer.moveForward != 0 || mc.thePlayer.moveStrafing != 0)) {
+	            if(mc.thePlayer.ticksExisted % 2 != 0)
+	                event.y += .4;
+	            mc.thePlayer.setSpeed(mc.thePlayer.ticksExisted % 2 == 0 ? .45F : .2F);
+	            mc.timer.timerSpeed = 1.095F;
+	        	}
+	      }
+        if(mode.equalsIgnoreCase("Hypixel")) {
+        	this.setDisplayName("Speed §7| " + "Hypixel");
+        	final double yaw = MovementUtils.getYaw(true);
+			if (MovementUtils.isMoving()) {
+				if (mc.thePlayer.onGround) {
+//					mc.thePlayer.onGround = false;
+					mc.thePlayer.jump();
+					if (mc.thePlayer.hurtTime > 0) {
+						mc.thePlayer.motionX -= (MathHelper.sin((float) MovementUtils.getYaw(true)) * 0.25F);
+						mc.thePlayer.motionZ += (MathHelper.cos((float) MovementUtils.getYaw(true)) * 0.25F);
+					}
+//					if (doJump) {
+//						System.out.println("ff");
+//					}
+				} else {
+					MovementUtils.doStrafe(MovementUtils.getSpeed(), yaw);
+					if (mc.thePlayer.hurtTime > 0) {
+						mc.thePlayer.speedInAir = 0.03F;
+					} else {
+						mc.thePlayer.speedInAir = 0.022F;
+					}
+				}
+			} else {
+				mc.thePlayer.motionX = 0D;
+				mc.thePlayer.motionZ = 0D;
+			}
+        }
+        if(mode.equalsIgnoreCase("HypixelBHop")) {
+        	this.setDisplayName("Speed §7| " + "HypixelBhop");
+        	if (this.mc.gameSettings.keyBindForward.pressed || mc.gameSettings.keyBindBack.pressed || this.mc.gameSettings.keyBindRight.pressed || this.mc.gameSettings.keyBindLeft.pressed) {
+
+				this.mc.gameSettings.keyBindSprint.pressed = true;
+
+				if (this.mc.thePlayer.onGround) {
+
+					this.mc.gameSettings.keyBindJump.pressed = false;
+					this.mc.thePlayer.jump();
+					this.boosted = false;
+
+				} else {
+					speed = 1.0044D;
+                    Motion = Math.sqrt(mc.thePlayer.motionX * mc.thePlayer.motionX + mc.thePlayer.motionZ * mc.thePlayer.motionZ);
+                    if (mc.thePlayer.hurtTime < 5) {
+                       mc.thePlayer.motionX = -Math.sin((double)getDirection()) * speed * Motion;
+                       mc.thePlayer.motionZ = Math.cos((double)getDirection()) * speed * Motion;
+                    
+					if (!this.boosted) {
+
+						this.mc.timer.timerSpeed = 1.05f;
+
+						double motionV = 0.15;
+
+						double x = this.getPosForSetPosX(motionV);
+						double z = this.getPosForSetPosZ(motionV);
+
+						this.mc.thePlayer.motionX = this.mc.thePlayer.motionX + x;
+						this.mc.thePlayer.motionZ = this.mc.thePlayer.motionZ + z;
+						this.boosted = true;
+						}
+                    }
+				}
+        	}
+        }
+        
+        if(mode.equalsIgnoreCase("AAC")) {
+        	this.setDisplayName("Speed §7| " + "AAC");
+                if(mc.thePlayer != null && mc.theWorld != null) {
+                    if(mc.gameSettings.keyBindForward.pressed && !mc.thePlayer.isCollidedHorizontally) {
+                        mc.gameSettings.keyBindJump.pressed = false;
+                        if(mc.thePlayer.onGround) {
+                            mc.thePlayer.jump();
+                            mc.thePlayer.motionX *= 1.0438F;
+                            mc.thePlayer.motionZ *= 1.0438F;
+                            mc.thePlayer.moveStrafing *= 1;
+		                    Motion = Math.sqrt(mc.thePlayer.motionX * 2 + mc.thePlayer.motionZ * 2);
+	        			}
+	                }
+	            }
+	        }
+        
+        if(mode.equalsIgnoreCase("AAC3") && !this.mc.thePlayer.isBlocking()) {
+        	this.setDisplayName("Speed §7| " + "AAC3");
+                BlockPos bp = new BlockPos(this.mc.thePlayer.posX, this.mc.thePlayer.posY + 2.0D, this.mc.thePlayer.posZ);
+                if(this.mc.gameSettings.keyBindForward.pressed && !this.mc.thePlayer.isInWater()) {
+                   BlockPos below = new BlockPos(this.mc.thePlayer.posX, this.mc.thePlayer.posY - 1.0D, this.mc.thePlayer.posZ);
+                   if(this.mc.theWorld.getBlockState(bp).getBlock() == Blocks.air) {
+                      if(this.mc.thePlayer.isCollidedVertically) {
+                         this.mc.thePlayer.jump();
+                      } else if(!(this.mc.theWorld.getBlockState(below).getBlock() instanceof BlockAir)) {
+                         this.mc.thePlayer.motionY = -0.2149999886751175D;
+                      }
+                      
+                   } else {
+                      this.mc.thePlayer.motionX *= 1.7D;
+                      this.mc.thePlayer.motionZ *= 1.7D;
+                      this.mc.thePlayer.jump();
+                      --this.mc.thePlayer.motionY;
+                   }
+                }
+        	}
+        
+        if(mode.equalsIgnoreCase("AAC4")) {
+        	this.setDisplayName("Speed §7| " + "AAC4");
+        	if (!BlockUtils.isInLiquid() && !Minecraft.thePlayer.isInWater()) {
+                if (Minecraft.thePlayer.capabilities.isFlying) {
+                    return;
+                }
+                Timer.timerSpeed = 1.0888f;
+                if (Minecraft.thePlayer.onGround) {
+                    this.stage = 2;
+                    Timer.timerSpeed = 1.0f;
+                    final EntityPlayerSP thePlayer = Minecraft.thePlayer;
+                    thePlayer.motionX *= 1.3085;
+                    final EntityPlayerSP thePlayer2 = Minecraft.thePlayer;
+                    thePlayer2.motionZ *= 1.3085;
+                }
+                if (MathUtils.roundToPlace(Minecraft.thePlayer.posY - (int)Minecraft.thePlayer.posY, 3) == MathUtils.roundToPlace(0.138, 3)) {
+                    final EntityPlayerSP thePlayer3 = Minecraft.thePlayer;
+                    --thePlayer3.motionY;
+                    Minecraft.thePlayer.motionY = 0.39936 - 0.0931;
+                    final EntityPlayerSP thePlayer4 = Minecraft.thePlayer;
+                    thePlayer4.posY -= 0.0931;
+                    final EntityPlayerSP thePlayer5 = Minecraft.thePlayer;
+                    thePlayer5.motionX *= 1.4085;
+                    final EntityPlayerSP thePlayer6 = Minecraft.thePlayer;
+                    thePlayer6.motionZ *= 1.4085;
+                }
+                if (this.stage != 2 || (Minecraft.thePlayer.moveForward == 0.0f && Minecraft.thePlayer.moveStrafing == 0.0f)) {
+                    if (this.stage == 3) {
+                        final double forward = 0.66 * (this.lastDist - this.getBaseMoveSpeed());
+                        this.moveSpeed = this.lastDist - forward;
+                    }
+                    else {
+                        if (Minecraft.theWorld.getCollidingBoundingBoxes(Minecraft.thePlayer, Minecraft.thePlayer.boundingBox.offset(0.0, Minecraft.thePlayer.motionY, 0.0)).size() > 0 || Minecraft.thePlayer.isCollidedVertically) {
+                            Timer.timerSpeed = 1.0f;
+                            final EntityPlayerSP thePlayer7 = Minecraft.thePlayer;
+                            thePlayer7.motionX *= 1.4085;
+                            final EntityPlayerSP thePlayer8 = Minecraft.thePlayer;
+                            thePlayer8.motionZ *= 1.4085;
+                            this.stage = 1;
+                        }
+                        this.moveSpeed = this.lastDist - this.lastDist / 159.0;
+                    }
+                }
+                else {
+                    Minecraft.thePlayer.motionY = 0.39936;
+                    Timer.timerSpeed = 1.0f;
+                    final EntityPlayerSP thePlayer9 = Minecraft.thePlayer;
+                    thePlayer9.motionX *= 1.4085;
+                    final EntityPlayerSP thePlayer10 = Minecraft.thePlayer;
+                    thePlayer10.motionZ *= 1.4085;
+                    this.moveSpeed *= 2.0;
+                }
+                this.moveSpeed = Math.max(this.moveSpeed, this.getBaseMoveSpeed());
+                float forward2 = MovementInput.moveForward;
+                float strafe = MovementInput.moveStrafe;
+                float yaw = Minecraft.thePlayer.rotationYaw;
+                if (forward2 == 0.0f && strafe == 0.0f) {
+                	Minecraft.thePlayer.motionX = 0.0;
+                	Minecraft.thePlayer.motionZ = 0.0;
+                }
+                else if (forward2 != 0.0f) {
+                    if (strafe >= 1.0f) {
+                        yaw += ((forward2 > 0.0f) ? -45 : 45);
+                        strafe = 0.0f;
+                    }
+                    else if (strafe <= -1.0f) {
+                        yaw += ((forward2 > 0.0f) ? 45 : -45);
+                        strafe = 0.0f;
+                    }
+                    if (forward2 > 0.0f) {
+                        forward2 = 1.0f;
+                    }
+                    else if (forward2 < 0.0f) {
+                        forward2 = -1.0f;
+                    }
+                }
+                final double mx = Math.cos(Math.toRadians(yaw + 90.0f));
+                final double mz = Math.sin(Math.toRadians(yaw + 90.0f));
+                Minecraft.thePlayer.motionX = (forward2 * this.moveSpeed * mx + strafe * this.moveSpeed * mz);
+                Minecraft.thePlayer.motionZ = (forward2 * this.moveSpeed * mz - strafe * this.moveSpeed * mx);
+                if (forward2 == 0.0f && strafe == 0.0f) {
+                	Minecraft.thePlayer.motionX = 0.0;
+                	Minecraft.thePlayer.motionZ = 0.0;
+                }
+                ++this.stage;
+                final EntityPlayerSP thePlayer11 = Minecraft.thePlayer;
+                thePlayer11.motionX *= 1.1085;
+                final EntityPlayerSP thePlayer12 = Minecraft.thePlayer;
+                thePlayer12.motionZ *= 1.1085;
+            }
+        }
+        
+        	if(mode.equalsIgnoreCase("AACBHop")) {
+        		this.setDisplayName("Speed §7| " + "AACBhop");
+        		if(mc.thePlayer.isInWater())
+                    return;
+
+                if(MovementUtils.isMoving()) {
+                    mc.timer.timerSpeed = 1.08F;
+
+                    if(mc.thePlayer.onGround) {
+                        mc.thePlayer.motionY = 0.399D;
+                        float f = mc.thePlayer.rotationYaw * 0.017453292F;
+                        mc.thePlayer.motionX -= MathHelper.sin(f) * 0.2F;
+                        mc.thePlayer.motionZ += MathHelper.cos(f) * 0.2F;
+                        mc.timer.timerSpeed = 2F;
+                    }else{
+                        mc.thePlayer.motionY *= 0.97D;
+                        mc.thePlayer.motionX *= 1.008D;
+                        mc.thePlayer.motionZ *= 1.008D;
+                    }
+                }else{
+                    mc.thePlayer.motionX = 0D;
+                    mc.thePlayer.motionZ = 0D;
+                    mc.timer.timerSpeed = 1F;
+                }
+            }
+        	
+        	if(mode.equalsIgnoreCase("AACBHop2")) {
+        		this.setDisplayName("Speed §7| " + "AACBhop2");
+        		if(mc.thePlayer.isInWater())
+                    return;
+
+                if(MovementUtils.isMoving()) {
+                    if(mc.thePlayer.onGround) {
+                        mc.thePlayer.jump();
+                        mc.thePlayer.motionX *= 1.02D;
+                        mc.thePlayer.motionZ *= 1.02D;
+                    }else if(mc.thePlayer.motionY > -0.2D) {
+                        mc.thePlayer.jumpMovementFactor = 0.08F;
+                        mc.thePlayer.motionY += 0.0143099999999999999999999999999D;
+                        mc.thePlayer.jumpMovementFactor = 0.07F;
+                    }
+                }else{
+                    mc.thePlayer.motionX = 0D;
+                    mc.thePlayer.motionZ = 0D;
+                }
+            }
+
+        	
+        	if(mode.equalsIgnoreCase("AACYPort")) {
+        		this.setDisplayName("Speed §7| " + "AACYPort");
+        	        if(MovementUtils.isMoving() && !mc.thePlayer.isSneaking()) {
+        	            mc.thePlayer.cameraPitch = 0F;
+
+        	            if(mc.thePlayer.onGround) {
+        	                mc.thePlayer.motionY = 0.3425F;
+        	                mc.thePlayer.motionX *= 1.5893F;
+        	                mc.thePlayer.motionZ *= 1.5893F;
+        	            }else
+        	                mc.thePlayer.motionY = -0.19D;
+        	        }
+        	    }
+        	if(mode.equalsIgnoreCase("SpartanYPort")) {
+        		this.setDisplayName("Speed §7| " + "SpartanYPort");
+        		if(mc.gameSettings.keyBindForward.isKeyDown() && !mc.gameSettings.keyBindJump.isKeyDown()) {
+                    if(mc.thePlayer.onGround) {
+                        mc.thePlayer.jump();
+                        airMoves = 0;
+                    }else{
+                        mc.timer.timerSpeed = 1.08F;
+
+                        if(airMoves >= 3)
+                            mc.thePlayer.jumpMovementFactor = 0.0275F;
+
+                        if(airMoves >= 4 && airMoves % 2 == 0.0) {
+                            mc.thePlayer.motionY = -0.32F - 0.009 * Math.random();
+                            mc.thePlayer.jumpMovementFactor = 0.0238F;
+                        }
+
+                        airMoves++;
+                    }
+                }
+            }
+        	if(mode.equalsIgnoreCase("HiveHop")) {
+        		this.setDisplayName("Speed §7| " + "HiveHop");
+        		mc.gameSettings.keyBindJump.pressed = false;
+	                if (mc.gameSettings.keyBindForward.pressed || mc.gameSettings.keyBindLeft.pressed || mc.gameSettings.keyBindRight.pressed || mc.gameSettings.keyBindBack.pressed) {
+	                   if (mc.thePlayer.onGround) {
+	                      mc.thePlayer.jump();
+	                      mc.thePlayer.motionY = 0.42D;
+	                      mc.timer.timerSpeed = 1.0F;
+	                   } else {
+	                      speed = 1.0044D;
+	                      Motion = Math.sqrt(mc.thePlayer.motionX * mc.thePlayer.motionX + mc.thePlayer.motionZ * mc.thePlayer.motionZ);
+	                      if (mc.thePlayer.hurtTime < 5) {
+	                         mc.thePlayer.motionX = -Math.sin((double)getDirection()) * speed * Motion;
+	                         mc.thePlayer.motionZ = Math.cos((double)getDirection()) * speed * Motion;
+	                      }
+	                   }
+	                }
+	        	}
+        	
+        	if(mode.equalsIgnoreCase("Mineplex")) {
+        		if (mc.thePlayer.onGround && mc.thePlayer.isCollidedVertically && MovementUtils.isOnGround(0.01) && !mc.gameSettings.keyBindJump.isPressed()) {
+                    if (this.invCheck()) {
+                        final ItemStack is = new ItemStack(Item.getItemById(261));
+                        int i = 9;
+                        while (i < 36) {
+                            int count = 0;
+                            if (!mc.thePlayer.inventoryContainer.getSlot(i).getHasStack()) {
+                                for (int a = 36; a < 45; ++a) {
+                                    final Container inventoryContainer = mc.thePlayer.inventoryContainer;
+                                    if (Container.canAddItemToSlot(mc.thePlayer.inventoryContainer.getSlot(a), is, true)) {
+                                        mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId, i, a - 36, 2, mc.thePlayer);
+                                        ++count;
+                                    }
+                                }
+                                if (count == 0) {
+                                    mc.playerController.windowClick(mc.thePlayer.inventoryContainer.windowId, i, 7, 2, mc.thePlayer);
+                                }
+                            }
+                            else {
+                                ++i;
+                            }
+                        }
+                    }
+                    if (mc.thePlayer.inventory.getCurrentItem() != null && this.spoofSlot != mc.thePlayer.inventory.currentItem) {
+                        this.spoofSlot = mc.thePlayer.inventory.currentItem;
+                        mc.getNetHandler().addToSendQueue(new C09PacketHeldItemChange(mc.thePlayer.inventory.currentItem));
+                        mc.playerController.updateController();
+                    }
+                    final C08PacketPlayerBlockPlacement place = new C08PacketPlayerBlockPlacement(new BlockPos(mc.thePlayer).add(0, -1, 0), EnumFacing.UP.getIndex(), null, 0.5f, 1.0f, 0.5f);
+                    if (mc.thePlayer.moveForward != 0.0f || mc.thePlayer.moveStrafing != 0.0f) {
+                        mc.thePlayer.sendQueue.addToSendQueue(place);
+                    }
+                    final EntityPlayerSP thePlayer5 = mc.thePlayer;
+                    thePlayer5.motionX *= 0.0;
+                    final EntityPlayerSP thePlayer6 = mc.thePlayer;
+                    thePlayer6.motionZ *= 0.0;
+                    if (mc.thePlayer.inventory.getCurrentItem() == null) {
+                    	MovementUtils.setMotion(0.44);
+                    }
+                    else {
+                    	MovementUtils.setMotion(0.35);
+                    }
+                }
+                else {
+                        final EntityPlayerSP thePlayer7 = mc.thePlayer;
+                        thePlayer7.motionX *= 0.0;
+                        final EntityPlayerSP thePlayer8 = mc.thePlayer;
+                        thePlayer8.motionZ *= 0.0;
+                        final double speed = 0.35;
+                        MovementUtils.setMotion(speed);
+                }
+            }
+        	
+        		if (mode.equalsIgnoreCase("NCPHop")) {
+        		this.setDisplayName("Speed §7| " + "NCPHop");
+                final Timer timer11 = Speed.mc.timer;
+                Timer.timerSpeed = 1.0765f;
+                if (MovementUtils.isMoving()) {
+                    if (Speed.mc.thePlayer.onGround) {
+                        Speed.mc.thePlayer.jump();
+                        Speed.mc.thePlayer.speedInAir = 0.0213f;
+                    }
+                    MovementUtils.strafe();
+                }
+                else {
+                    Speed.mc.thePlayer.motionX = 0.0;
+                    Speed.mc.thePlayer.motionZ = 0.0;
+                }
+            }
+        	if(mode.equalsIgnoreCase("PikaBHop")) {
+        		this.setDisplayName("Speed §7| " + "PikaBhop");
+        		if (mc.gameSettings.keyBindForward.pressed || mc.gameSettings.keyBindLeft.pressed || mc.gameSettings.keyBindRight.pressed || mc.gameSettings.keyBindBack.pressed) {
+        			if (mc.thePlayer.onGround) {
+		        		mc.thePlayer.jump();
+		        		mc.thePlayer.motionY = 0.42D;
+			            mc.thePlayer.motionX *= 1.02;
+			            mc.thePlayer.motionZ *= 1.02;
+        			}else {
+        				speed = 1.0044D;
+			            Motion = Math.sqrt(mc.thePlayer.motionX * mc.thePlayer.motionX + mc.thePlayer.motionZ * mc.thePlayer.motionZ);
+			            if (mc.thePlayer.hurtTime < 5) {
+	                        mc.thePlayer.motionX = -Math.sin((double)getDirection()) * speed * Motion;
+	                        mc.thePlayer.motionZ = Math.cos((double)getDirection()) * speed * Motion;
+				            }
+	        			}
+	        		}
+	        	}
+	        }
+    	
+      
+    
+    
+            private double getBaseMoveSpeed() {
+                double baseSpeed = 0.2873;
+                if(mc.thePlayer.isPotionActive(Potion.moveSpeed))
+                    baseSpeed *= 1.0 + 0.2 * (mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).getAmplifier() + 1);
+                return baseSpeed;
+            }
+
+            private double round(double value) {
+                BigDecimal bigDecimal = new BigDecimal(value);
+                bigDecimal = bigDecimal.setScale(3, RoundingMode.HALF_UP);
+                return bigDecimal.doubleValue();
+            }
+            
+            public double round2(final double value, final int places) {
+                if (places < 0) {
+                    throw new IllegalArgumentException();
+                }
+                BigDecimal bd = new BigDecimal(value);
+                bd = bd.setScale(places, RoundingMode.HALF_UP);
+                return bd.doubleValue();
+            }
+            
+            public void onMotion() {
+                double xDist = mc.thePlayer.posX - mc.thePlayer.prevPosX;
+                double zDist = mc.thePlayer.posZ - mc.thePlayer.prevPosZ;
+                lastDist = Math.sqrt(xDist * xDist + zDist * zDist);
+            }
+    private boolean isOnLiquid() {
+        boolean onLiquid = false;
+        final int y = (int)(mc.thePlayer.boundingBox.minY - .01);
+        for(int x = MathHelper.floor_double(mc.thePlayer.boundingBox.minX); x < MathHelper.floor_double(mc.thePlayer.boundingBox.maxX) + 1; ++x) {
+            for(int z = MathHelper.floor_double(mc.thePlayer.boundingBox.minZ); z < MathHelper.floor_double(mc.thePlayer.boundingBox.maxZ) + 1; ++z) {
+                Block block = mc.theWorld.getBlockState(new BlockPos(x, y, z)).getBlock();
+                if(block != null && !(block instanceof BlockAir)) {
+                    if(!(block instanceof BlockLiquid))
+                        return false;
+                    onLiquid = true;
+                }
+            }
+        }
+        return onLiquid;
+    }
+    
+    public static float getDirection() {
+        float var1 = mc.thePlayer.rotationYaw;
+        if (mc.thePlayer.moveForward < 0.0F) {
+           var1 += 180.0F;
+        }
+
+        float forward = 1.0F;
+        if (mc.thePlayer.moveForward < 0.0F) {
+           forward = -0.5F;
+        } else if (mc.thePlayer.moveForward > 0.0F) {
+           forward = 0.5F;
+        }
+
+        if (mc.thePlayer.moveStrafing > 0.0F) {
+           var1 -= 90.0F * forward;
+        }
+
+        if (mc.thePlayer.moveStrafing < 0.0F) {
+           var1 += 90.0F * forward;
+        }
+
+        var1 *= 0.017453292F;
+        return var1;
+     }
+    
+    public static float getDirectionAAC() {
+        Minecraft mc = Minecraft.getMinecraft();
+        float var1 = mc.thePlayer.rotationYaw;
+
+        if (mc.thePlayer.moveForward < 0.0F) {
+            var1 += 180.0F;
+        }
+
+        float forward = 1.0F;
+
+        if (mc.thePlayer.moveForward < 0.0F) {
+            forward = -0.5F;
+        } else if (mc.thePlayer.moveForward > 0.0F) {
+            forward = 0.5F;
+        }
+
+        if (mc.thePlayer.moveStrafing > 0.0F) {
+            var1 -= 90.0F * forward;
+        }
+
+        if (mc.thePlayer.moveStrafing < 0.0F) {
+            var1 += 90.0F * forward;
+        }
+
+        var1 *= 0.017453292F;
+        return var1;
+    }
+
+    public double getPosForSetPosX(double value) {
+		double yaw = Math.toRadians(Minecraft.getMinecraft().thePlayer.rotationYaw);
+		double x = -Math.sin(yaw) * value;
+		return x;
+	}
+
+	public double getPosForSetPosZ(double value) {
+		double yaw = Math.toRadians(Minecraft.getMinecraft().thePlayer.rotationYaw);
+		double z = Math.cos(yaw) * value;
+		return z;
+	}
+	
+	@EventTarget
+    public void receivePacket(EventReceivePacket event) {
+        Packet packet = event.getPacket();
+        if (packet instanceof S08PacketPlayerPosLook)
+            if (Mystra.instance.settingsManager.getSettingByName("Speed LagBack").getValBoolean()) {
+            	Mystra.addChatMessage("Disabled Speed (Lagback Checks)");
+            	//NotificationPublisher.queue("Flag", "Disabled Flight due to flag.", NotificationType.INFO);
+            	//NotificationManager.show(new Notification(NotificationType.INFO, " " + EnumChatFormatting.RED + "Disabled" + EnumChatFormatting.WHITE + getName() + "due to lagback", 2));
+                mc.thePlayer.onGround = false;
+                mc.thePlayer.motionX *= 0;
+                mc.thePlayer.motionZ *= 0;
+                mc.thePlayer.jumpMovementFactor = 0;
+                this.toggle();
+            } else if (lastCheck.delay(300)) {
+                S08PacketPlayerPosLook.yaw = mc.thePlayer.rotationYaw;
+                S08PacketPlayerPosLook.pitch = mc.thePlayer.rotationPitch;
+            }
+    }
+	
+	private void MineplexSpoof() {
+        try {
+            int i = 36;
+            while (i < 45) {
+                final int theSlot = i - 36;
+                if (mc.thePlayer.inventoryContainer.getSlot(i).getStack() == null) {
+                    if (mc.thePlayer.inventory.currentItem != theSlot) {
+                        mc.getNetHandler().addToSendQueue(new C09PacketHeldItemChange(theSlot));
+                        mc.playerController.updateController();
+                        this.spoofSlot = theSlot;
+                        break;
+                    }
+                    break;
+                }
+                else {
+                    ++i;
+                }
+            }
+        }
+        catch (Exception ex) {}
+    }
+	
+	private boolean invCheck() {
+        for (int i = 36; i < 45; ++i) {
+            if (!mc.thePlayer.inventoryContainer.getSlot(i).getHasStack()) {
+                return false;
+            }
+        }
+        return true;
+    }
+	
+	@Override
+    public void onDisable() {
+    	this.mc.timer.timerSpeed = 1.0f;
+    	super.onDisable();
+    }
+	
+	@Override
+	public void onEnable() {
+		level = mc.theWorld.getCollidingBoundingBoxes(mc.thePlayer, mc.thePlayer.getEntityBoundingBox().offset(0.0, mc.thePlayer.motionY, 0.0)).size() > 0 || mc.thePlayer.isCollidedVertically ? 1 : 4;
+		super.onEnable();
+	}
+}

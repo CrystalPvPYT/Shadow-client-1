@@ -1,0 +1,82 @@
+---- Minecraft Crash Report ----
+// Hey, that tickles! Hehehe!
+
+Time: 02.04.20 14:50
+Description: Initializing game
+
+java.lang.Error: Unresolved compilation problems: 
+	The constructor ScrollPane(IRenderer, GridLayout) is undefined
+	Type mismatch: cannot convert from ScrollPane to Pane
+	The constructor GridLayout(int) is undefined
+	The constructor Pane(IRenderer, FlowLayout) is undefined
+	The constructor Pane(IRenderer, GridLayout) is undefined
+	The constructor GridLayout(int) is undefined
+	The constructor Pane(IRenderer, GridLayout) is undefined
+	The constructor GridLayout(int) is undefined
+	The method addComponent(AbstractComponent) in the type Pane is not applicable for the arguments (Label)
+	The constructor Label(IRenderer, String) is undefined
+	The method addComponent(AbstractComponent) in the type Pane is not applicable for the arguments (Label)
+	The constructor Label(IRenderer, String) is undefined
+	The method addComponent(AbstractComponent) in the type Pane is not applicable for the arguments (Label)
+	The constructor Label(IRenderer, String) is undefined
+	The method addComponent(AbstractComponent) in the type Pane is not applicable for the arguments (Label)
+	The constructor Label(IRenderer, String) is undefined
+	The method addComponent(AbstractComponent) in the type Pane is not applicable for the arguments (Label)
+	The constructor Label(IRenderer, String) is undefined
+	The constructor Pane(IRenderer, GridLayout) is undefined
+	The constructor GridLayout(int) is undefined
+	The method addComponent(AbstractComponent) in the type Pane is not applicable for the arguments (Button)
+	The constructor Button(IRenderer, String) is undefined
+	The method setOnClickListener(() -> {}) is undefined for the type Button
+
+	at mystra.clickgui.ClickGUI.<init>(ClickGUI.java:51)
+	at mystra.mods.ClickGUIModule.<clinit>(ClickGUIModule.java:9)
+	at mystra.main.Mystra.<init>(Mystra.java:44)
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:571)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:405)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at mystra.clickgui.ClickGUI.<init>(ClickGUI.java:51)
+	at mystra.mods.ClickGUIModule.<clinit>(ClickGUIModule.java:9)
+	at mystra.main.Mystra.<init>(Mystra.java:44)
+	at net.minecraft.client.Minecraft.startGame(Minecraft.java:571)
+
+-- Initialization --
+Details:
+Stacktrace:
+	at net.minecraft.client.Minecraft.run(Minecraft.java:405)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_241, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 803627824 bytes (766 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: mcp
+	LWJGL: 2.9.4
+	OpenGL: GeForce RTX 2080 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 432.00, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 

@@ -1,0 +1,16 @@
+package mystra.client;
+
+import java.util.concurrent.CopyOnWriteArrayList;
+
+import org.lwjgl.opengl.Display;
+
+import mystra.mods.Module;
+
+public class Client {
+	public static String name = "Mystra Client 1.8.8", version = "2";
+
+	public static void startup() {
+		System.out.println("Starting " + name + " - v" + version);
+		Display.setTitle(name + " v" + version);
+	}
+}

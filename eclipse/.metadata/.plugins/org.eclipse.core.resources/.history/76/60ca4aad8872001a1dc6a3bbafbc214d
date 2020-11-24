@@ -1,0 +1,23 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class AntiKB extends Module{
+
+	public AntiKB() {
+		super("AntiKB", Keyboard.KEY_K, Category.MOVEMENT);
+	}
+	
+	if(isEnabled()) //or other toggle
+	{
+		if(mc.thePlayer.hurtTime > 0)
+		{
+			mc.thePlayer.motionX = 0;
+			mc.thePlayer.motionY = 0;
+			mc.thePlayer.motionZ = 0;
+		}
+	}
+}

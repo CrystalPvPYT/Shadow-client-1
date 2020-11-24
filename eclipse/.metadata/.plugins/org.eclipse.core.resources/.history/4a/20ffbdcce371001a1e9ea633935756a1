@@ -1,0 +1,11 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class HighJump extends Module{
+	public double jumpHeight = 0.41999998688697815D * 6;
+
+	public HighJump() {
+		super("HighJump", 0, Category.MOVEMENT);	
+		}
+}

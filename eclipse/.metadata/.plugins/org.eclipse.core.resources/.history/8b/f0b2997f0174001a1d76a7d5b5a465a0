@@ -1,0 +1,23 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class Safewalk extends Module{
+
+	public Safewalk() {
+		super("Safewalk", Keyboard.KEY_L, Category.MOVEMENT);
+	}
+	
+	public static void;
+       module toggle.interface if; (bind.module.toggle.double phasr){
+       block.entitiy File private class object 
+    }
+    this.x() = speed.compX.posX
+    this.y() = speed.compY.posY
+    int x, y;
+    stop.Movement = true;
+      for (i++ = i , 1-100 -= true(50 / height / width)println.globalchat.("[CLIENT] Safewalk toggled")
+}
+enum end

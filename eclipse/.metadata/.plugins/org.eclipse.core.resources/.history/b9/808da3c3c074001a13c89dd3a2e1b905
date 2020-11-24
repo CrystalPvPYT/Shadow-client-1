@@ -1,0 +1,31 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class LongJump extends Module{
+	
+	public static String mode = "Y-Port";
+	private double prevY = 0;
+	private int i = 0;
+
+	public LongJump() {
+		super("LongJump", Keyboard.KEY_H, Category.MOVEMENT);	
+	}
+	
+	public void onUpdate() {
+		this.setName("Speed");
+		if(!this.isToggled()) {
+			return;
+		}
+		
+		if(mode.equalsIgnoreCase("Y-Port")) {
+			yPort();
+	}
+	
+
+	public void CubeCraft() {
+		if(!this.isToggled()) {
+			return;
+		}

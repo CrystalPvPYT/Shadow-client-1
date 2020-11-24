@@ -1,0 +1,22 @@
+package mystra.gui;
+
+import org.darkstorm.minecraft.gui.component.Frame;
+import org.darkstorm.minecraft.gui.util.GuiManagerDisplayScreen;
+
+import mystra.main.Mystra;
+import net.minecraft.client.Minecraft;
+
+public class UIRenderer {
+	
+	public static void renderAndUpdateFrames() {
+		for(Frame f: Mystra.guiManager.getFrames()) {
+			f.update();
+		}
+		for(Frame f: Mystra.guiManager.getFrames()) {
+			if(f.isPinned() || Minecraft.getMinecraft().currentScreen instanceof GuiManagerDisplayScreen){
+				f.render();
+			}
+		}
+	}
+
+}

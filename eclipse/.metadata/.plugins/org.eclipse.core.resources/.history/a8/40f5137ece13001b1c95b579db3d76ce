@@ -1,0 +1,45 @@
+package me.mystra.module.combat;
+
+import java.awt.Color;
+
+import org.lwjgl.opengl.GL11;
+
+import me.mystra.Mystra;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.Event3D;
+import me.mystra.event.events.EventSpeed;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+
+public class TargetStrafe extends Module {
+    public static int direction = -1;
+    public TargetStrafe() {
+        super("TargetStrafe", 0, Category.COMBAT);
+    }
+    @EventTarget
+    public void onMove(EventSpeed event, double paramDouble1, float paramFloat, double paramDouble2, double paramDouble3) {
+    }
+    private void switchDirection() {
+        if (direction == 1) {
+            direction = -1;
+        } else {
+            direction = 1;
+        }
+    }
+    @Override
+    public void onEnable() {
+    	super.onEnable();
+    }
+    
+    @Override
+    public void onDisable() {
+    	super.onDisable();
+    }
+}
+
+
+
+

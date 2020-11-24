@@ -1,0 +1,13 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class ClickGui extends Module{
+
+	public ClickGui() {
+		super("ClickGui", Keyboard.KEY_RSHIFT, Category.OTHER);
+	}
+
+}

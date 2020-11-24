@@ -1,0 +1,18 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class Bhop extends Module{
+
+	public Bhop() {
+		super("Bhop", Keyboard.KEY_X, Category.MOVEMENT);
+	}
+	
+	
+	if(mc.theplayer != null && mc.theWorld != null) {
+		if(mc.gameSettings.keyboardForward.pressed)
+	}
+}
+}

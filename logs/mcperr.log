@@ -1,0 +1,1065 @@
+18:44:52 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:44:53 - !! Can not find client sources, try decompiling !!
+18:44:53 - !! Can not find server sources, try decompiling !!
+18:44:57 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:48:21 - !! Missing server jar file. Aborting !!
+09:27:34 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+09:27:47 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+09:27:47 - 
+09:27:47 - == ERRORS FOUND in JAVA CODE ==
+09:27:47 - 
+09:27:47 - src\minecraft\mystra\clickgui\ClickGUI.java:42: error: diamond operator is not supported in -source 1.6
+09:27:47 -     private List<ActionEventListener> onRenderListeners = new ArrayList<>();
+09:27:47 -                                                                         ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\clickgui\ClickGUI.java:82: error: lambda expressions are not supported in -source 1.6
+09:27:47 -                     onRenderListeners.add(() -> cb.setSelected(module.getState()));
+09:27:47 -                                              ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\clickgui\ClickGUI.java:91: error: method references are not supported in -source 1.6
+09:27:47 -                     settingPane.addComponent(kb = new KeybindButton(renderer, Keyboard::getKeyName));
+09:27:47 -                                                                                         ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable method references)
+09:27:47 - src\minecraft\mystra\clickgui\components\KeybindButton.java:40: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         setOnClickListener(() -> {
+09:27:47 -                               ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\clickgui\components\Pane.java:21: error: diamond operator is not supported in -source 1.6
+09:27:47 -     protected List<AbstractComponent> components = new ArrayList<>();
+09:27:47 -                                                                  ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\clickgui\components\Pane.java:99: error: method references are not supported in -source 1.6
+09:27:47 -         components.stream().sorted(Comparator.comparingInt(AbstractComponent::getEventPriority)).forEach(component -> {
+09:27:47 -                                                                               ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable method references)
+09:27:47 - src\minecraft\mystra\clickgui\components\Pane.java:99: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         components.stream().sorted(Comparator.comparingInt(AbstractComponent::getEventPriority)).forEach(component -> {
+09:27:47 -                                                                                                                    ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\clickgui\components\Slider.java:148: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         PERCENT(number -> String.format(Locale.ENGLISH, "%.1f%%", number.floatValue())),
+09:27:47 -                        ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\clickgui\layout\FlowLayout.java:88: error: diamond operator is not supported in -source 1.6
+09:27:47 -         HashMap<AbstractComponent, int[]> map = new HashMap<>();
+09:27:47 -                                                             ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\clickgui\layout\FlowLayout.java:117: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         return new Layout(map, map.entrySet().stream().map(entry -> entry.getValue()[1] + entry.getKey().getHeight()).max(Integer::compareTo).orElse(0), map.entrySet().stream().map(entry -> entry.getValue()[0] + entry.getKey().getWidth()).max(Integer::compareTo).orElse(0));
+09:27:47 -                                                                  ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\clickgui\layout\FlowLayout.java:117: error: method references are not supported in -source 1.6
+09:27:47 -         return new Layout(map, map.entrySet().stream().map(entry -> entry.getValue()[1] + entry.getKey().getHeight()).max(Integer::compareTo).orElse(0), map.entrySet().stream().map(entry -> entry.getValue()[0] + entry.getKey().getWidth()).max(Integer::compareTo).orElse(0));
+09:27:47 -                                                                                                                                    ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable method references)
+09:27:47 - src\minecraft\mystra\clickgui\layout\GridLayout.java:189: error: diamond operator is not supported in -source 1.6
+09:27:47 -         HashMap<AbstractComponent, int[]> layout = new HashMap<>();
+09:27:47 -                                                                ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\main\GuiIngameHook.java:27: error: method references are not supported in -source 1.6
+09:27:47 -         Mystra.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getName()))).forEach(module -> {
+09:27:47 -                                                     ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable method references)
+09:27:47 - src\minecraft\mystra\main\GuiIngameHook.java:27: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         Mystra.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getName()))).forEach(module -> {
+09:27:47 -                                                                                                      ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\notifications\NotificationManager.java:7: error: diamond operator is not supported in -source 1.6
+09:27:47 -     private static LinkedBlockingQueue<Notification> pendingNotifications = new LinkedBlockingQueue<>();
+09:27:47 -                                                                                                     ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\utils\GlyphPage.java:31: error: diamond operator is not supported in -source 1.6
+09:27:47 -     private HashMap<Character, Glyph> glyphCharacterMap = new HashMap<>();
+09:27:47 -                                                                       ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\utils\RayCastUtil.java:39: error: method references are not supported in -source 1.6
+09:27:47 -         List list = mc.theWorld.getEntitiesInAABBexcluding(mc.getRenderViewEntity(), mc.getRenderViewEntity().getEntityBoundingBox().addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0).expand((double)f, (double)f, (double)f), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
+09:27:47 -                                                                                                                                                                                                                                                                                                        ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable method references)
+09:27:47 - src\minecraft\mystra\valuesystem\NumberValue.java:28: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         super(name, defaultVal, validator == null ? val -> val.doubleValue() >= min.doubleValue() && val.doubleValue() <= max.doubleValue() : validator.and(val -> val.doubleValue() >= min.doubleValue() && val.doubleValue() <= max.doubleValue()));
+09:27:47 -                                                         ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - src\minecraft\mystra\valuesystem\ValueManager.java:22: error: diamond operator is not supported in -source 1.6
+09:27:47 -     private HashMap<String, List<Value>> valueMap = new HashMap<>();
+09:27:47 -                                                                 ^
+09:27:47 - 
+09:27:47 -   (use -source 7 or higher to enable diamond operator)
+09:27:47 - src\minecraft\mystra\valuesystem\ValueManager.java:72: error: lambda expressions are not supported in -source 1.6
+09:27:47 -         return found.stream().filter(val -> name.equalsIgnoreCase(val.getName())).findFirst().orElse(null);
+09:27:47 -                                          ^
+09:27:47 - 
+09:27:47 -   (use -source 8 or higher to enable lambda expressions)
+09:27:47 - 20 errors
+09:27:47 - ==================
+09:27:47 - 
+09:27:47 - !! Can not find server sources, try decompiling !!
+09:28:21 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+09:28:21 - !! Can not find client bins, try recompiling !!
+09:28:21 - !! Can not find server md5s !!
+09:28:39 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+09:28:40 - !! Can not find client bins, try recompiling !!
+09:28:40 - !! Can not find server md5s !!
+20:05:55 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+20:05:56 - !! Can not find client bins, try recompiling !!
+20:05:56 - !! Can not find server md5s !!
+20:06:10 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+20:06:12 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+20:06:12 - 
+20:06:12 - == ERRORS FOUND in JAVA CODE ==
+20:06:12 - 
+20:06:12 - src\minecraft\de\Hero\clickgui\ClickGUI.java:55: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		panels = new ArrayList<>();
+20:06:12 - 		                       ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\de\Hero\clickgui\Panel.java:30: error: diamond operator is not supported in -source 1.6
+20:06:12 - 	public ArrayList<ModuleButton> Elements = new ArrayList<>();
+20:06:12 - 	                                                        ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\de\Hero\clickgui\elements\ModuleButton.java:46: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		menuelements = new ArrayList<>();
+20:06:12 - 		                             ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\de\Hero\settings\SettingsManager.java:20: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		this.settings = new ArrayList<>();
+20:06:12 - 		                              ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\Mystra.java:56: error: lambda expressions are not supported in -source 1.6
+20:06:12 -         moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+20:06:12 -                                                           ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:60: error: diamond operator is not supported in -source 1.6
+20:06:12 -     private final Map<String, Float> cachedStringWidth = new HashMap<>();
+20:06:12 -                                                                      ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:68: error: multi-catch statement is not supported in -source 1.6
+20:06:12 -         } catch (FontFormatException | IOException e) {
+20:06:12 -                                      ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable multi-catch statement)
+20:06:12 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:250: error: lambda expressions are not supported in -source 1.6
+20:06:12 -         return cachedStringWidth.computeIfAbsent(s, e -> {
+20:06:12 -                                                       ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - src\minecraft\me\mystra\hud\GuiIngameHook.java:42: error: method references are not supported in -source 1.6
+20:06:12 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+20:06:12 - 				                                                                   ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable method references)
+20:06:12 - src\minecraft\me\mystra\hud\GuiIngameHook.java:42: error: lambda expressions are not supported in -source 1.6
+20:06:12 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+20:06:12 - 				                                                                                                                    ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - src\minecraft\me\mystra\hud\draggablehud\HUDConfigScreen.java:68: error: lambda expressions are not supported in -source 1.6
+20:06:12 - 			renderers.entrySet().forEach((entry) -> {
+20:06:12 - 			                                     ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - src\minecraft\me\mystra\hud\draggablehud\IRenderer.java:10: error: default methods are not supported in -source 1.6
+20:06:12 - 	default void renderDummy(ScreenPosition pos) {
+20:06:12 - 	^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable default methods)
+20:06:12 - src\minecraft\me\mystra\hud\draggablehud\hudmods\impl\ModCPS.java:63: error: lambda expressions are not supported in -source 1.6
+20:06:12 - 		this.clicks.removeIf(aLong -> aLong + 1000 < time);
+20:06:12 - 		                           ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - src\minecraft\me\mystra\hud\notifications\NotificationManager.java:7: error: diamond operator is not supported in -source 1.6
+20:06:12 -     private static LinkedBlockingQueue<Notification> pendingNotifications = new LinkedBlockingQueue<>();
+20:06:12 -                                                                                                     ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\ModuleManager.java:72: error: lambda expressions are not supported in -source 1.6
+20:06:12 -         return modules.stream().filter(module -> module.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+20:06:12 -                                               ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - src\minecraft\me\mystra\module\combat\Criticals.java:22: error: diamond operator is not supported in -source 1.6
+20:06:12 -         ArrayList<String> options = new ArrayList<>();
+20:06:12 -                                                   ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\misc\Cosmetics.java:14: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		ArrayList<String> options = new ArrayList<>();
+20:06:12 - 		                                          ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\misc\HUD.java:15: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		ArrayList<String> options = new ArrayList<>();
+20:06:12 - 		                                          ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\misc\SwordAnimation.java:15: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		ArrayList<String> options = new ArrayList<>();
+20:06:12 - 		                                          ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\movement\Fly.java:18: error: diamond operator is not supported in -source 1.6
+20:06:12 -         ArrayList<String> options = new ArrayList<>();
+20:06:12 -                                                   ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\movement\LongJump.java:26: error: diamond operator is not supported in -source 1.6
+20:06:12 - 		ArrayList<String> options = new ArrayList<>();
+20:06:12 - 		                                          ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\movement\Speed.java:33: error: diamond operator is not supported in -source 1.6
+20:06:12 -         ArrayList<String> options = new ArrayList<>();
+20:06:12 -                                                   ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\render\ClickGUI.java:19: error: diamond operator is not supported in -source 1.6
+20:06:12 -         ArrayList<String> options = new ArrayList<>();
+20:06:12 -                                                   ^
+20:06:12 - 
+20:06:12 -   (use -source 7 or higher to enable diamond operator)
+20:06:12 - src\minecraft\me\mystra\module\render\NameTags.java:42: error: lambda expressions are not supported in -source 1.6
+20:06:12 -             mc.theWorld.loadedEntityList.forEach(p -> {
+20:06:12 -                                                    ^
+20:06:12 - 
+20:06:12 -   (use -source 8 or higher to enable lambda expressions)
+20:06:12 - 24 errors
+20:06:12 - ==================
+20:06:12 - 
+20:06:12 - !! Can not find server sources, try decompiling !!
+18:09:29 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:09:40 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:09:40 - 
+18:09:40 - == ERRORS FOUND in JAVA CODE ==
+18:09:40 - 
+18:09:40 - src\minecraft\de\Hero\clickgui\ClickGUI.java:55: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		panels = new ArrayList<>();
+18:09:40 - 		                       ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\de\Hero\clickgui\Panel.java:30: error: diamond operator is not supported in -source 1.6
+18:09:40 - 	public ArrayList<ModuleButton> Elements = new ArrayList<>();
+18:09:40 - 	                                                        ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\de\Hero\clickgui\elements\ModuleButton.java:46: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		menuelements = new ArrayList<>();
+18:09:40 - 		                             ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\de\Hero\settings\SettingsManager.java:20: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		this.settings = new ArrayList<>();
+18:09:40 - 		                              ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\Mystra.java:59: error: lambda expressions are not supported in -source 1.6
+18:09:40 -         moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+18:09:40 -                                                           ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:60: error: diamond operator is not supported in -source 1.6
+18:09:40 -     private final Map<String, Float> cachedStringWidth = new HashMap<>();
+18:09:40 -                                                                      ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:68: error: multi-catch statement is not supported in -source 1.6
+18:09:40 -         } catch (FontFormatException | IOException e) {
+18:09:40 -                                      ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable multi-catch statement)
+18:09:40 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:250: error: lambda expressions are not supported in -source 1.6
+18:09:40 -         return cachedStringWidth.computeIfAbsent(s, e -> {
+18:09:40 -                                                       ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - src\minecraft\me\mystra\hud\GuiIngameHook.java:42: error: method references are not supported in -source 1.6
+18:09:40 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+18:09:40 - 				                                                                   ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable method references)
+18:09:40 - src\minecraft\me\mystra\hud\GuiIngameHook.java:42: error: lambda expressions are not supported in -source 1.6
+18:09:40 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+18:09:40 - 				                                                                                                                    ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - src\minecraft\me\mystra\hud\draggablehud\HUDConfigScreen.java:68: error: lambda expressions are not supported in -source 1.6
+18:09:40 - 			renderers.entrySet().forEach((entry) -> {
+18:09:40 - 			                                     ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - src\minecraft\me\mystra\hud\draggablehud\IRenderer.java:10: error: default methods are not supported in -source 1.6
+18:09:40 - 	default void renderDummy(ScreenPosition pos) {
+18:09:40 - 	^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable default methods)
+18:09:40 - src\minecraft\me\mystra\hud\draggablehud\hudmods\impl\ModCPS.java:63: error: lambda expressions are not supported in -source 1.6
+18:09:40 - 		this.clicks.removeIf(aLong -> aLong + 1000 < time);
+18:09:40 - 		                           ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - src\minecraft\me\mystra\hud\notifications\NotificationManager.java:7: error: diamond operator is not supported in -source 1.6
+18:09:40 -     private static LinkedBlockingQueue<Notification> pendingNotifications = new LinkedBlockingQueue<>();
+18:09:40 -                                                                                                     ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\ModuleManager.java:74: error: lambda expressions are not supported in -source 1.6
+18:09:40 -         return modules.stream().filter(module -> module.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+18:09:40 -                                               ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - src\minecraft\me\mystra\module\combat\Criticals.java:20: error: diamond operator is not supported in -source 1.6
+18:09:40 -         ArrayList<String> options = new ArrayList<>();
+18:09:40 -                                                   ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\misc\Cosmetics.java:14: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		ArrayList<String> options = new ArrayList<>();
+18:09:40 - 		                                          ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\misc\HUD.java:15: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		ArrayList<String> options = new ArrayList<>();
+18:09:40 - 		                                          ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\misc\SwordAnimation.java:15: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		ArrayList<String> options = new ArrayList<>();
+18:09:40 - 		                                          ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\movement\Fly.java:18: error: diamond operator is not supported in -source 1.6
+18:09:40 -         ArrayList<String> options = new ArrayList<>();
+18:09:40 -                                                   ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\movement\LongJump.java:26: error: diamond operator is not supported in -source 1.6
+18:09:40 - 		ArrayList<String> options = new ArrayList<>();
+18:09:40 - 		                                          ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\movement\Speed.java:33: error: diamond operator is not supported in -source 1.6
+18:09:40 -         ArrayList<String> options = new ArrayList<>();
+18:09:40 -                                                   ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\render\ClickGUI.java:19: error: diamond operator is not supported in -source 1.6
+18:09:40 -         ArrayList<String> options = new ArrayList<>();
+18:09:40 -                                                   ^
+18:09:40 - 
+18:09:40 -   (use -source 7 or higher to enable diamond operator)
+18:09:40 - src\minecraft\me\mystra\module\render\NameTags.java:42: error: lambda expressions are not supported in -source 1.6
+18:09:40 -             mc.theWorld.loadedEntityList.forEach(p -> {
+18:09:40 -                                                    ^
+18:09:40 - 
+18:09:40 -   (use -source 8 or higher to enable lambda expressions)
+18:09:40 - 24 errors
+18:09:40 - ==================
+18:09:40 - 
+18:09:40 - !! Can not find server sources, try decompiling !!
+18:18:07 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:18:17 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:18:17 - 
+18:18:17 - == ERRORS FOUND in JAVA CODE ==
+18:18:17 - 
+18:18:17 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:18:17 - import org.newdawn.slick.util.ResourceLoader;
+18:18:17 -                              ^
+18:18:17 - 
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:12: error: package org.newdawn.slick does not exist
+18:18:17 - import org.newdawn.slick.UnicodeFont;
+18:18:17 -                         ^
+18:18:17 - 
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick.font.effects does not exist
+18:18:17 - import org.newdawn.slick.font.effects.ColorEffect;
+18:18:17 -                                      ^
+18:18:17 - 
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:62: error: cannot find symbol
+18:18:17 -     private UnicodeFont unicodeFont;
+18:18:17 -             ^
+18:18:17 - 
+18:18:17 -   symbol:   class UnicodeFont
+18:18:17 -   location: class UnicodeFontRenderer
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:307: error: cannot find symbol
+18:18:17 -     public UnicodeFont getFont() {
+18:18:17 -            ^
+18:18:17 - 
+18:18:17 -   symbol:   class UnicodeFont
+18:18:17 -   location: class UnicodeFontRenderer
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:67: error: cannot find symbol
+18:18:17 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:18:17 -                                    ^
+18:18:17 - 
+18:18:17 -   symbol:   class UnicodeFont
+18:18:17 -   location: class UnicodeFontRenderer
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:74: error: cannot find symbol
+18:18:17 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:18:17 -                                               ^
+18:18:17 - 
+18:18:17 -   symbol:   class ColorEffect
+18:18:17 -   location: class UnicodeFontRenderer
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:104: error: cannot find symbol
+18:18:17 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:18:17 -                                ^
+18:18:17 - 
+18:18:17 -   symbol:   class UnicodeFont
+18:18:17 -   location: class UnicodeFontRenderer
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:108: error: cannot find symbol
+18:18:17 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:18:17 -                                               ^
+18:18:17 - 
+18:18:17 -   symbol:   class ColorEffect
+18:18:17 -   location: class UnicodeFontRenderer
+18:18:17 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:197: error: package org.newdawn.slick does not exist
+18:18:17 -                 unicodeFont.drawString(x, y, Character.toString(c), new org.newdawn.slick.Color(currentColor));
+18:18:17 -                                                                                          ^
+18:18:17 - 
+18:18:17 - 10 errors
+18:18:17 - ==================
+18:18:17 - 
+18:18:17 - !! Can not find server sources, try decompiling !!
+18:18:52 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:18:53 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 2
+18:18:53 - 
+18:18:53 - == ERRORS FOUND in JAVA CODE ==
+18:18:53 - 
+18:18:53 - javac: source release 1.8 requires target release 1.8
+18:18:53 - ==================
+18:18:53 - 
+18:18:53 - !! Can not find server sources, try decompiling !!
+18:19:19 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:19:28 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:19:28 - 
+18:19:28 - == ERRORS FOUND in JAVA CODE ==
+18:19:28 - 
+18:19:28 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:19:28 - import org.newdawn.slick.util.ResourceLoader;
+18:19:28 -                              ^
+18:19:28 - 
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:12: error: package org.newdawn.slick does not exist
+18:19:28 - import org.newdawn.slick.UnicodeFont;
+18:19:28 -                         ^
+18:19:28 - 
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick.font.effects does not exist
+18:19:28 - import org.newdawn.slick.font.effects.ColorEffect;
+18:19:28 -                                      ^
+18:19:28 - 
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:62: error: cannot find symbol
+18:19:28 -     private UnicodeFont unicodeFont;
+18:19:28 -             ^
+18:19:28 - 
+18:19:28 -   symbol:   class UnicodeFont
+18:19:28 -   location: class UnicodeFontRenderer
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:307: error: cannot find symbol
+18:19:28 -     public UnicodeFont getFont() {
+18:19:28 -            ^
+18:19:28 - 
+18:19:28 -   symbol:   class UnicodeFont
+18:19:28 -   location: class UnicodeFontRenderer
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:67: error: cannot find symbol
+18:19:28 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:19:28 -                                    ^
+18:19:28 - 
+18:19:28 -   symbol:   class UnicodeFont
+18:19:28 -   location: class UnicodeFontRenderer
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:74: error: cannot find symbol
+18:19:28 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:19:28 -                                               ^
+18:19:28 - 
+18:19:28 -   symbol:   class ColorEffect
+18:19:28 -   location: class UnicodeFontRenderer
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:104: error: cannot find symbol
+18:19:28 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:19:28 -                                ^
+18:19:28 - 
+18:19:28 -   symbol:   class UnicodeFont
+18:19:28 -   location: class UnicodeFontRenderer
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:108: error: cannot find symbol
+18:19:28 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:19:28 -                                               ^
+18:19:28 - 
+18:19:28 -   symbol:   class ColorEffect
+18:19:28 -   location: class UnicodeFontRenderer
+18:19:28 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:197: error: package org.newdawn.slick does not exist
+18:19:28 -                 unicodeFont.drawString(x, y, Character.toString(c), new org.newdawn.slick.Color(currentColor));
+18:19:28 -                                                                                          ^
+18:19:28 - 
+18:19:28 - 10 errors
+18:19:28 - ==================
+18:19:28 - 
+18:19:28 - !! Can not find server sources, try decompiling !!
+18:20:11 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:20:20 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:20:20 - 
+18:20:20 - == ERRORS FOUND in JAVA CODE ==
+18:20:20 - 
+18:20:20 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:20:20 - import org.newdawn.slick.util.ResourceLoader;
+18:20:20 -                              ^
+18:20:20 - 
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:12: error: package org.newdawn.slick does not exist
+18:20:20 - import org.newdawn.slick.UnicodeFont;
+18:20:20 -                         ^
+18:20:20 - 
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick.font.effects does not exist
+18:20:20 - import org.newdawn.slick.font.effects.ColorEffect;
+18:20:20 -                                      ^
+18:20:20 - 
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:62: error: cannot find symbol
+18:20:20 -     private UnicodeFont unicodeFont;
+18:20:20 -             ^
+18:20:20 - 
+18:20:20 -   symbol:   class UnicodeFont
+18:20:20 -   location: class UnicodeFontRenderer
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:307: error: cannot find symbol
+18:20:20 -     public UnicodeFont getFont() {
+18:20:20 -            ^
+18:20:20 - 
+18:20:20 -   symbol:   class UnicodeFont
+18:20:20 -   location: class UnicodeFontRenderer
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:67: error: cannot find symbol
+18:20:20 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:20:20 -                                    ^
+18:20:20 - 
+18:20:20 -   symbol:   class UnicodeFont
+18:20:20 -   location: class UnicodeFontRenderer
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:74: error: cannot find symbol
+18:20:20 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:20:20 -                                               ^
+18:20:20 - 
+18:20:20 -   symbol:   class ColorEffect
+18:20:20 -   location: class UnicodeFontRenderer
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:104: error: cannot find symbol
+18:20:20 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:20:20 -                                ^
+18:20:20 - 
+18:20:20 -   symbol:   class UnicodeFont
+18:20:20 -   location: class UnicodeFontRenderer
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:108: error: cannot find symbol
+18:20:20 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:20:20 -                                               ^
+18:20:20 - 
+18:20:20 -   symbol:   class ColorEffect
+18:20:20 -   location: class UnicodeFontRenderer
+18:20:20 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:197: error: package org.newdawn.slick does not exist
+18:20:20 -                 unicodeFont.drawString(x, y, Character.toString(c), new org.newdawn.slick.Color(currentColor));
+18:20:20 -                                                                                          ^
+18:20:20 - 
+18:20:20 - 10 errors
+18:20:20 - ==================
+18:20:20 - 
+18:20:20 - !! Can not find server sources, try decompiling !!
+18:20:46 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:20:55 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:20:55 - 
+18:20:55 - == ERRORS FOUND in JAVA CODE ==
+18:20:55 - 
+18:20:55 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:20:55 - import org.newdawn.slick.util.ResourceLoader;
+18:20:55 -                              ^
+18:20:55 - 
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:12: error: package org.newdawn.slick does not exist
+18:20:55 - import org.newdawn.slick.UnicodeFont;
+18:20:55 -                         ^
+18:20:55 - 
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick.font.effects does not exist
+18:20:55 - import org.newdawn.slick.font.effects.ColorEffect;
+18:20:55 -                                      ^
+18:20:55 - 
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:62: error: cannot find symbol
+18:20:55 -     private UnicodeFont unicodeFont;
+18:20:55 -             ^
+18:20:55 - 
+18:20:55 -   symbol:   class UnicodeFont
+18:20:55 -   location: class UnicodeFontRenderer
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:307: error: cannot find symbol
+18:20:55 -     public UnicodeFont getFont() {
+18:20:55 -            ^
+18:20:55 - 
+18:20:55 -   symbol:   class UnicodeFont
+18:20:55 -   location: class UnicodeFontRenderer
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:67: error: cannot find symbol
+18:20:55 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:20:55 -                                    ^
+18:20:55 - 
+18:20:55 -   symbol:   class UnicodeFont
+18:20:55 -   location: class UnicodeFontRenderer
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:74: error: cannot find symbol
+18:20:55 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:20:55 -                                               ^
+18:20:55 - 
+18:20:55 -   symbol:   class ColorEffect
+18:20:55 -   location: class UnicodeFontRenderer
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:104: error: cannot find symbol
+18:20:55 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:20:55 -                                ^
+18:20:55 - 
+18:20:55 -   symbol:   class UnicodeFont
+18:20:55 -   location: class UnicodeFontRenderer
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:108: error: cannot find symbol
+18:20:55 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:20:55 -                                               ^
+18:20:55 - 
+18:20:55 -   symbol:   class ColorEffect
+18:20:55 -   location: class UnicodeFontRenderer
+18:20:55 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:197: error: package org.newdawn.slick does not exist
+18:20:55 -                 unicodeFont.drawString(x, y, Character.toString(c), new org.newdawn.slick.Color(currentColor));
+18:20:55 -                                                                                          ^
+18:20:55 - 
+18:20:55 - 10 errors
+18:20:55 - ==================
+18:20:55 - 
+18:20:55 - !! Can not find server sources, try decompiling !!
+18:22:52 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:23:09 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:23:09 - 
+18:23:09 - == ERRORS FOUND in JAVA CODE ==
+18:23:09 - 
+18:23:09 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:23:09 - import org.newdawn.slick.util.ResourceLoader;
+18:23:09 -                              ^
+18:23:09 - 
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:12: error: package org.newdawn.slick does not exist
+18:23:09 - import org.newdawn.slick.UnicodeFont;
+18:23:09 -                         ^
+18:23:09 - 
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick.font.effects does not exist
+18:23:09 - import org.newdawn.slick.font.effects.ColorEffect;
+18:23:09 -                                      ^
+18:23:09 - 
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:62: error: cannot find symbol
+18:23:09 -     private UnicodeFont unicodeFont;
+18:23:09 -             ^
+18:23:09 - 
+18:23:09 -   symbol:   class UnicodeFont
+18:23:09 -   location: class UnicodeFontRenderer
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:307: error: cannot find symbol
+18:23:09 -     public UnicodeFont getFont() {
+18:23:09 -            ^
+18:23:09 - 
+18:23:09 -   symbol:   class UnicodeFont
+18:23:09 -   location: class UnicodeFontRenderer
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:67: error: cannot find symbol
+18:23:09 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:23:09 -                                    ^
+18:23:09 - 
+18:23:09 -   symbol:   class UnicodeFont
+18:23:09 -   location: class UnicodeFontRenderer
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:74: error: cannot find symbol
+18:23:09 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:23:09 -                                               ^
+18:23:09 - 
+18:23:09 -   symbol:   class ColorEffect
+18:23:09 -   location: class UnicodeFontRenderer
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:104: error: cannot find symbol
+18:23:09 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:23:09 -                                ^
+18:23:09 - 
+18:23:09 -   symbol:   class UnicodeFont
+18:23:09 -   location: class UnicodeFontRenderer
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:108: error: cannot find symbol
+18:23:09 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:23:09 -                                               ^
+18:23:09 - 
+18:23:09 -   symbol:   class ColorEffect
+18:23:09 -   location: class UnicodeFontRenderer
+18:23:09 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:197: error: package org.newdawn.slick does not exist
+18:23:09 -                 unicodeFont.drawString(x, y, Character.toString(c), new org.newdawn.slick.Color(currentColor));
+18:23:09 -                                                                                          ^
+18:23:09 - 
+18:23:09 - 10 errors
+18:23:09 - ==================
+18:23:09 - 
+18:23:09 - !! Can not find server sources, try decompiling !!
+18:25:28 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:25:37 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:25:37 - 
+18:25:37 - == ERRORS FOUND in JAVA CODE ==
+18:25:37 - 
+18:25:37 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:25:37 - import org.newdawn.slick.util.ResourceLoader;
+18:25:37 -                              ^
+18:25:37 - 
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick does not exist
+18:25:37 - import org.newdawn.slick.UnicodeFont;
+18:25:37 -                         ^
+18:25:37 - 
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:14: error: package org.newdawn.slick.font.effects does not exist
+18:25:37 - import org.newdawn.slick.font.effects.ColorEffect;
+18:25:37 -                                      ^
+18:25:37 - 
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:63: error: cannot find symbol
+18:25:37 -     private UnicodeFont unicodeFont;
+18:25:37 -             ^
+18:25:37 - 
+18:25:37 -   symbol:   class UnicodeFont
+18:25:37 -   location: class UnicodeFontRenderer
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:308: error: cannot find symbol
+18:25:37 -     public UnicodeFont getFont() {
+18:25:37 -            ^
+18:25:37 - 
+18:25:37 -   symbol:   class UnicodeFont
+18:25:37 -   location: class UnicodeFontRenderer
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:68: error: cannot find symbol
+18:25:37 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:25:37 -                                    ^
+18:25:37 - 
+18:25:37 -   symbol:   class UnicodeFont
+18:25:37 -   location: class UnicodeFontRenderer
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:75: error: cannot find symbol
+18:25:37 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:25:37 -                                               ^
+18:25:37 - 
+18:25:37 -   symbol:   class ColorEffect
+18:25:37 -   location: class UnicodeFontRenderer
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:105: error: cannot find symbol
+18:25:37 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:25:37 -                                ^
+18:25:37 - 
+18:25:37 -   symbol:   class UnicodeFont
+18:25:37 -   location: class UnicodeFontRenderer
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:109: error: cannot find symbol
+18:25:37 -         this.unicodeFont.getEffects().add(new ColorEffect(Color.WHITE));
+18:25:37 -                                               ^
+18:25:37 - 
+18:25:37 -   symbol:   class ColorEffect
+18:25:37 -   location: class UnicodeFontRenderer
+18:25:37 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:198: error: incompatible types: int cannot be converted to ReadableColor
+18:25:37 -                 unicodeFont.drawString(x, y, Character.toString(c), new Color(currentColor));
+18:25:37 -                                                                               ^
+18:25:37 - 
+18:25:37 - 10 errors
+18:25:37 - ==================
+18:25:37 - 
+18:25:37 - !! Can not find server sources, try decompiling !!
+18:26:02 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:26:11 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:26:11 - 
+18:26:11 - == ERRORS FOUND in JAVA CODE ==
+18:26:11 - 
+18:26:11 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:26:11 - import org.newdawn.slick.util.ResourceLoader;
+18:26:11 -                              ^
+18:26:11 - 
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick does not exist
+18:26:11 - import org.newdawn.slick.UnicodeFont;
+18:26:11 -                         ^
+18:26:11 - 
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:14: error: package org.newdawn.slick.font.effects does not exist
+18:26:11 - import org.newdawn.slick.font.effects.ColorEffect;
+18:26:11 -                                      ^
+18:26:11 - 
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:63: error: cannot find symbol
+18:26:11 -     private UnicodeFont unicodeFont;
+18:26:11 -             ^
+18:26:11 - 
+18:26:11 -   symbol:   class UnicodeFont
+18:26:11 -   location: class UnicodeFontRenderer
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:308: error: cannot find symbol
+18:26:11 -     public UnicodeFont getFont() {
+18:26:11 -            ^
+18:26:11 - 
+18:26:11 -   symbol:   class UnicodeFont
+18:26:11 -   location: class UnicodeFontRenderer
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:68: error: cannot find symbol
+18:26:11 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:26:11 -                                    ^
+18:26:11 - 
+18:26:11 -   symbol:   class UnicodeFont
+18:26:11 -   location: class UnicodeFontRenderer
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:75: error: cannot find symbol
+18:26:11 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:26:11 -                                               ^
+18:26:11 - 
+18:26:11 -   symbol:   class ColorEffect
+18:26:11 -   location: class UnicodeFontRenderer
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:105: error: cannot find symbol
+18:26:11 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:26:11 -                                ^
+18:26:11 - 
+18:26:11 -   symbol:   class UnicodeFont
+18:26:11 -   location: class UnicodeFontRenderer
+18:26:11 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:109: error: cannot find symbol
+18:26:11 -         this.unicodeFont.getEffects().add(new ColorEffect(Color.WHITE));
+18:26:11 -                                               ^
+18:26:11 - 
+18:26:11 -   symbol:   class ColorEffect
+18:26:11 -   location: class UnicodeFontRenderer
+18:26:11 - 9 errors
+18:26:11 - ==================
+18:26:11 - 
+18:26:11 - !! Can not find server sources, try decompiling !!
+18:27:21 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:27:31 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:27:31 - 
+18:27:31 - == ERRORS FOUND in JAVA CODE ==
+18:27:31 - 
+18:27:31 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:27:31 - import org.newdawn.slick.util.ResourceLoader;
+18:27:31 -                              ^
+18:27:31 - 
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick does not exist
+18:27:31 - import org.newdawn.slick.UnicodeFont;
+18:27:31 -                         ^
+18:27:31 - 
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:14: error: package org.newdawn.slick.font.effects does not exist
+18:27:31 - import org.newdawn.slick.font.effects.ColorEffect;
+18:27:31 -                                      ^
+18:27:31 - 
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:63: error: cannot find symbol
+18:27:31 -     private UnicodeFont unicodeFont;
+18:27:31 -             ^
+18:27:31 - 
+18:27:31 -   symbol:   class UnicodeFont
+18:27:31 -   location: class UnicodeFontRenderer
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:308: error: cannot find symbol
+18:27:31 -     public UnicodeFont getFont() {
+18:27:31 -            ^
+18:27:31 - 
+18:27:31 -   symbol:   class UnicodeFont
+18:27:31 -   location: class UnicodeFontRenderer
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:68: error: cannot find symbol
+18:27:31 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:27:31 -                                    ^
+18:27:31 - 
+18:27:31 -   symbol:   class UnicodeFont
+18:27:31 -   location: class UnicodeFontRenderer
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:75: error: cannot find symbol
+18:27:31 -         this.unicodeFont.getEffects().add(new ColorEffect(Color.WHITE));
+18:27:31 -                                               ^
+18:27:31 - 
+18:27:31 -   symbol:   class ColorEffect
+18:27:31 -   location: class UnicodeFontRenderer
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:105: error: cannot find symbol
+18:27:31 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:27:31 -                                ^
+18:27:31 - 
+18:27:31 -   symbol:   class UnicodeFont
+18:27:31 -   location: class UnicodeFontRenderer
+18:27:31 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:109: error: cannot find symbol
+18:27:31 -         this.unicodeFont.getEffects().add(new ColorEffect(Color.WHITE));
+18:27:31 -                                               ^
+18:27:31 - 
+18:27:31 -   symbol:   class ColorEffect
+18:27:31 -   location: class UnicodeFontRenderer
+18:27:31 - 9 errors
+18:27:31 - ==================
+18:27:31 - 
+18:27:31 - !! Can not find server sources, try decompiling !!
+18:27:55 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:28:04 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.8 -target 1.8 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:28:04 - 
+18:28:04 - == ERRORS FOUND in JAVA CODE ==
+18:28:04 - 
+18:28:04 - src\minecraft\net\minecraft\client\gui\GuiScreen.java:47: error: package org.newdawn.slick.util does not exist
+18:28:04 - import org.newdawn.slick.util.ResourceLoader;
+18:28:04 -                              ^
+18:28:04 - 
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:12: error: package org.newdawn.slick does not exist
+18:28:04 - import org.newdawn.slick.UnicodeFont;
+18:28:04 -                         ^
+18:28:04 - 
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:13: error: package org.newdawn.slick.font.effects does not exist
+18:28:04 - import org.newdawn.slick.font.effects.ColorEffect;
+18:28:04 -                                      ^
+18:28:04 - 
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:62: error: cannot find symbol
+18:28:04 -     private UnicodeFont unicodeFont;
+18:28:04 -             ^
+18:28:04 - 
+18:28:04 -   symbol:   class UnicodeFont
+18:28:04 -   location: class UnicodeFontRenderer
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:307: error: cannot find symbol
+18:28:04 -     public UnicodeFont getFont() {
+18:28:04 -            ^
+18:28:04 - 
+18:28:04 -   symbol:   class UnicodeFont
+18:28:04 -   location: class UnicodeFontRenderer
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:67: error: cannot find symbol
+18:28:04 -             this.unicodeFont = new UnicodeFont(getFontByName(fontName).deriveFont(fontSize * this.antiAliasingFactor));
+18:28:04 -                                    ^
+18:28:04 - 
+18:28:04 -   symbol:   class UnicodeFont
+18:28:04 -   location: class UnicodeFontRenderer
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:74: error: cannot find symbol
+18:28:04 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:28:04 -                                               ^
+18:28:04 - 
+18:28:04 -   symbol:   class ColorEffect
+18:28:04 -   location: class UnicodeFontRenderer
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:104: error: cannot find symbol
+18:28:04 -         this.unicodeFont = new UnicodeFont(new Font(font.getName(), font.getStyle(), (int) (font.getSize() * antiAliasingFactor)));
+18:28:04 -                                ^
+18:28:04 - 
+18:28:04 -   symbol:   class UnicodeFont
+18:28:04 -   location: class UnicodeFontRenderer
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:108: error: cannot find symbol
+18:28:04 -         this.unicodeFont.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
+18:28:04 -                                               ^
+18:28:04 - 
+18:28:04 -   symbol:   class ColorEffect
+18:28:04 -   location: class UnicodeFontRenderer
+18:28:04 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:197: error: package org.newdawn.slick does not exist
+18:28:04 -                 unicodeFont.drawString(x, y, Character.toString(c), new org.newdawn.slick.Color(currentColor));
+18:28:04 -                                                                                          ^
+18:28:04 - 
+18:28:04 - 10 errors
+18:28:04 - ==================
+18:28:04 - 
+18:28:04 - !! Can not find server sources, try decompiling !!
+18:28:26 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:28:29 - '"C:\Program Files\Java\jdk1.8.0_241\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+18:28:29 - 
+18:28:29 - == ERRORS FOUND in JAVA CODE ==
+18:28:29 - 
+18:28:29 - src\minecraft\de\Hero\clickgui\ClickGUI.java:55: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		panels = new ArrayList<>();
+18:28:29 - 		                       ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\de\Hero\clickgui\Panel.java:30: error: diamond operator is not supported in -source 1.6
+18:28:29 - 	public ArrayList<ModuleButton> Elements = new ArrayList<>();
+18:28:29 - 	                                                        ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\de\Hero\clickgui\elements\ModuleButton.java:46: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		menuelements = new ArrayList<>();
+18:28:29 - 		                             ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\de\Hero\settings\SettingsManager.java:20: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		this.settings = new ArrayList<>();
+18:28:29 - 		                              ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\Mystra.java:59: error: lambda expressions are not supported in -source 1.6
+18:28:29 -         moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+18:28:29 -                                                           ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:60: error: diamond operator is not supported in -source 1.6
+18:28:29 -     private final Map<String, Float> cachedStringWidth = new HashMap<>();
+18:28:29 -                                                                      ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:68: error: multi-catch statement is not supported in -source 1.6
+18:28:29 -         } catch (FontFormatException | IOException e) {
+18:28:29 -                                      ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable multi-catch statement)
+18:28:29 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:250: error: lambda expressions are not supported in -source 1.6
+18:28:29 -         return cachedStringWidth.computeIfAbsent(s, e -> {
+18:28:29 -                                                       ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - src\minecraft\me\mystra\hud\GuiIngameHook.java:42: error: method references are not supported in -source 1.6
+18:28:29 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+18:28:29 - 				                                                                   ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable method references)
+18:28:29 - src\minecraft\me\mystra\hud\GuiIngameHook.java:42: error: lambda expressions are not supported in -source 1.6
+18:28:29 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+18:28:29 - 				                                                                                                                    ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - src\minecraft\me\mystra\hud\draggablehud\HUDConfigScreen.java:68: error: lambda expressions are not supported in -source 1.6
+18:28:29 - 			renderers.entrySet().forEach((entry) -> {
+18:28:29 - 			                                     ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - src\minecraft\me\mystra\hud\draggablehud\IRenderer.java:10: error: default methods are not supported in -source 1.6
+18:28:29 - 	default void renderDummy(ScreenPosition pos) {
+18:28:29 - 	^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable default methods)
+18:28:29 - src\minecraft\me\mystra\hud\draggablehud\hudmods\impl\ModCPS.java:63: error: lambda expressions are not supported in -source 1.6
+18:28:29 - 		this.clicks.removeIf(aLong -> aLong + 1000 < time);
+18:28:29 - 		                           ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - src\minecraft\me\mystra\hud\notifications\NotificationManager.java:7: error: diamond operator is not supported in -source 1.6
+18:28:29 -     private static LinkedBlockingQueue<Notification> pendingNotifications = new LinkedBlockingQueue<>();
+18:28:29 -                                                                                                     ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\ModuleManager.java:74: error: lambda expressions are not supported in -source 1.6
+18:28:29 -         return modules.stream().filter(module -> module.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+18:28:29 -                                               ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - src\minecraft\me\mystra\module\combat\Criticals.java:20: error: diamond operator is not supported in -source 1.6
+18:28:29 -         ArrayList<String> options = new ArrayList<>();
+18:28:29 -                                                   ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\misc\Cosmetics.java:14: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		ArrayList<String> options = new ArrayList<>();
+18:28:29 - 		                                          ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\misc\HUD.java:15: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		ArrayList<String> options = new ArrayList<>();
+18:28:29 - 		                                          ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\misc\SwordAnimation.java:15: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		ArrayList<String> options = new ArrayList<>();
+18:28:29 - 		                                          ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\movement\Fly.java:18: error: diamond operator is not supported in -source 1.6
+18:28:29 -         ArrayList<String> options = new ArrayList<>();
+18:28:29 -                                                   ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\movement\LongJump.java:26: error: diamond operator is not supported in -source 1.6
+18:28:29 - 		ArrayList<String> options = new ArrayList<>();
+18:28:29 - 		                                          ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\movement\Speed.java:33: error: diamond operator is not supported in -source 1.6
+18:28:29 -         ArrayList<String> options = new ArrayList<>();
+18:28:29 -                                                   ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\render\ClickGUI.java:19: error: diamond operator is not supported in -source 1.6
+18:28:29 -         ArrayList<String> options = new ArrayList<>();
+18:28:29 -                                                   ^
+18:28:29 - 
+18:28:29 -   (use -source 7 or higher to enable diamond operator)
+18:28:29 - src\minecraft\me\mystra\module\render\NameTags.java:42: error: lambda expressions are not supported in -source 1.6
+18:28:29 -             mc.theWorld.loadedEntityList.forEach(p -> {
+18:28:29 -                                                    ^
+18:28:29 - 
+18:28:29 -   (use -source 8 or higher to enable lambda expressions)
+18:28:29 - 24 errors
+18:28:29 - ==================
+18:28:29 - 
+18:28:29 - !! Can not find server sources, try decompiling !!
+18:30:02 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:30:08 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:30:20 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+18:30:21 - !! Can not find client bins, try recompiling !!
+18:30:21 - !! Can not find server md5s !!

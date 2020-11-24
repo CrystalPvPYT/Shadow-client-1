@@ -1,0 +1,46 @@
+package mystra.mods;
+
+import java.util.ArrayList;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventManager;
+import com.darkmagician6.eventapi.EventTarget;
+
+import mystra.main.Category;
+
+public class Bhop extends Module{
+
+	public Bhop() {
+		super("Bhop", Keyboard.KEY_X, Category.MOVEMENT);
+		
+		ArrayList options = new ArrayList();
+		options.add("NCP");
+	}
+	@Override
+    public void onEnable() {
+        EventManager.register(this);
+    }
+   
+    @Override
+    public void onDisable() {
+        EventManager.unregister(this);
+        mc.timer.timerSpeed = 1.0F;
+    }
+ 
+    public void NCP() {
+        if(mc.thePlayer != null && mc.theWorld != null) {
+            if(mc.gameSettings.keyBindForward.pressed && !mc.thePlayer.isCollidedHorizontally) {
+                mc.gameSettings.keyBindJump.pressed = false;
+                if(mc.thePlayer.onGround) {
+                    mc.thePlayer.jump();
+                    mc.timer.timerSpeed = 1.05F;
+                    mc.thePlayer.motionX *= 1.0708F;
+                    mc.thePlayer.motionZ *= 1.0708F;
+                    mc.thePlayer.moveStrafing *= 2;
+                } else {
+                    mc.thePlayer.jumpMovementFactor = 0.0265F;
+                }
+            }
+        }
+    }

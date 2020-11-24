@@ -1,0 +1,47 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.utils.MoveUtil;
+
+public class LongJump extends Module{
+	
+	public static String mode = "CubeCraft";
+	private double prevY = 0;
+	private int i = 0;
+	private MoveUtil move;
+	protected double motionVa = 2.8;
+	protected boolean boosted = false;
+	protected double startY = 0;
+
+	public LongJump() {
+		super("LongJump", Keyboard.KEY_H, Category.MOVEMENT);	
+	}
+	
+	public void onUpdate() {
+		this.setName("Speed");
+		if(!this.isToggled()) {
+			return;
+		}
+		
+		if(mode.equalsIgnoreCase("CubeCraft")) {
+			CubeCraft();
+	}
+	}
+
+	public void CubeCraft() {
+		if(!this.isToggled()) {
+			return;
+		}
+	}
+	
+	@Override
+	public void onDisable() {
+		this.boosted = false;
+		this.mc.timer.timerSpeed = 1.0F;
+		this.motionVa = 2.8F;
+		this.mc.thePlayer.motionY = 0;
+		super.onDisable();
+	}
+}

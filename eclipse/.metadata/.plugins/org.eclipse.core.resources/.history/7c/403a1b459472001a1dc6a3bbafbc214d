@@ -1,0 +1,44 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class CrystalAura extends Module{
+
+	public CrystalAura() {
+		super("CrystalAura", 0, Category.COMBAT);
+	}
+	
+	private static List<SettingBase> settings = Arrays.asList(
+			new SettingToggle(false, "Aimbot"),
+			new SettingToggle(false, "Thru Walls"),
+			new SettingSlider(0, 6, 4.25, 2, "Range: "),
+			new SettingSlider(0, 20, 16, 0, "CPS: "));
+	
+	private int delay = 0;
+	
+	public CrystalAura() {
+		super("CrystalAura", GLFW.GLFW_KEY_I, Category.COMBAT, "Automatically attacks crystals for you.", settings);
+	}
+	
+	public void onUpdate() {
+		if(this.isToggled()) {
+			delay++;
+			int reqDelay = (int) Math.round(20/getSettings().get(3).toSlider().getValue());
+			
+			for(Entity e: EntityUtils.getLoadedEntities()) {
+				if(e instanceof EnderCrystalEntity && mc.player.getDistance(e) < getSettings().get(2).toSlider().getValue()) {
+					if(!mc.player.canEntityBeSeen(e) && !getSettings().get(1).toToggle().state) continue;
+					if(getSettings().get(0).toToggle().state) EntityUtils.facePos(e.posX, e.posY+e.getHeight()/2, e.posZ);
+					
+					if(delay > reqDelay || reqDelay == 0) {
+						mc.playerController.attackEntity(mc.player, e);
+						mc.player.swingArm(Hand.MAIN_HAND);
+						delay=0;
+					}
+				}
+			}
+		}
+	}
+
+
+}

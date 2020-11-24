@@ -1,0 +1,29 @@
+package me.mystra.module.render;
+
+import org.lwjgl.opengl.GL11;
+
+import me.mystra.Mystra;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.utils.RenderUtils;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
+
+public class ChestESP extends Module {
+
+	public ChestESP() {
+		super("ChestESP", 0, Category.RENDER);
+	}
+	
+	public void onRender() {
+		if(Mystra.instance.moduleManager.getModuleByName("ChestESP").isToggled())
+		for(Object o: mc.theWorld.loadedTileEntityList){
+			if(o instanceof TileEntityChest){
+				RenderUtils.blockESPBox(((TileEntityChest)o).getPos());
+			}
+		}
+	}
+}

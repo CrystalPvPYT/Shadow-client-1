@@ -1,0 +1,17 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class HypixelBhop extends Module{
+
+	public HypixelBhop() {
+		super("HypixelBhop", 0, Category.MOVEMENT);
+	}
+	
+	protected void hypixelbhop() {
+		if(this.mc.gameSettings.keyBindForward.isPressed()) {
+			
+			this.mc.gameSettings.keyBindSprint.pressed = true;
+		}
+	}
+}

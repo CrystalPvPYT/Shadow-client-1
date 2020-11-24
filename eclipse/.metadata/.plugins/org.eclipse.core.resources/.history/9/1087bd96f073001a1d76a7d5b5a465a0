@@ -1,0 +1,30 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.RenderUtils;
+import net.minecraft.tileentity.TileEntityChest;
+
+public class ChestESP extends Module{
+	public ChestESP() {
+		super("ChestESP", 0, Category.RENDER);
+	}
+
+	public void onRender() {
+		if(this.isToggled()){
+			for(Object o: mc.theWorld.loadedTileEntityList){
+				if(o instanceof TileEntityChest){
+					RenderUtils.blockESPBox(((TileEntityChest)o).getPos());
+				}
+			}
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "ChestESP Enabled", 1));
+    	super.onEnable();
+    }
+}

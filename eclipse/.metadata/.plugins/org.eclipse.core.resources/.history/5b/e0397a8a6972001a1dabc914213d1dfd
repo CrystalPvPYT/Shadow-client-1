@@ -1,0 +1,11 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class Aimbot extends Module{
+
+	public Aimbot() {
+		super("Aimbot", 0, Category.COMBAT);	
+		}
+
+}

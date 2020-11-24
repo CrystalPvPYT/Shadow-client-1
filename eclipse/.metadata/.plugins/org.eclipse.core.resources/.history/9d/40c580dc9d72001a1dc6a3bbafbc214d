@@ -1,0 +1,31 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+
+public class Eagle extends Module{
+
+	public Eagle() {
+		super("Eagle", 0, Category.MOVEMENT);
+	}
+	public void onUpdate() {
+		if (this.mc.thePlayer != null && this.mc.theWorld != null) {
+			ItemStack i = this.mc.thePlayer.getCurrentEquippedItem();
+			BlockPos bP = new BlockPos(this.mc.thePlayer.posX, this.mc.thePlayer.posY - 1D, this.mc.thePlayer.posZ);
+			if(i != null) {
+				if(i.getItem() instanceof ItemBlock) {
+					this.mc.gameSettings.keyBindSneak.pressed = false;
+					if(this.mc.theWorld.getBlockState(bP).getBlock() == Blocks.air) {
+						this.mc.gameSettings.keyBindSneak.pressed = true;
+					}
+				}
+			}
+			super.onUpdate();
+		}
+		
+		onDisable();
+	}
+}

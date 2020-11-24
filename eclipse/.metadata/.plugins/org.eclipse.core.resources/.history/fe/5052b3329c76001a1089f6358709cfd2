@@ -1,0 +1,112 @@
+package mystra.mods;
+
+import java.util.Iterator;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventTarget;
+
+import mystra.events.MotionUpdateEvent;
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.ChatUtils;
+import mystra.utils.TimeHelper;
+import mystra.utils.Utils;
+import mystra.utils.Wrapper;
+import mystra.valuesystem.BooleanValue;
+import mystra.valuesystem.NumberValue;
+import mystra.valuesystem.Value;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.network.play.client.C02PacketUseEntity;
+
+public class Killaura extends Module {
+	public Killaura(String nm, int k, Category c) {
+		super("Killaura", Keyboard.KEY_R, Category.COMBAT);
+	}
+
+	private EntityLivingBase target;
+
+    private NumberValue<Float> rangeValue = new NumberValue<>("Range", 4.1F, 0.1f, 7f);
+
+    private NumberValue<Integer> minCPSValue = new NumberValue<>("MinCPS", 7, 1, 20);
+    private NumberValue<Integer> maxCPSValue = new NumberValue<>("MaxCPS", 12,1, 20);
+
+    private NumberValue<Integer> targetChangeDelay = new NumberValue<>("TargetChangeDelay", 100, 0, 1000);
+
+    private BooleanValue switchValue = new BooleanValue("Switch", false);
+    private BooleanValue raycast = new BooleanValue("RayCast", true);
+    private BooleanValue debug = new BooleanValue("Debug", false);
+
+    private TimeHelper cpsTimer = new TimeHelper();
+    private TimeHelper targetChangeTimer = new TimeHelper();
+    private float[] facing;
+
+    @EventTarget
+    public void onMotion(MotionUpdateEvent event) {
+        if(!getState())
+            return;
+
+        int currentCPS = Utils.random(minCPSValue.getObject(), maxCPSValue.getObject());
+
+        switch(event.getState()) {
+
+            case PRE:
+
+                Object[] objects = mc.theWorld.loadedEntityList.stream().filter(this::isValid).sorted(Comparator.comparingDouble(entity -> entity.getDistanceToEntity(mc.thePlayer))).toArray();
+
+                if (!isValid(target))
+                    target = null;
+
+                if(objects.length > 0 && target == null) {
+                    target = (EntityLivingBase) objects[0];
+                    targetChangeTimer.setLastMS();
+                }
+
+                if(target == null)
+                    return;
+
+                facing = Utils.getNeededRotations(Utils.getRandomCenter(target.getEntityBoundingBox()));
+                event.setYaw(facing[0]);
+                event.setPitch(facing[1]);
+                mc.thePlayer.rotationYawHead = facing[0];
+
+                break;
+            case POST:
+                if(target == null)
+                    return;
+
+                if (!cpsTimer.hasTimeReached(1000 / currentCPS))
+                    return;
+
+                if (!targetChangeTimer.hasTimeReached(targetChangeDelay.getObject()))
+                    return;
+
+                Entity rayCastEntity = raycast.getObject() ? RayCastUtil.rayCast(rangeValue.getObject() + 1.0f, facing[0], facing[1]) : null;
+
+                if (rayCastEntity != null && debug.getObject()) {
+                    ChatUtils.displayMessage("§7Raycast: " + rayCastEntity.getClass().getSimpleName());
+                }
+
+                mc.thePlayer.swingItem();
+                mc.getNetHandler().addToSendQueue(new C02PacketUseEntity(rayCastEntity == null ? target : rayCastEntity, C02PacketUseEntity.Action.ATTACK));
+
+                cpsTimer.setLastMS();
+
+                if (switchValue.getObject())
+                    target = null;
+
+                break;
+        }
+    }
+
+    private boolean isValid(Entity entity) {
+        return entity instanceof EntityLivingBase && entity != mc.thePlayer && ((EntityLivingBase) entity).getHealth() > 0F && entity.getDistanceToEntity(mc.thePlayer) <= rangeValue.getObject();
+    }
+}

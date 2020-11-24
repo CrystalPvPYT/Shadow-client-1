@@ -1,0 +1,8 @@
+package mystra.utils;
+
+public class PacketThreadUtil 
+{
+	private static final String OBFID = "CL_00002306";
+	
+
+}

@@ -1,0 +1,8 @@
+package mystra.events;
+
+import com.darkmagician6.eventapi.events.Cancellable;
+import com.darkmagician6.eventapi.events.Event;
+
+public class ReadPacketEvent implements Event, Cancellable{
+
+}

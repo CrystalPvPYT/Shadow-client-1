@@ -1,0 +1,216 @@
+package me.shadow;
+
+import java.io.File;
+
+import org.lwjgl.opengl.Display;
+
+import me.mystra.clickgui.clickgui.ClickGUI;
+import me.mystra.clickgui.settings.SettingsManager;
+import me.mystra.event.EventManager;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.ClientTickEvent;
+import me.mystra.event.events.EventKey;
+import me.mystra.gui.splashscreen.SplashProgress;
+import me.mystra.hud.GuiIngameHook;
+import me.mystra.hud.MystraTabGui;
+import me.mystra.hud.draggablehud.HUDManager;
+import me.mystra.hud.draggablehud.hudmods.ModInstances;
+import me.mystra.management.FontManager;
+import me.mystra.management.account.AccountManager;
+import me.mystra.management.command.CommandManager;
+import me.mystra.management.command.variables.FriendManager;
+import me.mystra.management.file.FileManager;
+import me.mystra.management.irc.IRCClient;
+import me.mystra.module.Module;
+import me.mystra.module.ModuleManager;
+import me.mystra.thealtening.AltService;
+import me.mystra.utils.Files;
+import me.mystra.utils.RaycastUtil;
+import me.mystra.utils.RotationUtil;
+import me.mystra.utils.player.InventoryUtil;
+import me.mystra.utils.render.DeltaUtil;
+import me.mystra.utils.render.Render2D;
+import me.mystra.utils.render.Render3D;
+import me.mystra.utils.render.Strings;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.network.play.server.S02PacketChat;
+import net.minecraft.util.ChatComponentText;
+
+public class Mystra {
+    public static String name = "Shadow"; // CLIENT NAME
+    public static String uiname = "S§fhadow"; // DISPLAYS ON UI
+
+	public String version = "1.0.0"; // BUILD
+	public static String developer = "Crystal"; // DEVELOPER
+
+    public static Mystra instance = new Mystra(); // INSTANCE
+    
+    public FriendManager friendManager;
+    public SettingsManager settingsManager;
+    public EventManager eventManager;
+    public ModuleManager moduleManager;
+    public static GuiIngameHook guihook;
+    public static MystraTabGui tabgui;
+    public ClickGUI clickGui;
+    private IRCClient ircClient;
+    private HUDManager hudManager;
+    public static CommandManager cmdManager;
+    public static FontManager fontManager;
+    private AccountManager accountManager;
+    private FileManager fileManager;
+    public static final DeltaUtil DELTA_UTIL = new DeltaUtil();
+    private AltService altService;
+    public static final Render2D RENDER2D = new Render2D();
+    public static final Render3D RENDER3D = new Render3D();
+    public static final RaycastUtil RAYCAST_UTIL = new RaycastUtil();
+    public static final RotationUtil ROTATION_UTIL = new RotationUtil();
+    public static final InventoryUtil INVENTORY_UTIL = new InventoryUtil();
+    //private DiscordRP discordRP = new DiscordRP();
+    
+    //Font
+    public static Minecraft mc = Minecraft.getMinecraft();
+    public static FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
+
+    public void startClient() {
+    	
+    	/*
+    	 * Initializes on startup.
+    	*/
+    	String clientFolder = new File(".").getAbsolutePath();
+		clientFolder = (clientFolder.contains("jars") ? new File(".").getAbsolutePath().substring(0, clientFolder.length() - 2) : new File(".").getAbsolutePath()) + Strings.getSplitter() + name;
+    	String accountManagerFolder = clientFolder + Strings.getSplitter() + "alts";
+		Files.createRecursiveFolder(accountManagerFolder);
+    
+    	hudManager = HUDManager.getInstance();
+    	ModInstances.register(hudManager);
+        settingsManager = new SettingsManager();
+        tabgui = new MystraTabGui();
+        eventManager = new EventManager();
+        moduleManager = new ModuleManager();
+        clickGui = new ClickGUI();
+        cmdManager = new CommandManager();
+        fontManager = new FontManager();
+        friendManager = new FriendManager();
+        accountManager = new AccountManager(new File(accountManagerFolder));
+        altService = new AltService();
+        this.fileManager = new FileManager();
+        ircClient = new IRCClient("chat.freenode.net", 6667, Minecraft.getMinecraft().getSession().getUsername(), "#MystraIRC");
+        switchToMojang();
+        //discordRP.start();
+
+        /*
+         *  Applys the application title and prints out credentials.
+         */
+        
+        System.out.println("[" + name + "] Starting Mystra b" + version + ", coded by " + developer);
+        Display.setTitle(name + " b" + version);
+
+        SplashProgress.setProgress(8, "Finishing Mystra");
+        System.out.println("Loaded Modules: " + Mystra.instance.moduleManager.getModules().size());
+        eventManager.register(this);
+    }
+
+    public void stopClient() {
+    	
+    	/*
+    	 *  Stops all applications running.
+    	 */
+    	
+    	//discordRP.shutdown();
+        eventManager.unregister(this);
+    }
+    
+    @EventTarget
+    public void onKey(EventKey event) {
+        moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+    }
+    public static void onRender(){
+		for(Module m: Mystra.instance.moduleManager.getModules()){
+			m.onRender();
+		}
+	}
+
+    @EventTarget
+    public void onTick(ClientTickEvent e) {
+    	if(Minecraft.getMinecraft().gameSettings.MYSTRA_GUI_MOD_POSITION.isPressed()) {
+    		hudManager.openConfigScreen();
+    	}
+    }
+    
+    /*public DiscordRP getDiscordRP() { // DiscordAPI
+    	return discordRP;
+    }
+    
+    /*
+     *  Mystra Chat Module
+     */
+    
+    public static void addChatMessage(String s){
+        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("§7[" + "§bMystra§7] §f" + s));
+    }
+    
+    public static boolean onSendChatMessage(String s) { //EntityPlayerSP
+    	if(s.startsWith (".")) {
+    		cmdManager.callCommand(s.substring(1));
+    		return false;
+    	}
+    	for(Module m: Mystra.instance.moduleManager.getModules()) {
+    		if(m.isToggled()) {
+    			return m.onSendChatMessage(s);
+    		}
+    	}
+    	
+    	return true;
+    }
+    
+    public static boolean onReceiveChatMessage(S02PacketChat packet) {
+    	for(Module m: Mystra.instance.moduleManager.getModules()) {
+    		if(m.isToggled()) {
+    			return m.onReceiveChatMessage(packet);
+    		}
+    	}
+    	return true;
+    }
+    
+    public static FriendManager getFriendManager() {
+        return instance.friendManager;
+    }
+    
+    /*
+     *  OTHER SERVICES
+     */
+    
+    public IRCClient getIRCClient() {
+		return ircClient;
+	}
+    
+    public AccountManager getAccountManager() {
+		return accountManager;
+	}
+    
+    public AltService getAltService() {
+		return altService;
+	}
+    
+    public void switchToMojang() {
+		try {
+			this.altService.switchService(AltService.EnumAltService.MOJANG);
+		} catch (NoSuchFieldException e) {
+			System.out.println("Couldn't switch to modank altservice");
+		} catch (IllegalAccessException e) {
+			System.out.println("Couldn't switch to modank altservice -2");
+		}
+	}
+
+	public void switchToTheAltening() {
+		try {
+			this.altService.switchService(AltService.EnumAltService.THEALTENING);
+		} catch (NoSuchFieldException e) {
+			System.out.println("Couldn't switch to altening altservice");
+		} catch (IllegalAccessException e) {
+			System.out.println("Couldn't switch to altening altservice -2");
+		}
+	}
+
+}

@@ -1,0 +1,102 @@
+---- Minecraft Crash Report ----
+// Shall we play a game?
+
+Time: 9/28/20 6:42 PM
+Description: Updating screen events
+
+java.lang.NullPointerException: Updating screen events
+	at me.mystra.command.CommandManager.callCommand(CommandManager.java:33)
+	at me.mystra.Mystra.onSendChatMessage(Mystra.java:92)
+	at net.minecraft.client.entity.EntityPlayerSP.sendChatMessage(EntityPlayerSP.java:312)
+	at net.minecraft.client.gui.GuiScreen.sendChatMessage(GuiScreen.java:489)
+	at net.minecraft.client.gui.GuiScreen.sendChatMessage(GuiScreen.java:479)
+	at net.minecraft.client.gui.GuiChat.keyTyped(GuiChat.java:133)
+	at net.minecraft.client.gui.GuiScreen.handleKeyboardInput(GuiScreen.java:629)
+	at net.minecraft.client.gui.GuiScreen.handleInput(GuiScreen.java:580)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1794)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1121)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:427)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at me.mystra.command.CommandManager.callCommand(CommandManager.java:33)
+	at me.mystra.Mystra.onSendChatMessage(Mystra.java:92)
+	at net.minecraft.client.entity.EntityPlayerSP.sendChatMessage(EntityPlayerSP.java:312)
+	at net.minecraft.client.gui.GuiScreen.sendChatMessage(GuiScreen.java:489)
+	at net.minecraft.client.gui.GuiScreen.sendChatMessage(GuiScreen.java:479)
+	at net.minecraft.client.gui.GuiChat.keyTyped(GuiChat.java:133)
+	at net.minecraft.client.gui.GuiScreen.handleKeyboardInput(GuiScreen.java:629)
+	at net.minecraft.client.gui.GuiScreen.handleInput(GuiScreen.java:580)
+
+-- Affected screen --
+Details:
+	Screen name: net.minecraft.client.gui.GuiChat
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player87'/106, l='MpServer', x=567.88, y=72.00, z=314.39]]
+	Chunk stats: MultiplayerChunkCache: 820, 820
+	Level seed: 0
+	Level generator: ID 02 - largeBiomes, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 584.00,64.00,166.00 - World: (584,64,166), Chunk: (at 8,4,6 in 36,10; contains blocks 576,0,160 to 591,255,175), Region: (1,0; contains chunks 32,0 to 63,31, blocks 512,0,0 to 1023,255,511)
+	Level time: 1019660 game time, 133068 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 78 total; [EntityBat['Bat'/1, l='MpServer', x=490.53, y=34.03, z=356.84], EntityBat['Bat'/2, l='MpServer', x=494.69, y=35.47, z=353.63], EntityCreeper['Creeper'/4, l='MpServer', x=506.50, y=29.00, z=242.50], EntityCreeper['Creeper'/5, l='MpServer', x=502.50, y=35.00, z=250.50], EntityZombie['Zombie'/6, l='MpServer', x=509.50, y=35.00, z=275.50], EntityCreeper['Creeper'/7, l='MpServer', x=508.52, y=34.05, z=347.18], EntityCreeper['Creeper'/8, l='MpServer', x=504.68, y=36.00, z=348.50], EntityCreeper['Creeper'/9, l='MpServer', x=502.00, y=36.00, z=351.38], EntityBat['Bat'/10, l='MpServer', x=501.88, y=38.09, z=358.81], EntitySkeleton['Skeleton'/11, l='MpServer', x=502.38, y=38.00, z=364.95], EntityCreeper['Creeper'/15, l='MpServer', x=513.50, y=29.00, z=282.50], EntityCreeper['Creeper'/16, l='MpServer', x=522.50, y=37.00, z=285.50], EntityCreeper['Creeper'/17, l='MpServer', x=519.50, y=29.00, z=296.50], EntityCreeper['Creeper'/18, l='MpServer', x=525.53, y=29.00, z=296.56], EntityCreeper['Creeper'/21, l='MpServer', x=532.97, y=31.00, z=344.50], EntityCreeper['Creeper'/22, l='MpServer', x=532.50, y=31.00, z=339.50], EntityCreeper['Creeper'/23, l='MpServer', x=534.50, y=31.00, z=340.50], EntityCreeper['Creeper'/24, l='MpServer', x=534.50, y=31.00, z=338.50], EntityBat['Bat'/408, l='MpServer', x=640.25, y=37.10, z=369.25], EntityEnderman['Enderman'/25, l='MpServer', x=555.65, y=37.00, z=286.35], EntityCreeper['Creeper'/26, l='MpServer', x=552.38, y=60.00, z=298.80], EntitySkeleton['Skeleton'/27, l='MpServer', x=547.50, y=31.00, z=325.50], EntitySkeleton['Skeleton'/28, l='MpServer', x=549.50, y=31.00, z=325.50], EntitySkeleton['Skeleton'/29, l='MpServer', x=550.50, y=31.00, z=325.50], EntityCreeper['Creeper'/30, l='MpServer', x=546.03, y=31.00, z=323.38], EntityBat['Bat'/31, l='MpServer', x=548.53, y=36.00, z=320.13], EntityBat['Bat'/32, l='MpServer', x=547.33, y=36.04, z=319.64], EntityCreeper['Creeper'/33, l='MpServer', x=566.50, y=29.00, z=294.50], EntityCreeper['Creeper'/34, l='MpServer', x=560.69, y=59.00, z=300.50], EntityCreeper['Creeper'/35, l='MpServer', x=568.34, y=31.00, z=336.00], EntityBat['Bat'/36, l='MpServer', x=563.88, y=33.10, z=337.28], EntityPlayerSP['Player87'/106, l='MpServer', x=567.88, y=72.00, z=314.39], EntityBat['Bat'/37, l='MpServer', x=564.52, y=31.91, z=338.34], EntityZombie['Zombie'/39, l='MpServer', x=582.22, y=38.00, z=261.84], EntityCreeper['Creeper'/40, l='MpServer', x=580.50, y=28.00, z=319.50], EntityCreeper['Creeper'/41, l='MpServer', x=578.38, y=29.00, z=313.41], EntityZombie['Zombie'/42, l='MpServer', x=577.28, y=28.00, z=318.66], EntityZombie['Zombie'/43, l='MpServer', x=578.63, y=28.00, z=319.00], EntityZombie['Zombie'/44, l='MpServer', x=589.53, y=32.00, z=328.03], EntityZombie['Zombie'/45, l='MpServer', x=596.21, y=31.00, z=326.65], EntityCreeper['Creeper'/46, l='MpServer', x=587.50, y=28.00, z=336.00], EntityCreeper['Creeper'/47, l='MpServer', x=580.31, y=26.00, z=341.47], EntityCreeper['Creeper'/48, l='MpServer', x=602.22, y=22.00, z=275.72], EntitySpider['Spider'/49, l='MpServer', x=597.50, y=25.00, z=283.50], EntityBat['Bat'/50, l='MpServer', x=601.65, y=40.57, z=292.68], EntityZombie['Zombie'/51, l='MpServer', x=600.81, y=28.00, z=310.13], EntityBat['Bat'/52, l='MpServer', x=597.28, y=29.10, z=323.22], EntityZombie['Zombie'/53, l='MpServer', x=602.06, y=28.00, z=325.66], EntityCreeper['Creeper'/54, l='MpServer', x=598.50, y=28.00, z=330.50], EntityCreeper['Creeper'/55, l='MpServer', x=595.50, y=23.00, z=333.50], EntityZombie['Zombie'/56, l='MpServer', x=593.88, y=32.00, z=327.50], EntitySkeleton['Skeleton'/57, l='MpServer', x=597.81, y=23.00, z=346.41], EntityCreeper['Creeper'/58, l='MpServer', x=597.50, y=23.00, z=340.50], EntitySkeleton['Skeleton'/59, l='MpServer', x=594.92, y=23.00, z=341.52], EntitySkeleton['Skeleton'/60, l='MpServer', x=594.50, y=23.00, z=338.50], EntityCreeper['Creeper'/61, l='MpServer', x=593.94, y=63.00, z=336.38], EntityCreeper['Creeper'/62, l='MpServer', x=607.03, y=27.00, z=352.44], EntityZombie['Zombie'/64, l='MpServer', x=608.56, y=40.00, z=297.09], EntityBat['Bat'/65, l='MpServer', x=612.66, y=42.01, z=290.82], EntitySkeleton['Skeleton'/66, l='MpServer', x=622.72, y=23.00, z=305.88], EntityCreeper['Creeper'/67, l='MpServer', x=609.31, y=33.00, z=325.91], EntitySkeleton['Skeleton'/69, l='MpServer', x=639.50, y=22.00, z=305.50], EntityCreeper['Creeper'/70, l='MpServer', x=631.50, y=22.00, z=311.50], EntityCreeper['Creeper'/71, l='MpServer', x=634.50, y=22.00, z=311.50], EntitySkeleton['Skeleton'/72, l='MpServer', x=638.63, y=22.00, z=316.69], EntityCreeper['Creeper'/73, l='MpServer', x=635.50, y=22.00, z=316.50], EntityCreeper['Creeper'/74, l='MpServer', x=624.97, y=23.00, z=316.50], EntityMinecartChest['container.minecart'/75, l='MpServer', x=630.50, y=35.06, z=324.09], EntityZombie['Zombie'/76, l='MpServer', x=628.88, y=36.00, z=334.38], EntityBat['Bat'/77, l='MpServer', x=632.75, y=34.10, z=344.75], EntityCreeper['Creeper'/79, l='MpServer', x=644.38, y=23.00, z=316.00], EntitySkeleton['Skeleton'/80, l='MpServer', x=637.13, y=22.00, z=316.31], EntityBat['Bat'/81, l='MpServer', x=642.25, y=34.09, z=347.25], EntityMinecartChest['container.minecart'/103, l='MpServer', x=592.50, y=24.06, z=378.50], EntitySpider['Spider'/104, l='MpServer', x=627.50, y=31.00, z=378.50], EntitySkeleton['Skeleton'/105, l='MpServer', x=637.34, y=31.00, z=373.47], EntityZombie['Zombie'/375, l='MpServer', x=502.28, y=35.09, z=370.28], EntityCreeper['Creeper'/376, l='MpServer', x=529.50, y=48.00, z=394.50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:403)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2777)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:448)
+	at net.minecraft.client.main.Main.main(Main.java:113)
+	at Start.main(Start.java:11)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.8.8
+	Operating System: Windows 10 (amd64) version 10.0
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 
+	Java Version: 1.8.0_251, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 407488216 bytes (388 MB) / 1037959168 bytes (989 MB) up to 1037959168 bytes (989 MB)
+	JVM Flags: 3 total; -Xincgc -Xmx1024M -Xms1024M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 99
+	Launched Version: mcp
+	LWJGL: 2.9.4
+	OpenGL: GeForce RTX 2080 SUPER/PCIe/SSE2 GL version 4.6.0 NVIDIA 456.38, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: No
+	Is Modded: Very likely; Jar signature invalidated
+	Type: Client (map_client.txt)
+	Resource Packs: §5Such§8PvP §8[§7256x§8].zip
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 12x AMD Ryzen 5 3600X 6-Core Processor 
+	OptiFine Version: OptiFine_1.8.8_HD_U_I7
+	Render Distance Chunks: 32
+	Mipmaps: 4
+	Anisotropic Filtering: 1
+	Antialiasing: 0
+	Multitexture: false
+	Shaders: null
+	OpenGlVersion: 4.6.0 NVIDIA 456.38
+	OpenGlRenderer: GeForce RTX 2080 SUPER/PCIe/SSE2
+	OpenGlVendor: NVIDIA Corporation
+	CpuCount: 12

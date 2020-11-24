@@ -1,0 +1,34 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class HypixelBhop extends Module{
+
+	private static boolean boosted = false;
+
+	public HypixelBhop() {
+		super("HypixelBhop", 0, Category.MOVEMENT);
+	}
+	
+	protected void hypixelbhop() {
+		if(this.mc.gameSettings.keyBindForward.pressed) {
+			
+			this.mc.gameSettings.keyBindSprint.pressed = true;
+			
+			if(this.mc.thePlayer.onGround) {
+				
+				this.mc.gameSettings.keyBindJump.pressed = false;
+				this.mc.thePlayer.jump();
+				this.boosted = false;
+			}else {
+				if(!this.boosted) {
+					this.mc.timer.timerSpeed = 1.20F;
+					
+					double motionY = 0.15;
+					
+					double x = this.move.inst
+				}
+			}
+		}
+	}
+}

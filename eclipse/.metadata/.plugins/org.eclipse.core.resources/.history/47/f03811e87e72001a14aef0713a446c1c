@@ -1,0 +1,11 @@
+package mystra.commands;
+
+import mystra.command.Command;
+
+public class SpeedMode extends Command{
+	
+	public SpeedMode() {
+		super("Speed", "Changes the speed mode.");
+	}
+
+}

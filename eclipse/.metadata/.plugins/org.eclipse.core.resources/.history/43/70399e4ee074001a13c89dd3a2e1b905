@@ -1,0 +1,43 @@
+package mystra.mods;
+
+import java.util.ArrayList;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.utils.Wrapper;
+import mystra.mods.Module;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+public class Flight extends Module {
+	
+
+	public Flight() {
+		super("Flight", Keyboard.KEY_F, Category.MOVEMENT);
+	}
+
+	public void onUpdate() {
+		if (!this.getState()) {
+			return;
+		}
+		Wrapper.mc.thePlayer.capabilities.setFlySpeed  = 1F);
+		Wrapper.mc.thePlayer.capabilities.isFlying = true;
+	}
+
+	public void onDisable() {
+		Wrapper.mc.thePlayer.capabilities.isFlying = false;
+			NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Flight Disabled", 1));
+			super.onDisable();
+		}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Flight Enabled", 1));
+    	super.onEnable();
+    }
+}

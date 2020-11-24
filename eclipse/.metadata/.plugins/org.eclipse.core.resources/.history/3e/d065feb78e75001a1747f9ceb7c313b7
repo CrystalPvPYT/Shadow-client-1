@@ -1,0 +1,37 @@
+package mystra.commands;
+
+import mystra.command.Command;
+import mystra.main.Mystra;
+import mystra.mods.Module;
+
+public class Toggle extends Command{
+	@Override
+	public String getAlias() {
+		return "toggle";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Toggles a mod thru the console";
+	}
+
+	@Override
+	public String getSyntax() {
+		return ".toggle <Module>";
+	}
+
+	@Override
+	public void onCommand(String command, String[] args) throws Exception {
+		boolean found = false;
+		for(Module m: Mystra.getModules()) {
+			if(args[0].equalsIgnoreCase(m.getName())) {
+				m.toggle();
+				found = true;
+				Mystra.addChatMessage(m.getName() + " §awas toggled!");
+			}
+		}
+		if(found == false) {
+			Mystra.addChatMessage("§4Module was not found!");
+		}
+	}
+}

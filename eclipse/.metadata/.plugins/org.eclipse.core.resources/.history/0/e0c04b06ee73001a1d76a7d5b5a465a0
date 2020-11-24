@@ -1,0 +1,18 @@
+package mystra.mods;
+
+import mystra.main.Category;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+public class Nofall extends Module{
+	public Nofall() {
+		super("Nofall", 0, Category.PLAYER);
+	}
+
+	public void onUpdate() {
+		if(this.isToggled()) {
+			if(mc.thePlayer.fallDistance > 2F) {
+				mc.thePlayer.sendQueue.addToSendQueue(new C03PacketPlayer(true));
+			}
+		}
+	}
+}

@@ -1,0 +1,42 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+import org.lwjgl.input.Keyboard;
+
+import com.ibm.icu.impl.ICUService.Key;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.values.Value;
+
+
+public class Timer extends Module {
+
+	Value TimerSpeed = new Value("Timer Speed", 1, 1, 5, ValueDisplay.INTEGER);
+
+	public Timer() {
+		super("Timer", 0, Category.PLAYER);
+	}
+
+	public void onUpdate() {
+		if (this.getState()) {
+			net.minecraft.util.Timer.timerSpeed = (float) TimerSpeed.getValue();
+		}
+	}
+	
+	public void onDisable(){
+		net.minecraft.util.Timer.timerSpeed = 1.0f;
+			NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Aimbot Disabled", 1));
+			super.onDisable();
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Timer Enabled", 1));
+    	super.onEnable();
+    }
+
+}

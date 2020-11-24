@@ -1,0 +1,47 @@
+package mystra.mods;
+
+import java.util.Iterator;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.network.play.client.C03PacketPlayer;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class Killaura extends Module {
+	
+	private booleanVaule booleanValue = new BooleanValue( new: "OnOrOff", defaultValue; false);
+	
+    public Killaura() {
+		super("KillAura", Keyboard.KEY_R, Category.COMBAT);
+	}
+   
+    @Override
+    public void onUpdate() {
+       
+        if(!this.isToggled())
+            return;
+       
+        for(Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
+            Object theObject = entities.next();
+            if(theObject instanceof EntityLivingBase) {
+                EntityLivingBase entity = (EntityLivingBase) theObject;
+               
+                if(entity instanceof EntityPlayerSP) continue;
+               
+                if(mc.thePlayer.getDistanceToEntity(entity) <= 6.2173613F) {
+                    if(entity.isEntityAlive()) {
+                        mc.playerController.attackEntity(mc.thePlayer, entity);
+                        mc.thePlayer.swingItem();
+                        continue;
+                    }
+                }
+            }
+        }
+       
+        super.onUpdate();
+    }
+ 
+}

@@ -1,0 +1,12 @@
+package mystra.utils;
+
+public class PacketThreadUtil 
+{
+	private static final String OBFID = "CL_00002306";
+	
+	public static void func_180031_a(final Packet p_180031_0_, final INetHandler p_180081_1_, IThreadListener p_180031_2_)
+	{
+	
+	
+
+}

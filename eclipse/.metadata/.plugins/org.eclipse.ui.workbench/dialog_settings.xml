@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="195"/>
+		<item key="DIALOG_Y_ORIGIN" value="153"/>
+	</section>
+	<section name="NewWizardAction">
+	</section>
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.jdt.internal.ui.jarpackager.JarPackageWizard"/>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.jdt.ui.Java"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_WIDTH" value="450"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_HEIGHT" value="506"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_SIZE" value="true"/>
+		<item key="org.eclipse.ui.internal.quickaccess.QuickAccessDialogDIALOG_USE_PERSISTED_LOCATION" value="false"/>
+		<list key="orderedElements">
+			<item value="org.eclipse.jdt.ui.CompilationUnitEditorClient/src/net/minecraft/client/entity/EntityPlayerSP.java"/>
+			<item value="/Client/src/net/minecraft/client/gui/GuiMainMenu.java"/>
+			<item value="/Client/src/net/minecraft/util/MovementInputFromOptions.java"/>
+			<item value="/Client/src/net/minecraft/block/BlockLiquid.java"/>
+			<item value="/Client/src/net/minecraft/client/entity/AbstractClientPlayer.java"/>
+			<item value="/Client/src/net/minecraft/client/gui/FontRenderer.java"/>
+			<item value="/Client/src/net/minecraft/world/World.java"/>
+			<item value="/Client/src/net/minecraft/client/renderer/entity/RenderEntityItem.java"/>
+			<item value="/Client/src/net/minecraft/client/renderer/entity/RenderEntity.java"/>
+			<item value="org.eclipse.jdt.ui.CompilationUnitEditorClient/src/net/minecraft/client/renderer/EntityRenderer.java"/>
+			<item value="/Client/src/net/minecraft/client/gui/GuiIngame.java"/>
+			<item value="/Client/src/net/minecraft/client/renderer/entity/RendererLivingEntity.java"/>
+			<item value="/Client/src/net/minecraft/client/renderer/ItemRenderer.java"/>
+			<item value="/Client/src/net/minecraft/client/network/NetHandlerPlayClient.java"/>
+			<item value="org.eclipse.jdt.ui.CompilationUnitEditorClient/src/net/minecraft/client/Minecraft.java"/>
+			<item value="/Client/src/net/minecraft/entity/EntityLivingBase.java"/>
+			<item value="/Client/src/net/minecraft/client/gui/GuiGameOver.java"/>
+			<item value="org.eclipse.jdt.ui.CompilationUnitEditorClient/src/net/minecraft/client/gui/inventory/GuiContainer.java"/>
+			<item value="/Client/src/net/minecraft/entity/Entity.java"/>
+			<item value="/Client/src/net/minecraft/client/model/ModelPlayer.java"/>
+			<item value="/Client/src/me/mystra/utils/render/TTFFontRenderer.java"/>
+			<item value="org.eclipse.jdt.ui.PackagesView"/>
+			<item value="org.eclipse.jdt.ui.PackageExplorer"/>
+		</list>
+		<list key="orderedProviders">
+			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.editors"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.ui.ide/org.eclipse.ui.internal.ide.dialogs.OpenResourceQuickAccessComputer"/>
+			<item value="org.eclipse.e4.ui.parts"/>
+			<item value="org.eclipse.e4.ui.parts"/>
+		</list>
+		<list key="textEntries">
+			<item value="2"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="3"/>
+			<item value="2"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="2"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+			<item value="1"/>
+		</list>
+		<list key="textArray">
+			<item value="entityplay"/>
+			<item value="entitypla"/>
+			<item value="guimainm"/>
+			<item value="guimainme"/>
+			<item value="movementi"/>
+			<item value="blockliqu"/>
+			<item value="abstract"/>
+			<item value="fontren"/>
+			<item value="world"/>
+			<item value="renderenti"/>
+			<item value="renderen"/>
+			<item value="entityrend"/>
+			<item value="entityrender"/>
+			<item value="entityre"/>
+			<item value="guiingame"/>
+			<item value="guiing"/>
+			<item value="rendererlivinge"/>
+			<item value="rendererl"/>
+			<item value="itemrender"/>
+			<item value="nethandlerplay"/>
+			<item value="nethan"/>
+			<item value="minecraft"/>
+			<item value="entityliving"/>
+			<item value="guigame"/>
+			<item value="guico"/>
+			<item value="entity"/>
+			<item value="modelpla"/>
+			<item value="ttf"/>
+			<item value="pac"/>
+			<item value="pack"/>
+		</list>
+	</section>
+</section>

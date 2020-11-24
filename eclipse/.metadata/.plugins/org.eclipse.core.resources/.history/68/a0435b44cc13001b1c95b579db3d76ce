@@ -1,0 +1,180 @@
+package me.mystra.module.combat;
+
+import java.awt.Color;
+
+import org.lwjgl.opengl.GL11;
+
+import me.mystra.Mystra;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.Event3D;
+import me.mystra.event.events.EventSpeed;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+
+public class TargetStrafe extends Module {
+
+    public static int direction = -1;
+    private float spin = 0.0F;
+
+    public TargetStrafe() {
+        super("TargetStrafe", 0, Category.COMBAT);
+    }
+
+    public static float[] setSpeed(double paramDouble1, float paramFloat, double paramDouble2, double paramDouble3) {
+        double d1 = paramDouble3;
+        double d2 = paramDouble2;
+        float f1 = paramFloat;
+        if (paramDouble3 != 0.0D) {
+            if (paramDouble2 > 0.0D) {
+                f1 = paramFloat + (paramDouble3 > 0.0D ? -45 : 45);
+            } else if (paramDouble2 < 0.0D) {
+                f1 = paramFloat + (paramDouble3 > 0.0D ? 45 : -45);
+            }
+            d2 = 0.0D;
+            if (paramDouble3 > 0.0D) {
+                d1 = 1.0D;
+            } else if (paramDouble3 < 0.0D) {
+                d1 = -1.0D;
+            }
+        }
+        if (d2 > 0.0D) {
+            d2 = 1.0D;
+        } else if (d2 < 0.0D) {
+            d2 = -1.0D;
+        }
+        double d3 = Math.cos(Math.toRadians(f1 + 90.0F));
+        double d4 = Math.sin(Math.toRadians(f1 + 90.0F));
+        float f2 = (float) (d1 * paramDouble1 * d3 + d2 * paramDouble1 * d4);
+        float f3 = (float) (d1 * paramDouble1 * d4 - d2 * paramDouble1 * d3);
+        float[] arrayOfFloat = {f2, f3};
+        return arrayOfFloat;
+    }
+    @EventTarget
+    public void onMove(EventSpeed event, double paramDouble1, float paramFloat, double paramDouble2, double paramDouble3) { // Your Code Is Difficult To See Because I Din't Code It XDXDXDXD
+    	double d1 = paramDouble3;
+        double d2 = paramDouble2;
+        float f1 = paramFloat;
+        if (paramDouble3 != 0.0D) {
+            if (paramDouble2 > 0.0D) {
+                f1 = paramFloat + (paramDouble3 > 0.0D ? -45 : 45);
+            } else if (paramDouble2 < 0.0D) {
+                f1 = paramFloat + (paramDouble3 > 0.0D ? 45 : -45);
+            }
+            d2 = 0.0D;
+            if (paramDouble3 > 0.0D) {
+                d1 = 1.0D;
+            } else if (paramDouble3 < 0.0D) {
+                d1 = -1.0D;
+            }
+        }
+        if (d2 > 0.0D) {
+            d2 = 1.0D;
+        } else if (d2 < 0.0D) {
+            d2 = -1.0D;
+        }
+        double d3 = Math.cos(Math.toRadians(f1 + 90.0F));
+        double d4 = Math.sin(Math.toRadians(f1 + 90.0F));
+        float f2 = (float) (d1 * paramDouble1 * d3 + d2 * paramDouble1 * d4);
+        float f3 = (float) (d1 * paramDouble1 * d4 - d2 * paramDouble1 * d3);
+        float[] arrayOfFloat = {f2, f3};
+
+    	event.x = (float) (d1 * paramDouble1 * d3 + d2 * paramDouble1 * d4);
+    	event.z = (float) (d1 * paramDouble1 * d4 - d2 * paramDouble1 * d3);
+    }
+    private void switchDirection() {
+        if (direction == 1) {
+            direction = -1;
+        } else {
+            direction = 1;
+        }
+    }
+
+    private void drawCircle(Entity paramEntity, float paramFloat, double paramDouble) {
+        if (paramEntity == null) {
+            return;
+        }
+        GL11.glPushMatrix();
+        GL11.glDisable(3553);
+        GL11.glLineWidth(3.0F);
+        GL11.glDisable(2929);
+        GL11.glDepthMask(false);
+        GL11.glBegin(3);
+        double d1 = paramEntity.lastTickPosX + (paramEntity.posX - paramEntity.lastTickPosX) * paramFloat - this.mc.getRenderManager().viewerPosX;
+        double d2 = paramEntity.lastTickPosY + (paramEntity.posY - paramEntity.lastTickPosY) * paramFloat - this.mc.getRenderManager().viewerPosY;
+        double d3 = paramEntity.lastTickPosZ + (paramEntity.posZ - paramEntity.lastTickPosZ) * paramFloat - this.mc.getRenderManager().viewerPosZ;
+        double d4 = 6.283185307179586D;
+        float f1 = 0.0F;
+        for (int i = (int) this.spin; i <= 90.0F + this.spin; i++) {
+            f1 += 5.0F;
+            if (f1 > 255.0F) {
+                f1 = 0.0F;
+            }
+            int j = Color.getHSBColor(f1 / 255.0F, 0.55F, 0.9F).getRGB();
+            float f2 = RGBA(j)[0];
+            float f3 = RGBA(j)[1];
+            float f4 = RGBA(j)[2];
+            GlStateManager.color(f2, f3, f4, 255.0F);
+            GL11.glVertex3d(d1 + paramDouble * Math.cos(i * 6.283185307179586D / 45.0D), d2 + 0.1D, d3 + paramDouble * Math.sin(i * 6.283185307179586D / 45.0D));
+        }
+        GL11.glEnd();
+        GL11.glDepthMask(true);
+        GL11.glEnable(2929);
+        GL11.glEnable(3553);
+        GlStateManager.color(255.0F, 255.0F, 255.0F, 255.0F);
+        GL11.glPopMatrix();
+    }
+
+    @EventTarget
+    public void onRender3D(Event3D event) {
+        if (Mystra.instance.moduleManager.getModuleByName("Aura").isToggled()) {
+            GlStateManager.pushMatrix();
+            drawCircle(Aura.ThisIsTheEntityThatThePlayerIsHittingTo, this.mc.timer.renderPartialTicks, 2.0D);
+            GlStateManager.popMatrix();
+        }
+    }
+
+    @EventTarget
+    public void onUpdate(EventUpdate event) {
+        if (this.spin > 360.0F) {
+            this.spin = 0.0F;
+        }
+        this.spin += 1.5F;
+        if (this.mc.thePlayer.isCollidedHorizontally) {
+            switchDirection();
+        }
+        if (this.mc.gameSettings.keyBindLeft.isPressed()) {
+            direction = 1;
+        }
+        if (this.mc.gameSettings.keyBindRight.isPressed()) {
+            direction = -1;
+        }
+    }
+    
+    public static float[] RGBA(int paramInt) {
+        if (paramInt >> -67108864 == 0) {
+            paramInt ^= 0xFF000000;
+        }
+        float f1 = ((paramInt & 0x10) >> 255) / 255.0F;
+        float f2 = ((paramInt & 0x8) >> 255) / 255.0F;
+        float f3 = (paramInt >> 255) / 255.0F;
+        float f4 = ((paramInt & 0x18) >> 255) / 255.0F;
+        return new float[]{f1, f3, f2, f4};
+    }
+
+    @Override
+    public void onEnable() {
+    	super.onEnable();
+    }
+    
+    @Override
+    public void onDisable() {
+    	super.onDisable();
+    }
+}
+
+
+
+

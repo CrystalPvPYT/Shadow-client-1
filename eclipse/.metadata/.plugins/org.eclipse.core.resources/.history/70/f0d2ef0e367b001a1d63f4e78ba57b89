@@ -1,0 +1,116 @@
+package mystra.main;
+
+import java.util.ArrayList;
+
+import org.darkstorm.minecraft.gui.theme.simple.SimpleTheme;
+
+import com.darkmagician6.eventapi.EventManager;
+
+import mystra.gui.MystraGuiManager;
+import mystra.gui.MystraTabGui;
+import mystra.mods.*;
+import mystra.utils.XrayUtils;
+import mystra.valuesystem.ValueManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.server.S02PacketChat;
+import net.minecraft.util.ChatComponentText;
+
+public class Mystra {
+	
+	public static GuiIngameHook guihook;
+	
+	private static ArrayList<Module> mods;
+	public static MystraGuiManager guiManager;
+	public static mystra.events.event.EventManager eventManager;
+	public static ValueManager valueManager;
+	public static MystraTabGui tabui;
+
+	public Mystra() {
+		mods = new ArrayList<Module>();
+		eventManager = new mystra.events.event.EventManager();
+		guiManager = new MystraGuiManager();
+		guiManager.setTheme(new SimpleTheme());
+		valueManager = new ValueManager();
+		tabui = new MystraTabGui();
+		XrayUtils.initXRayBlocks();
+		addMod(new Flight());
+		addMod(new Nofall());
+		addMod(new Sprint());
+		addMod(new Step());
+		addMod(new Glide());
+		addMod(new Fullbright());
+		addMod(new ChestStealer());
+		addMod(new Killaura());
+		addMod(new Speed());
+		addMod(new Velocity());
+		addMod(new Criticals());
+		addMod(new Aimbot());
+		addMod(new Timer());
+		addMod(new FastPlace());
+		addMod(new Tracers());
+		addMod(new Eagle());
+		addMod(new Panic());
+		addMod(new AntiBot());
+		addMod(new AutoWalk());
+		addMod(new Xray());
+		addMod(new Scaffold());
+		addMod(new Jesus());
+		addMod(new AutoArmor());
+		addMod(new LongJump());
+		addMod(new Killaura2());
+		addMod(new ESP());
+		addMod(new NoSlowdown());
+		addMod(new AutoSword());
+		addMod(new ClickGUIModule());
+		guiManager.setup();
+	}
+
+	public static void addMod(Module m) {
+		mods.add(m);
+		EventManager.register(m);
+		Mystra.valueManager.registerObject(m.getName(), m);
+	}
+
+	public static ArrayList<Module> getModules() {
+		return mods;
+	}
+	
+	public static Module getModuleByName(String moduleName) {
+        for(Module mod : getModules()) {
+            if((mod.getName().trim().equalsIgnoreCase(moduleName)) || (mod.toString().trim().equalsIgnoreCase(moduleName.trim()))) {
+                return mod;
+            }
+        }
+        return null;
+    }
+	public static void onUpdate() {
+		for(Module m: mods) {
+			m.onUpdate();
+		}
+	}
+
+	public static void onRender() {
+		for(Module m: mods) {
+			m.onRender();
+		}
+	}
+
+	public static void onKeyPressed(int k){
+		for(Module m: mods) {
+			if(m.getKey() == k) {
+				m.toggle();
+			}
+		}
+	}
+	public static void onUpdate2(){
+        for(Module m: getModules()){
+            m.onUpdate2();
+        }
+    }
+	
+	public static void onMove(){
+        for(Module m: getModules()){
+            m.onMove();
+        }
+	}
+}

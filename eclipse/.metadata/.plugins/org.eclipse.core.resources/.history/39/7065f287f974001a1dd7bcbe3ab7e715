@@ -1,0 +1,14 @@
+package mystra.command;
+
+import java.util.List;
+
+public abstract class Command {
+	public Command(String string, String string2, String string3, String string4) {
+	}
+	public abstract String getAlias();
+	public abstract String getDescription();
+	public abstract String getSyntax();
+	public abstract void onCommand(String command, String[] args) throws Exception;
+	public List<String> autocomplete(int arg, String[] args) {
+	}
+}

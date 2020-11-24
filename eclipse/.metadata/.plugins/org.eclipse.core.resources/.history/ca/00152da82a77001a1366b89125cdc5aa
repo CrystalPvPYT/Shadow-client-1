@@ -1,0 +1,94 @@
+package mystra.mods;
+
+import java.util.Iterator;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.TimeHelper;
+import mystra.utils.Wrapper;
+import mystra.valuesystem.BooleanValue;
+import mystra.valuesystem.NumberValue;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+
+public class Killaura extends Module {
+	
+	private int ticks = 0;
+	private static String MultiAura = "MultiAura";
+	private static String CPS = "CPS";
+	private static String Reach = "Reach";
+	private TimeHelper timer = new TimeHelper();
+	
+	private BooleanValue multiaura = new BooleanValue("MultiAura", true);
+	private NumberValue<Integer> cps = new NumberValue<Integer>("CPS", 14, 1, 20);
+	private NumberValue<Integer> reach = new NumberValue<Integer>("Reach", 4, 0, 8);	
+    public Killaura() {
+		super("KillAura", Keyboard.KEY_R, Category.COMBAT);
+	}
+   
+    @Override
+    public void onUpdate() {
+        if(!this.isToggled())
+            return;
+        
+        if(MultiAura.equalsIgnoreCase("MultiAura")) {
+			onMultiAura();
+		}
+    }
+        public void onMultiAura() {
+        		if(!this.isToggled()) {
+        			return;
+        		}
+        		ticks++;
+        		if(ticks >= 0 - cps.getObject())
+        		if(multiaura.getObject()) {
+            for(Iterator<Entity> entities = mc.theWorld.loadedEntityList.iterator(); entities.hasNext();) {
+                Object theObject = entities.next();
+                if(theObject instanceof EntityLivingBase) {
+                    EntityLivingBase entity = (EntityLivingBase) theObject;
+                   
+                    if(entity instanceof EntityPlayerSP) continue;
+                   
+                    if(Wrapper.mc.thePlayer.getDistanceToEntity(entity) <= reach.getObject()) {
+                        if(entity.isEntityAlive()) {
+                            mc.playerController.attackEntity(mc.thePlayer, entity);
+                            mc.thePlayer.swingItem();
+                            ticks = 0;
+                            break;
+                        }
+                    }
+                }
+                setName("Killaura | §7MultiAura");
+                super.onUpdate();
+            }
+        }
+     }
+    @Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Killaura Enabled", 1));
+    	super.onEnable();
+    }
+    
+    @Override
+    public void onDisable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Killaura Disabled", 1));
+    	super.onDisable();
+    }
+    
+    private void speed() {
+    	if (timer.hasTimeReached(cps.getObject())) {
+    		return;
+    	}
+    }
+    
+    private void getRange() {
+    	if(timer.hasTimeReached(reach.getObject())) {
+		return;
+    	}
+    }
+}

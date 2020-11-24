@@ -1,0 +1,33 @@
+package mystra.mods;
+
+import java.util.ArrayList;
+
+import de.Hero.settings.Setting;
+import mystra.main.Category;
+import mystra.main.Mystra;
+
+public class ClickGui extends Module{
+
+	public ClickGui() {
+		super("ClickGui", 0, Category.OTHER);
+		}
+	@Override
+    public void setup(){
+    	ArrayList<String> options = new ArrayList<>();
+    	options.add("JellyLike");
+    	options.add("New");
+    	Mystra.instance.setmgr.rSetting(new Setting("Design", this, "New", options));
+    	Mystra.instance.setmgr.rSetting(new Setting("Sound", this, false));
+    	Mystra.instance.setmgr.rSetting(new Setting("GuiRed", this, 255, 0, 255, true));
+    	Mystra.instance.setmgr.rSetting(new Setting("GuiGreen", this, 26, 0, 255, true));
+    	Mystra.instance.setmgr.rSetting(new Setting("GuiBlue", this, 42, 0, 255, true));
+    }
+    
+    @Override
+    public void onEnable()
+    {
+    	mc.displayGuiScreen(Mystra.instance.clickgui);
+    	toggle();
+    	super.onEnable();
+    }
+}

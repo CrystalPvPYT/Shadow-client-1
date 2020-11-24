@@ -1,0 +1,120 @@
+package mystra.main;
+
+import java.util.ArrayList;
+
+import org.darkstorm.minecraft.gui.theme.simple.SimpleTheme;
+
+import com.darkmagician6.eventapi.EventManager;
+
+import mystra.command.CommandManager;
+import mystra.gui.MystraGuiManager;
+import mystra.mods.*;
+import mystra.tabgui.TabManager;
+import mystra.utils.XrayUtils;
+import mystra.valuesystem.ValueManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.play.server.S02PacketChat;
+import net.minecraft.util.ChatComponentText;
+
+public class Mystra {
+	
+	private static ArrayList<Module> mods;
+	public static CommandManager cmdManager;
+	public static MystraGuiManager guiManager;
+	public static TabManager tabManager;
+	public static ValueManager valueManager;
+
+	public Mystra() {
+		mods = new ArrayList<Module>();
+		cmdManager = new CommandManager();
+		guiManager = new MystraGuiManager();
+		guiManager.setTheme(new SimpleTheme());
+		tabManager = new TabManager();
+		valueManager = new ValueManager();
+		XrayUtils.initXRayBlocks();
+		addMod(new Flight());
+		addMod(new ChestESP());
+		addMod(new Nofall());
+		addMod(new Sprint());
+		addMod(new Step());
+		addMod(new Glide());
+		addMod(new Fullbright());
+		addMod(new ChestStealer());
+		addMod(new Killaura());
+		addMod(new MobESP());
+		addMod(new Speed());
+		addMod(new Velocity());
+		addMod(new Criticals());
+		addMod(new Aimbot());
+		addMod(new Timer());
+		addMod(new FastPlace());
+		addMod(new Tracers());
+		addMod(new Eagle());
+		addMod(new Panic());
+		addMod(new AntiBot());
+		addMod(new AutoWalk());
+		addMod(new Xray());
+		addMod(new ClickGUIModule());
+		guiManager.setup();
+	}
+
+	public static void addMod(Module m) {
+		mods.add(m);
+		EventManager.register(m);
+		Mystra.valueManager.registerObject(m.getName(), m);
+	}
+
+	public static ArrayList<Module> getModules() {
+		return mods;
+	}
+	
+	public static Module getModule(String name) {
+        return mods.stream().filter(m -> m.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+    }
+
+	public static void onUpdate() {
+		for(Module m: mods) {
+			m.onUpdate();
+		}
+	}
+
+	public static void onRender() {
+		for(Module m: mods) {
+			m.onRender();
+		}
+	}
+
+	public static void onKeyPressed(int k){
+		for(Module m: mods) {
+			if(m.getKey() == k) {
+				m.toggle();
+			}
+		}
+	}
+
+	public static void addChatMessage(String s){
+		Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("§5Mystra: §f" + s));
+	}
+
+	public static boolean onSendChatMessage(String s){
+		if(s.startsWith(".")) {
+			cmdManager.callCommand(s.substring(1));
+			return false;
+		}
+		for(Module m: getModules()) {
+			if(m.isToggled()) {
+				return m.onSendChatMessage(s);
+			}
+		}
+		return true;
+	}
+
+	public static boolean onRecieveChatMessage(S02PacketChat packet) {
+		for(Module m: getModules()) {
+			if(m.isToggled()) {
+				return m.onRecieveChatMessage(packet);
+			}
+		}
+		return true;
+	}
+}

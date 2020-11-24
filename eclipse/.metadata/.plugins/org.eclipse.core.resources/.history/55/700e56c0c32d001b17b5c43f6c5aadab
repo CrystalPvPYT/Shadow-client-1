@@ -1,0 +1,93 @@
+package me.mystra;
+
+import org.lwjgl.opengl.Display;
+
+import me.mystra.clickgui.clickgui.ClickGUI;
+import me.mystra.clickgui.settings.SettingsManager;
+import me.mystra.event.EventManager;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.EventKey;
+import me.mystra.hud.GuiIngameHook;
+import me.mystra.hud.MystraTabGui;
+import me.mystra.module.Module;
+import me.mystra.module.ModuleManager;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.util.ChatComponentText;
+
+public class Mystra {
+    public static String name = "Mystra"; // CLIENT NAME
+    public static String uiname = "M§ffystra"; // DISPLAYS ON UI
+
+	public String version = "1.5"; // BUILD
+	public static String developer = "Crystal"; // DEVELOPER
+
+    public static Mystra instance = new Mystra(); // INSTANCE
+    
+    public SettingsManager settingsManager;
+    public EventManager eventManager;
+    public ModuleManager moduleManager;
+    public static GuiIngameHook guihook;
+    public static MystraTabGui tabgui;
+    public ClickGUI clickGui;
+    //private DiscordRP discordRP = new DiscordRP();
+    
+    //Font
+    public static Minecraft mc = Minecraft.getMinecraft();
+    public static FontRenderer fr = Minecraft.getMinecraft().fontRendererObj;
+
+    public void startClient() {
+    	
+    	/*
+    	 * Initializes on startup.
+    	*/
+        //discordRP.start();
+
+        /*
+         *  Applys the application title and prints out credentials.
+         */
+        
+        System.out.println("[" + name + "] Starting Mystra b" + version + ", coded by " + developer);
+        Display.setTitle(name + " b" + version);
+        
+        System.out.println("Loaded Modules: " + Mystra.instance.moduleManager.getModules().size());
+        eventManager.register(this);
+    }
+
+    public void stopClient() {
+    	
+    	/*
+    	 *  Stops all applications running.
+    	 */
+    	
+    	//discordRP.shutdown();
+        eventManager.unregister(this);
+    }
+    
+    @EventTarget
+    public void onKey(EventKey event) {
+        moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+    }
+    public static void onRender(){
+		for(Module m: Mystra.instance.moduleManager.getModules()){
+			m.onRender();
+		}
+	}
+    
+    /*public DiscordRP getDiscordRP() { // DiscordAPI
+    	return discordRP;
+    }
+    
+    /*
+     *  Mystra Chat Module
+     */
+    
+    public static void addChatMessage(String s){
+        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("§7[ " + "§bMystra§7] §f" + s));
+    }
+    
+    /*
+     *  OTHER SERVICES
+     */
+
+}

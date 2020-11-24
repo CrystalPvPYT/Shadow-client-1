@@ -1,0 +1,13 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class Safewalk extends Module{
+
+	public Safewalk() {
+		super("Safewalk", Keyboard.KEY_L, Category.MOVEMENT);
+	}
+
+}

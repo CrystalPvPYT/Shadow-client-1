@@ -1,0 +1,13 @@
+package mystra.mods;
+
+import mystra.main.Category;
+
+public class Derp extends Module{
+	
+	private ModeVaule mode = new ModeValue("Mode", "Beyblade", "Beyblade", "Random");
+
+	public Derp() {
+		super("Derp", 0, Category.PLAYER);
+	}
+
+}

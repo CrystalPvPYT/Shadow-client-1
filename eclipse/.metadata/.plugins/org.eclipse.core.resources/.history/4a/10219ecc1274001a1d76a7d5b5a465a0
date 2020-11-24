@@ -1,0 +1,39 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import com.darkmagician6.eventapi.EventTarget;
+
+import mystra.events.ReadPacketEvent;
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.PacketThreadUtil;
+import net.minecraft.network.play.server.S12PacketEntityVelocity;
+
+public class AntiKnockback extends Module{
+
+	public AntiKnockback() {
+		super("AntiKnockback", Keyboard.KEY_K, Category.MOVEMENT);
+	}
+	
+	@EventTarget
+	public void onReadReadPacketEvent(ReadPacketEvent event) {
+		if(event.getState() == ReadPacketEvent.PacketState.PRE);
+		if(event.getPacket() instanceof S12PacketEntityVelocity) {
+			event.setCancelled(true);
+		}
+	}
+	
+	@Override
+	public void onEnable() {
+		super.onEnable();
+	}
+	
+	@Override
+	public void onDisable() {
+		super.onDisable();
+	}
+	
+}

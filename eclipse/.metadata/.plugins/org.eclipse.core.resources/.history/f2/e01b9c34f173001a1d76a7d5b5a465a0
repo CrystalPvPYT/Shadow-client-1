@@ -1,0 +1,34 @@
+package mystra.mods;
+
+import org.darkstorm.minecraft.gui.component.BoundedRangeComponent.ValueDisplay;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+import mystra.utils.Wrapper;
+import mystra.values.Value;
+
+public class Step extends Module{
+	
+	Value stepHeight = new Value("Step Height", 1, 1, 5, ValueDisplay.INTEGER);
+
+	public Step() {
+		super("Step", 0, Category.MOVEMENT);
+	}
+	
+	public void onUpdate(){
+		if(this.getState()){
+			Wrapper.mc.getMinecraft().thePlayer.stepHeight = (float) stepHeight.getValue();
+		}else{
+			Wrapper.mc.getMinecraft().thePlayer.stepHeight = 0.5f;
+		}
+	}
+	
+	@Override
+    public void onEnable() {
+    	NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "Step Toggled", 1));
+    	super.onEnable();
+    }
+
+}

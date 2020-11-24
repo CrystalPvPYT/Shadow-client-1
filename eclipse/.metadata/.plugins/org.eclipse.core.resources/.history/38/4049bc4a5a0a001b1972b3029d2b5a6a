@@ -1,0 +1,140 @@
+package me.mystra.module.combat;
+
+import me.mystra.Mystra;
+import me.mystra.clickgui.settings.Setting;
+import me.mystra.event.EventManager;
+import me.mystra.event.EventTarget;
+import me.mystra.event.events.EventPreMotionUpdate;
+import me.mystra.event.events.EventUpdate;
+import me.mystra.module.Category;
+import me.mystra.module.Module;
+import me.mystra.utils.TimeHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.util.MathHelper;
+
+public class Aura extends Module {
+	public boolean EntityHitting = false;
+	private float delay;
+	private float range;
+	public static Entity e1;
+	private TimeHelper timeHelper = new TimeHelper();
+    public Aura() {
+        super("Aura", 0, Category.COMBAT);
+     
+		Mystra.instance.settingsManager.rSetting(new Setting("Delay", this, 14.33, 1, 70.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Range", this, 4.0, 1.0, 6.0, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Invisibles", this, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Animals", this, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Players", this, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("Monsters", this, false));
+		Mystra.instance.settingsManager.rSetting(new Setting("DeathLives", this, false));
+    }
+    @EventTarget
+	public void onUpdate(EventUpdate e) {
+		delay = ((float) Mystra.instance.settingsManager.getSettingByName("Delay").getValDouble());
+		range = ((float) Mystra.instance.settingsManager.getSettingByName("Range").getValDouble());
+	}
+
+	@EventTarget
+	public void onPre(EventPreMotionUpdate event) {
+		for (Object o : mc.theWorld.loadedEntityList) {
+			if (o instanceof EntityLivingBase) {
+				if (o != mc.thePlayer) {
+					EntityLivingBase e = (EntityLivingBase) o;
+					
+					if (check(e) && (timeHelper.isDelayComplete(1000 / delay))) {
+						attack(e);
+						e1 = e;
+					}
+				}
+			}
+		}
+		float rot[] = getRotationsNeeded(e1);
+		event.setPitch(rot[1]);
+		event.setYaw(rot[0]);
+		this.EntityHitting = true;
+	}
+	private boolean check(EntityLivingBase e) {
+		if (e.isInvisible())
+			if(Mystra.instance.settingsManager.getSettingByName("Invisibles").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if (e.getHealth() <= 0)
+			if(Mystra.instance.settingsManager.getSettingByName("DeathLives").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		if (e instanceof EntityAnimal) {
+			if(Mystra.instance.settingsManager.getSettingByName("Animals").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		if (e instanceof EntityPlayer) {
+			if(Mystra.instance.settingsManager.getSettingByName("Players").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		if (e instanceof EntityMob) {
+			if(Mystra.instance.settingsManager.getSettingByName("Monsters").getValBoolean()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
+
+	}
+	private void attack(EntityLivingBase e) {
+		if (e.getDistanceToEntity(mc.thePlayer) <= range) {
+			if (EntityHitting) {
+				mc.thePlayer.swingItem();
+				mc.thePlayer.sendQueue.addToSendQueue(new C02PacketUseEntity(e, C02PacketUseEntity.Action.ATTACK));
+				timeHelper.setLastMS();
+				e1 = null;
+				EntityHitting = false;
+			}
+		}
+	}
+	public float[] getRotationsNeeded(Entity entity) {
+		float yaw;
+		float pitch;
+		double diffX = entity.posX - Minecraft.getMinecraft().thePlayer.posX;
+		double diffY;
+		if ((entity instanceof EntityLivingBase)) {
+			EntityLivingBase entityLivingBase = (EntityLivingBase) entity;
+			diffY = entityLivingBase.posY + entityLivingBase.getEyeHeight() * 0.9D - (Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight());
+		} else {
+			diffY = (entity.boundingBox.minY + entity.boundingBox.maxY) / 2.0D - (Minecraft.getMinecraft().thePlayer.posY + Minecraft.getMinecraft().thePlayer.getEyeHeight());
+		}
+		double diffZ = entity.posZ - Minecraft.getMinecraft().thePlayer.posZ;
+		double dist = MathHelper.sqrt_double(diffX * diffX + diffZ * diffZ);
+		yaw = (float) (Math.atan2(diffZ, diffX) * 180.0D / 3.141592653589793D) - 90.0F;
+		pitch = (float) -(Math.atan2(diffY, dist) * 180.0D / 3.141592653589793D);
+		return new float[] {
+				Minecraft.getMinecraft().thePlayer.rotationYaw + MathHelper.wrapAngleTo180_float(yaw - Minecraft.getMinecraft().thePlayer.rotationYaw),
+				Minecraft.getMinecraft().thePlayer.rotationPitch + MathHelper.wrapAngleTo180_float(pitch - Minecraft.getMinecraft().thePlayer.rotationPitch) 
+	    };
+	}
+	public void onEnable(){
+		EventManager.register(this);
+	}
+	public void onDisable(){
+		EventManager.unregister(this);
+		timeHelper.reset();
+		e1 = null;
+		EntityHitting = false;
+	}
+}

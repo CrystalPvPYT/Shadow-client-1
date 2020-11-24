@@ -1,0 +1,23 @@
+[21:00:22] [Client thread/INFO]: Setting user: Player630
+[21:00:22] [Client thread/INFO]: (Session ID is token:0:Player630)
+[21:00:23] [Client thread/INFO]: LWJGL Version: 2.9.4
+[21:00:24] [Client thread/INFO]: Reloading ResourceManager: Default, §5Such§8PvP §8[§7256x§8].zip
+[21:00:24] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[21:00:24] [Thread-6/INFO]: Initializing LWJGL OpenAL
+[21:00:24] [Thread-6/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[21:00:24] [Thread-6/INFO]: OpenAL initialized.
+[21:00:25] [Sound Library Loader/INFO]: Sound engine started
+[21:00:29] [Client thread/INFO]: Created: 4096x2048 textures-atlas
+[21:00:32] [Server thread/INFO]: Starting integrated minecraft server version 1.8.8
+[21:00:32] [Server thread/INFO]: Generating keypair
+[21:00:32] [Server thread/INFO]: Preparing start region for level 0
+[21:00:32] [Server thread/INFO]: Changing view distance to 20, from 10
+[21:00:33] [Server thread/INFO]: Player630[local:E:60c1f56d] logged in with entity id 193 at (575.8964277421911, 77.19755636690795, 178.31581923468315)
+[21:00:33] [Server thread/INFO]: Player630 joined the game
+[21:00:34] [Client thread/ERROR]: ########## GL ERROR ##########
+[21:00:34] [Client thread/ERROR]: @ Pre render
+[21:00:34] [Client thread/ERROR]: 1281: Invalid value
+[21:00:41] [Server thread/INFO]: Saving and pausing game...
+[21:00:41] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Overworld
+[21:00:41] [Server thread/INFO]: Saving chunks for level 'mcpworld'/Nether
+[21:00:41] [Server thread/INFO]: Saving chunks for level 'mcpworld'/The End

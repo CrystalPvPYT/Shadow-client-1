@@ -1,0 +1,39 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+import mystra.notifications.Notification;
+import mystra.notifications.NotificationManager;
+import mystra.notifications.NotificationType;
+
+public class AntiKnockback extends Module{
+
+    public AntiKnockback() {
+        super("AntiKnockback", Keyboard.KEY_K, Category.MOVEMENT);
+    }
+    public void onRender() {
+        if(this.isToggled())
+        {
+            if(mc.thePlayer.hurtTime > 0.0)
+            {
+                mc.thePlayer.motionX = 50;
+                mc.thePlayer.motionY = 50;
+                mc.thePlayer.motionZ = 50;
+            }
+        }
+    }
+
+    @Override
+    public void onEnable() {
+        NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "AntiKnockback Disabled", 1));
+        super.onEnable();
+    }
+
+    @Override
+    public void onDisable() {
+        NotificationManager.show(new Notification(NotificationType.INFO, "Mystra", "AntiKnockback Disabled", 1));
+        super.onDisable();
+    }
+
+}

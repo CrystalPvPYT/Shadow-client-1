@@ -1,0 +1,5 @@
+package me.mystra.event.events;
+
+public class EventSafeWalk {
+
+}

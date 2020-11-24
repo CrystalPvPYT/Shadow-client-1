@@ -1,0 +1,46 @@
+package mystra.main;
+
+import org.newdawn.slick.opengl.renderer.Renderer;
+
+import mystra.gui.UIRenderer;
+import mystra.mods.Module;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngame;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.renderer.GlStateManager;
+
+public class GuiIngameHook extends GuiIngame{
+	public GuiIngameHook(Minecraft mcIn) {
+		super(mcIn);
+	}
+
+	public String renderGameOverlay(float partialTicks)
+    {
+		super.renderGameOverlay(partialTicks);
+        ScaledResolution scaledresolution = new ScaledResolution(this.mc);
+        this.mc.entityRenderer.setupOverlayRendering();
+        GlStateManager.enableBlend();
+
+        int count = 0;
+
+        for(Module m: Mystra.getModules()) {
+        	if(m.isToggled()) {
+        		mc.fontRendererObj.drawString(m.getName(), 9, 85 + (count*10), 0x000000);
+        		mc.fontRendererObj.drawString(m.getName(), 9, 87 + (count*10), 0x800080);
+        		mc.fontRendererObj.drawString(m.getName(), 9, 86 + (count*10), 0x000000);
+        		count ++;
+        	}
+        	
+        	String getColorString(int value; int best; int good; int mid; int bad; int worst; boolean rev;) {
+        		if(!rev ? value > best : value < best) return "§2";
+        		else if(!rev ? value > good : value < good) return "§a";
+        		else if(!rev ? value > mid : value < mid) return "§e";
+        		else if(!rev ? value > bad : value < bad) return "§6";
+        		else if(!rev ? value > worst : value < worst) return "§c";
+        		else return "§4";
+        	}
+        }
+        UIRenderer.renderAndUpdateFrames();
+    }
+	
+}

@@ -1,0 +1,27 @@
+package mystra.commands;
+
+import mystra.command.Command;
+
+public class SpeedMode extends Command{
+
+	@Override
+	public String getAlias() {
+		return "speedmode";
+	}
+
+	@Override
+	public String getDescription() {
+		return "Changes speed mode";
+	}
+
+	@Override
+	public String getSyntax() {
+		return ".toggle <mode>";
+	}
+
+	@Override
+	public void onCommand(String command, String[] args) throws Exception {		
+		if(args.length != 1)
+	}
+
+}

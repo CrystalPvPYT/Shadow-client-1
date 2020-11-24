@@ -1,0 +1,13 @@
+package mystra.mods;
+
+import org.lwjgl.input.Keyboard;
+
+import mystra.main.Category;
+
+public class AntiKB extends Module{
+
+	public AntiKB() {
+		super("AntiKB", Keyboard.KEY_K, Category.MOVEMENT);
+		}
+
+}
