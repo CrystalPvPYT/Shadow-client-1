@@ -28,6 +28,14 @@ public class GuiClientLogin extends GuiScreen {
 	
 	@Override
 	public void initGui() {
+		try{
+			if(isAllowedToRun()){
+				Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
+				return;
+			}
+		} catch (Exception ignored){
+
+		}
 		this.loginBox = new GuiTextBoxLogin(0, fontRendererObj, "License Key", width / 2 - 150, height / 2 - 16, 300, 30);
 		//this.buttonList.add(new GuiButton(0, width / 2 - 150, height / 2 + 15, 300, 30, "Login"));
 		this.buttonList.add(new GuiButton(1, width / 2 - 150, height / 2 + 35, 300, 20, "Buy Mystra").setBaseColor(new Color(0, 0, 0, 150)));
@@ -43,14 +51,7 @@ public class GuiClientLogin extends GuiScreen {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		try{
-			if(isAllowedToRun()){
-				Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
-				return;
-			}
-		} catch (Exception ignored){
 
-		}
 		drawBackground(mouseX);
 		loginBox.drawTextBox(mouseX, mouseY);
 
