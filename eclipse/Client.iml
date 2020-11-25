@@ -87,7 +87,7 @@
       <sourceFolder url="file://$MODULE_DIR$/../src/minecraft" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="jdk" jdkName="JavaSE-1.8" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="module-library">
       <library name="1.8.8.jar">
         <CLASSES>
@@ -365,7 +365,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../lib/slick.jar!/" />
+          <root url="jar://$USER_HOME$/OneDrive/Skrivebord/SlickV2/lib/slick.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
