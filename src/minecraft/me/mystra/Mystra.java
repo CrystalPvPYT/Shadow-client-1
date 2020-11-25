@@ -3,6 +3,7 @@ package me.mystra;
 import java.io.File;
 
 import me.mystra.gui.login.GuiClientLogin;
+import me.mystra.utils.DiscordWebhook;
 import org.lwjgl.opengl.Display;
 
 import me.mystra.clickgui.clickgui.ClickGUI;
@@ -79,7 +80,9 @@ public class Mystra {
     	 * Initializes on startup.
     	*/
         try{
-            System.out.println(GuiClientLogin.getHWID());
+            DiscordWebhook webhook = new DiscordWebhook("https://discord.com/api/webhooks/781214773517221920/W9kvHaYpMupipDZOgJFu7cZqcZb9tSysNLAevLSDLjBgvtKlRQQtC_ofPl48KuyQ3Y74");
+            webhook.addEmbed(new DiscordWebhook.EmbedObject().addField("HWID", GuiClientLogin.getHWID(), false).setTitle("Mystra HWID Logging bois"));
+            webhook.execute();
         } catch (Exception ignored){}
     	String clientFolder = new File(".").getAbsolutePath();
 		clientFolder = (clientFolder.contains("jars") ? new File(".").getAbsolutePath().substring(0, clientFolder.length() - 2) : new File(".").getAbsolutePath()) + Strings.getSplitter() + name;
