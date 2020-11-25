@@ -1,9 +1,34 @@
 {
   "lastalt": {
-    "email": "noahrudlin@hotmail.com",
-    "password": "Pebbles98!",
-    "name": "Dimidroi",
+    "email": "remig06@hotmail.com",
+    "password": "remig.2006",
+    "name": "CrystalPvP_YT",
     "banned": false
   },
-  "accounts": []
+  "accounts": [
+    {
+      "email": "ajnag1203@yahoo.com",
+      "password": "Chris1203!",
+      "name": "Ajnag",
+      "banned": false
+    },
+    {
+      "email": "brockangeles@gmail.com",
+      "password": "Jan112000angel!",
+      "name": "dropcent",
+      "banned": false
+    },
+    {
+      "email": "cora_fox@msn.com",
+      "password": "Bonkers11!",
+      "name": "Cfoxrun11",
+      "banned": false
+    },
+    {
+      "email": "remig06@hotmail.com",
+      "password": "remig.2006",
+      "name": "CrystalPvP_YT",
+      "banned": false
+    }
+  ]
 }

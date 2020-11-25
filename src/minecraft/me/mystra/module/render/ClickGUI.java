@@ -17,7 +17,7 @@ public class ClickGUI extends Module {
     @Override
     public void setup() {
         ArrayList<String> options = new ArrayList<>();
-        options.add("Shadow");
+        options.add("Mystra");
         Mystra.instance.settingsManager.rSetting(new Setting("Design", this, "Mystra", options));
         Mystra.instance.settingsManager.rSetting(new Setting("Sound", this, false));
         /*Mystra.instance.settingsManager.rSetting(new Setting("GuiRed", this, 0, 0, 0, true));
