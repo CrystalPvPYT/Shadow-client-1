@@ -545,7 +545,6 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     {
     	ScaledResolution res = new ScaledResolution(this.mc);
         GlStateManager.disableAlpha();
-        String s = "Mystra by Crystal";
 
         this.drawDefaultBackground();
         //this.particles.drawParticles();

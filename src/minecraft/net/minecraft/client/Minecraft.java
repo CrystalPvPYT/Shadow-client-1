@@ -567,6 +567,8 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
+        Mystra.instance.startClient();
+
 
         if (this.serverName != null)
         {
@@ -602,7 +604,6 @@ public class Minecraft implements IThreadListener, IPlayerUsage
             this.gameSettings.enableVsync = false;
             this.gameSettings.saveOptions();
         }
-        Mystra.instance.startClient();
 
         this.renderGlobal.makeEntityOutlineShader();
     }
