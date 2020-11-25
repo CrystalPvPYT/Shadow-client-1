@@ -41,8 +41,8 @@ ofChunkUpdates:1
 ofChunkUpdatesDynamic:false
 ofTime:0
 ofClearWater:false
-ofAaLevel:0
-ofAfLevel:16
+ofAaLevel:16
+ofAfLevel:1
 ofProfiler:false
 ofBetterSnow:false
 ofSwampColors:true

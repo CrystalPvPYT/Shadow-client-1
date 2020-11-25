@@ -1,8 +1,8 @@
 {
   "lastalt": {
-    "email": "remig06@hotmail.com",
-    "password": "remig.2006",
-    "name": "CrystalPvP_YT",
+    "email": "b.ballenger85@gmail.com",
+    "password": "Gemini1985!",
+    "name": "Luceffe",
     "banned": false
   },
   "accounts": [
@@ -28,6 +28,30 @@
       "email": "remig06@hotmail.com",
       "password": "remig.2006",
       "name": "CrystalPvP_YT",
+      "banned": false
+    },
+    {
+      "email": "gamingbruker1@hotmail.com",
+      "password": "Pjusken1!",
+      "name": "Zerpexo",
+      "banned": false
+    },
+    {
+      "email": "knutso@hotmail.no",
+      "password": "Julebrus2!",
+      "name": "rockstarkont",
+      "banned": false
+    },
+    {
+      "email": "carlos_dare@hotmail.com",
+      "password": "Tnjy9qjs!",
+      "name": "Arceq",
+      "banned": false
+    },
+    {
+      "email": "b.ballenger85@gmail.com",
+      "password": "Gemini1985!",
+      "name": "Luceffe",
       "banned": false
     }
   ]
