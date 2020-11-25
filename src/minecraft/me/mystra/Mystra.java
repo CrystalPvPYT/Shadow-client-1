@@ -42,7 +42,7 @@ public class Mystra {
     public static String uiname = "S§fhadow"; // DISPLAYS ON UI
 
 	public String version = "1.0.0"; // BUILD
-	public static String developer = "Crystal"; // DEVELOPER
+	public static String developer = "Crystal#8652 & Shrunkie#0001 & Max T.#6686"; // DEVELOPER
 
     public static Mystra instance = new Mystra(); // INSTANCE
     
