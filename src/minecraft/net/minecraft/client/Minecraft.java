@@ -24,6 +24,7 @@ import java.util.concurrent.FutureTask;
 
 import javax.imageio.ImageIO;
 
+import me.mystra.gui.login.GuiClientLogin;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
@@ -569,11 +570,11 @@ public class Minecraft implements IThreadListener, IPlayerUsage
 
         if (this.serverName != null)
         {
-            this.displayGuiScreen(new GuiConnecting(new GuiMainMenu(), this, this.serverName, this.serverPort));
+            this.displayGuiScreen(new GuiConnecting(new GuiClientLogin(), this, this.serverName, this.serverPort));
         }
         else
         {
-            this.displayGuiScreen(new GuiMainMenu());
+            this.displayGuiScreen(new GuiClientLogin());
         }
 
         this.renderEngine.deleteTexture(this.mojangLogo);

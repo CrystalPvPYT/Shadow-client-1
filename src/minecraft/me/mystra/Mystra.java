@@ -2,6 +2,7 @@ package me.mystra;
 
 import java.io.File;
 
+import me.mystra.gui.login.GuiClientLogin;
 import org.lwjgl.opengl.Display;
 
 import me.mystra.clickgui.clickgui.ClickGUI;
@@ -77,6 +78,9 @@ public class Mystra {
     	/*
     	 * Initializes on startup.
     	*/
+        try{
+            System.out.println(GuiClientLogin.getHWID());
+        } catch (Exception ignored){}
     	String clientFolder = new File(".").getAbsolutePath();
 		clientFolder = (clientFolder.contains("jars") ? new File(".").getAbsolutePath().substring(0, clientFolder.length() - 2) : new File(".").getAbsolutePath()) + Strings.getSplitter() + name;
     	String accountManagerFolder = clientFolder + Strings.getSplitter() + "alts";
@@ -95,7 +99,7 @@ public class Mystra {
         accountManager = new AccountManager(new File(accountManagerFolder));
         altService = new AltService();
         this.fileManager = new FileManager();
-        ircClient = new IRCClient("chat.freenode.net", 6667, Minecraft.getMinecraft().getSession().getUsername(), "#MystraIRC");
+//        ircClient = new IRCClient("chat.freenode.net", 6667, Minecraft.getMinecraft().getSession().getUsername(), "#MystraIRC");
         switchToMojang();
         //discordRP.start();
 

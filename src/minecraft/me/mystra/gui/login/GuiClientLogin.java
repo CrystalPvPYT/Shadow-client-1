@@ -1,11 +1,17 @@
 package me.mystra.gui.login;
 
 import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
+import jdk.nashorn.api.scripting.URLReader;
 import org.lwjgl.input.Keyboard;
 
 import me.mystra.Mystra;
@@ -29,13 +35,26 @@ public class GuiClientLogin extends GuiScreen {
 		Keyboard.enableRepeatEvents(true);
 		super.initGui();
 	}
-	
+
+	public static boolean isAllowedToRun() throws MalformedURLException, UnsupportedEncodingException, NoSuchAlgorithmException {
+		BufferedReader urlReader = new BufferedReader(new URLReader(new URL("https://pastebin.com/raw/nyyviDqX")));
+		return urlReader.lines().collect(Collectors.toCollection(ArrayList::new)).contains(getHWID());
+	}
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		try{
+			if(isAllowedToRun()){
+				Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
+				return;
+			}
+		} catch (Exception ignored){
+
+		}
 		drawBackground(mouseX);
 		loginBox.drawTextBox(mouseX, mouseY);
-		
-		
+
+
 		Mystra.RENDER2D.rect(width / 2 - 150, height / 2 - 47, 300, 30, new Color(0, 0, 0, 150));
 		Mystra.fontManager.getFont("SFL 10").drawStringWithShadow("Login", (width - Mystra.fontManager.getFont("SFL 10").getWidth("Login")) / 2, height / 2 - 35, -1);
 		Mystra.fontManager.getFont("SFL 10").drawStringWithShadow("Click (Buy Mystra)", (width - Mystra.fontManager.getFont("SFL 10").getWidth("Click (Buy Mystra)")) / 2, height / 2 - 85, -1);
