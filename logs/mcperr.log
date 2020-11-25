@@ -1063,3 +1063,574 @@
 18:30:20 - "scalac" is not found on the PATH.  Scala files will not be recompiled
 18:30:21 - !! Can not find client bins, try recompiling !!
 18:30:21 - !! Can not find server md5s !!
+09:07:17 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+09:07:23 - '"C:\Program Files\Java\jdk1.8.0_251\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+09:07:23 - 
+09:07:23 - == ERRORS FOUND in JAVA CODE ==
+09:07:23 - 
+09:07:23 - src\minecraft\me\mystra\Mystra.java:126: error: lambda expressions are not supported in -source 1.6
+09:07:23 -         moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+09:07:23 -                                                           ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\clickgui\clickgui\ClickGUI.java:35: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		panels = new ArrayList<>();
+09:07:23 - 		                       ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\clickgui\clickgui\Panel.java:22: error: diamond operator is not supported in -source 1.6
+09:07:23 - 	public ArrayList<ModuleButton> Elements = new ArrayList<>();
+09:07:23 - 	                                                        ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\clickgui\clickgui\elements\ModuleButton.java:37: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		menuelements = new ArrayList<>();
+09:07:23 - 		                             ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\clickgui\settings\SettingsManager.java:12: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		this.settings = new ArrayList<>();
+09:07:23 - 		                              ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\gui\altmanager\impl\AccountImport.java:36: error: try-with-resources is not supported in -source 1.6
+09:07:23 - 				try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.fc.getSelectedFile()))) {
+09:07:23 - 				    ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable try-with-resources)
+09:07:23 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:57: error: diamond operator is not supported in -source 1.6
+09:07:23 -     private final Map<String, Float> cachedStringWidth = new HashMap<>();
+09:07:23 -                                                                      ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:65: error: multi-catch statement is not supported in -source 1.6
+09:07:23 -         } catch (FontFormatException | IOException e) {
+09:07:23 -                                      ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable multi-catch statement)
+09:07:23 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:243: error: lambda expressions are not supported in -source 1.6
+09:07:23 -         return cachedStringWidth.computeIfAbsent(s, e -> {
+09:07:23 -                                                       ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\hud\GuiIngameHook.java:52: error: method references are not supported in -source 1.6
+09:07:23 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+09:07:23 - 				                                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable method references)
+09:07:23 - src\minecraft\me\mystra\hud\GuiIngameHook.java:52: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+09:07:23 - 				                                                                                                                    ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\hud\draggablehud\HUDConfigScreen.java:69: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 			renderers.entrySet().forEach((entry) -> {
+09:07:23 - 			                                     ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\hud\draggablehud\IRenderer.java:9: error: default methods are not supported in -source 1.6
+09:07:23 - 	default void renderDummy(ScreenPosition pos) {
+09:07:23 - 	^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable default methods)
+09:07:23 - src\minecraft\me\mystra\hud\draggablehud\hudmods\impl\ModCPS.java:65: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 		this.clicks.removeIf(aLong -> aLong + 1000 < time);
+09:07:23 - 		                           ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\hud\notifications\NotificationManager.java:7: error: diamond operator is not supported in -source 1.6
+09:07:23 -     private static LinkedBlockingQueue<Notification> pendingNotifications = new LinkedBlockingQueue<>();
+09:07:23 -                                                                                                     ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\management\account\AccountManager.java:19: error: diamond operator is not supported in -source 1.6
+09:07:23 - 	private ArrayList<Account> accounts = new ArrayList<>();
+09:07:23 - 	                                                    ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\management\account\AccountManager.java:64: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 		getAccounts().forEach(account -> jsonArray.add((JsonElement) account.toJson()));
+09:07:23 - 		                              ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\management\command\variables\FriendManager.java:11: error: diamond operator is not supported in -source 1.6
+09:07:23 -     public final static List<Friend> friends = new ArrayList<>();
+09:07:23 -                                                              ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\management\file\FileManager.java:25: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 		return clientFiles.stream().filter(file -> file.getClass() == clazz).findFirst().orElse(null);
+09:07:23 - 		                                        ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\module\ModuleManager.java:129: error: lambda expressions are not supported in -source 1.6
+09:07:23 -         return modules.stream().filter(module -> module.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+09:07:23 -                                               ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\module\combat\AntiBot.java:23: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\combat\Aura.java:46: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\combat\Criticals.java:22: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\combat\SwordAnimation.java:15: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\misc\Cosmetics.java:15: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\misc\Disabler.java:23: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\misc\HUD.java:15: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\FastLadder.java:20: error: diamond operator is not supported in -source 1.6
+09:07:23 -       ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                 ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\Fly.java:34: error: diamond operator is not supported in -source 1.6
+09:07:23 - 	ArrayList<Packet> packetListZ = new ArrayList<>();
+09:07:23 - 	                                              ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\Glide.java:24: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\LongJump.java:29: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\Phase.java:18: error: diamond operator is not supported in -source 1.6
+09:07:23 - 	ArrayList<Packet> packetListZ = new ArrayList<>();
+09:07:23 - 	                                              ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\Scaffold.java:38: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\Speed.java:65: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\movement\Velocity.java:22: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\player\AutoPlay.java:35: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\player\FastEat.java:20: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\player\InventoryHelper.java:36: error: diamond operator is not supported in -source 1.6
+09:07:23 - 	private List<Integer> trash = new ArrayList<>();
+09:07:23 - 	                                            ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\player\NoFall.java:21: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\render\ClickGUI.java:19: error: diamond operator is not supported in -source 1.6
+09:07:23 -         ArrayList<String> options = new ArrayList<>();
+09:07:23 -                                                   ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\render\ESP.java:51: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\render\ESP2DMod.java:54: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\render\ItemESP.java:32: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		ArrayList<String> options = new ArrayList<>();
+09:07:23 - 		                                          ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\render\Skeletons.java:23: error: diamond operator is not supported in -source 1.6
+09:07:23 - 	private final Map<EntityPlayer, float[][]> playerRotationMap = (Map)new WeakHashMap<>();
+09:07:23 - 	                                                                                    ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\module\render\Skeletons.java:62: error: method references are not supported in -source 1.6
+09:07:23 -         this.playerRotationMap.keySet().removeIf(this::contain);
+09:07:23 -                                                        ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable method references)
+09:07:23 - src\minecraft\me\mystra\thealtening\AltService.java:23: error: diamond operator is not supported in -source 1.6
+09:07:23 - 		HashMap<String, URL> userAuthenticationModifies = new HashMap<>();
+09:07:23 - 		                                                              ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\thealtening\AltService.java:30: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 		userAuthenticationModifies.forEach((key, value) -> {
+09:07:23 - 		                                                ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\thealtening\SSLVerification.java:43: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 		HttpsURLConnection.setDefaultHostnameVerifier((hostname, sslSession) -> (hostname.equals("authserver.thealtening.com") || hostname.equals("sessionserver.thealtening.com")));
+09:07:23 - 		                                                                     ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\utils\RaycastUtil.java:32: error: method references are not supported in -source 1.6
+09:07:23 -             final List<Entity> list = MC.theWorld.getEntitiesInAABBexcluding(player, player.getEntityBoundingBox().addCoord(looks.xCoord * range, looks.yCoord * range, looks.zCoord * range).expand(1, 1, 1), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
+09:07:23 -                                                                                                                                                                                                                                                                       ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable method references)
+09:07:23 - src\minecraft\me\mystra\utils\gui\AnimationUtil.java:29: error: multi-catch statement is not supported in -source 1.6
+09:07:23 - 		} catch (InstantiationException | IllegalAccessException e) {
+09:07:23 - 		                                ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable multi-catch statement)
+09:07:23 - src\minecraft\me\mystra\utils\gui\ClipboardUtil.java:23: error: multi-catch statement is not supported in -source 1.6
+09:07:23 - 		} catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+09:07:23 - 		                           ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable multi-catch statement)
+09:07:23 - src\minecraft\me\mystra\utils\particles\ParticleUtil.java:26: error: lambda expressions are not supported in -source 1.6
+09:07:23 - 		this.particles.forEach(particle -> particle.drawParticle());
+09:07:23 - 		                                ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\utils\player\PlayerUtils2.java:49: error: lambda expressions are not supported in -source 1.6
+09:07:23 -         list.sort((entity, entity2) -> {
+09:07:23 -                                     ^
+09:07:23 - 
+09:07:23 -   (use -source 8 or higher to enable lambda expressions)
+09:07:23 - src\minecraft\me\mystra\utils\render\GlyphPage.java:21: error: diamond operator is not supported in -source 1.6
+09:07:23 -     private HashMap<Character, Glyph> glyphCharacterMap = new HashMap<>();
+09:07:23 -                                                                       ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable diamond operator)
+09:07:23 - src\minecraft\me\mystra\utils\render\Strings.java:22: error: multi-catch statement is not supported in -source 1.6
+09:07:23 - 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+09:07:23 - 		                                  ^
+09:07:23 - 
+09:07:23 -   (use -source 7 or higher to enable multi-catch statement)
+09:07:23 - 55 errors
+09:07:23 - ==================
+09:07:23 - 
+09:07:23 - !! Can not find server sources, try decompiling !!
+09:09:00 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+09:09:00 - !! Can not find client bins, try recompiling !!
+09:09:00 - !! Can not find server md5s !!
+09:09:09 - "scalac" is not found on the PATH.  Scala files will not be recompiled
+09:09:12 - '"C:\Program Files\Java\jdk1.8.0_251\bin\javac" -Xlint:-options -deprecation -g -source 1.6 -target 1.6 -classpath "jars\versions\1.8.8\1.8.8.jar;lib;lib\*;jars\libraries\net\java\jinput\jinput\2.0.5\jinput-2.0.5.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl-platform\2.9.4-nightly-20150209\lwjgl-platform-2.9.4-nightly-20150209-natives-windows.jar;jars\libraries\com\ibm\icu\icu4j-core-mojang\51.2\icu4j-core-mojang-51.2.jar;jars\libraries\tv\twitch\twitch-external-platform\4.5\twitch-external-platform-4.5-natives-windows-64.jar;jars\libraries\org\apache\httpcomponents\httpcore\4.3.2\httpcore-4.3.2.jar;jars\libraries\org\apache\logging\log4j\log4j-api\2.0-beta9\log4j-api-2.0-beta9.jar;jars\libraries\org\apache\commons\commons-lang3\3.3.2\commons-lang3-3.3.2.jar;jars\libraries\net\java\dev\jna\jna\3.4.0\jna-3.4.0.jar;jars\libraries\com\paulscode\libraryjavasound\20101123\libraryjavasound-20101123.jar;jars\libraries\net\sf\jopt-simple\jopt-simple\4.6\jopt-simple-4.6.jar;jars\libraries\com\google\guava\guava\17.0\guava-17.0.jar;jars\libraries\oshi-project\oshi-core\1.1\oshi-core-1.1.jar;jars\libraries\org\apache\httpcomponents\httpclient\4.3.3\httpclient-4.3.3.jar;jars\libraries\org\apache\commons\commons-compress\1.8.1\commons-compress-1.8.1.jar;jars\libraries\net\java\dev\jna\platform\3.4.0\platform-3.4.0.jar;jars\libraries\com\paulscode\codecjorbis\20101023\codecjorbis-20101023.jar;jars\libraries\com\paulscode\soundsystem\20120107\soundsystem-20120107.jar;jars\libraries\com\paulscode\librarylwjglopenal\20100824\librarylwjglopenal-20100824.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl_util\2.9.4-nightly-20150209\lwjgl_util-2.9.4-nightly-20150209.jar;jars\libraries\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;jars\libraries\net\java\jutils\jutils\1.0.0\jutils-1.0.0.jar;jars\libraries\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;jars\libraries\org\lwjgl\lwjgl\lwjgl\2.9.4-nightly-20150209\lwjgl-2.9.4-nightly-20150209.jar;jars\libraries\commons-io\commons-io\2.4\commons-io-2.4.jar;jars\libraries\com\mojang\realms\1.7.39\realms-1.7.39.jar;jars\libraries\com\mojang\authlib\1.5.21\authlib-1.5.21.jar;jars\libraries\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar;jars\libraries\com\mojang\netty\1.6\netty-1.6.jar;jars\libraries\tv\twitch\twitch\6.5\twitch-6.5.jar;jars\libraries\com\paulscode\codecwav\20101023\codecwav-20101023.jar;jars\libraries\tv\twitch\twitch-platform\6.5\twitch-platform-6.5-natives-windows-64.jar;jars\libraries\net\java\jinput\jinput-platform\2.0.5\jinput-platform-2.0.5-natives-windows.jar;jars\libraries\org\apache\logging\log4j\log4j-core\2.0-beta9\log4j-core-2.0-beta9.jar;jars\libraries\io\netty\netty-all\4.0.23.Final\netty-all-4.0.23.Final.jar" -sourcepath src\minecraft -d bin\minecraft @temp\java_src_client.txt' failed : 1
+09:09:12 - 
+09:09:12 - == ERRORS FOUND in JAVA CODE ==
+09:09:12 - 
+09:09:12 - src\minecraft\me\mystra\Mystra.java:126: error: lambda expressions are not supported in -source 1.6
+09:09:12 -         moduleManager.getModules().stream().filter(module -> module.getKey() == event.getKey()).forEach(module -> module.toggle());
+09:09:12 -                                                           ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\clickgui\clickgui\ClickGUI.java:35: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		panels = new ArrayList<>();
+09:09:12 - 		                       ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\clickgui\clickgui\Panel.java:22: error: diamond operator is not supported in -source 1.6
+09:09:12 - 	public ArrayList<ModuleButton> Elements = new ArrayList<>();
+09:09:12 - 	                                                        ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\clickgui\clickgui\elements\ModuleButton.java:37: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		menuelements = new ArrayList<>();
+09:09:12 - 		                             ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\clickgui\settings\SettingsManager.java:12: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		this.settings = new ArrayList<>();
+09:09:12 - 		                              ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\gui\altmanager\impl\AccountImport.java:36: error: try-with-resources is not supported in -source 1.6
+09:09:12 - 				try (BufferedReader bufferedReader = new BufferedReader(new FileReader(this.fc.getSelectedFile()))) {
+09:09:12 - 				    ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable try-with-resources)
+09:09:12 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:57: error: diamond operator is not supported in -source 1.6
+09:09:12 -     private final Map<String, Float> cachedStringWidth = new HashMap<>();
+09:09:12 -                                                                      ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:65: error: multi-catch statement is not supported in -source 1.6
+09:09:12 -         } catch (FontFormatException | IOException e) {
+09:09:12 -                                      ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable multi-catch statement)
+09:09:12 - src\minecraft\me\mystra\gui\splashscreen\UnicodeFontRenderer.java:243: error: lambda expressions are not supported in -source 1.6
+09:09:12 -         return cachedStringWidth.computeIfAbsent(s, e -> {
+09:09:12 -                                                       ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\hud\GuiIngameHook.java:52: error: method references are not supported in -source 1.6
+09:09:12 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+09:09:12 - 				                                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable method references)
+09:09:12 - src\minecraft\me\mystra\hud\GuiIngameHook.java:52: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 				Mystra.instance.moduleManager.getModules().stream().filter(Module::isToggled).sorted(Comparator.comparingInt(module -> -font.getStringWidth(module.getDisplayName()))).forEach(module -> {
+09:09:12 - 				                                                                                                                    ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\hud\draggablehud\HUDConfigScreen.java:69: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 			renderers.entrySet().forEach((entry) -> {
+09:09:12 - 			                                     ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\hud\draggablehud\IRenderer.java:9: error: default methods are not supported in -source 1.6
+09:09:12 - 	default void renderDummy(ScreenPosition pos) {
+09:09:12 - 	^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable default methods)
+09:09:12 - src\minecraft\me\mystra\hud\draggablehud\hudmods\impl\ModCPS.java:65: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 		this.clicks.removeIf(aLong -> aLong + 1000 < time);
+09:09:12 - 		                           ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\hud\notifications\NotificationManager.java:7: error: diamond operator is not supported in -source 1.6
+09:09:12 -     private static LinkedBlockingQueue<Notification> pendingNotifications = new LinkedBlockingQueue<>();
+09:09:12 -                                                                                                     ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\management\account\AccountManager.java:19: error: diamond operator is not supported in -source 1.6
+09:09:12 - 	private ArrayList<Account> accounts = new ArrayList<>();
+09:09:12 - 	                                                    ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\management\account\AccountManager.java:64: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 		getAccounts().forEach(account -> jsonArray.add((JsonElement) account.toJson()));
+09:09:12 - 		                              ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\management\command\variables\FriendManager.java:11: error: diamond operator is not supported in -source 1.6
+09:09:12 -     public final static List<Friend> friends = new ArrayList<>();
+09:09:12 -                                                              ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\management\file\FileManager.java:25: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 		return clientFiles.stream().filter(file -> file.getClass() == clazz).findFirst().orElse(null);
+09:09:12 - 		                                        ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\module\ModuleManager.java:129: error: lambda expressions are not supported in -source 1.6
+09:09:12 -         return modules.stream().filter(module -> module.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
+09:09:12 -                                               ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\module\combat\AntiBot.java:23: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\combat\Aura.java:46: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\combat\Criticals.java:22: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\combat\SwordAnimation.java:15: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\misc\Cosmetics.java:15: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\misc\Disabler.java:23: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\misc\HUD.java:15: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\FastLadder.java:20: error: diamond operator is not supported in -source 1.6
+09:09:12 -       ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                 ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\Fly.java:34: error: diamond operator is not supported in -source 1.6
+09:09:12 - 	ArrayList<Packet> packetListZ = new ArrayList<>();
+09:09:12 - 	                                              ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\Glide.java:24: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\LongJump.java:29: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\Phase.java:18: error: diamond operator is not supported in -source 1.6
+09:09:12 - 	ArrayList<Packet> packetListZ = new ArrayList<>();
+09:09:12 - 	                                              ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\Scaffold.java:38: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\Speed.java:65: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\movement\Velocity.java:22: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\player\AutoPlay.java:35: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\player\FastEat.java:20: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\player\InventoryHelper.java:36: error: diamond operator is not supported in -source 1.6
+09:09:12 - 	private List<Integer> trash = new ArrayList<>();
+09:09:12 - 	                                            ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\player\NoFall.java:21: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\render\ClickGUI.java:19: error: diamond operator is not supported in -source 1.6
+09:09:12 -         ArrayList<String> options = new ArrayList<>();
+09:09:12 -                                                   ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\render\ESP.java:51: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\render\ESP2DMod.java:54: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\render\ItemESP.java:32: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		ArrayList<String> options = new ArrayList<>();
+09:09:12 - 		                                          ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\render\Skeletons.java:23: error: diamond operator is not supported in -source 1.6
+09:09:12 - 	private final Map<EntityPlayer, float[][]> playerRotationMap = (Map)new WeakHashMap<>();
+09:09:12 - 	                                                                                    ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\module\render\Skeletons.java:62: error: method references are not supported in -source 1.6
+09:09:12 -         this.playerRotationMap.keySet().removeIf(this::contain);
+09:09:12 -                                                        ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable method references)
+09:09:12 - src\minecraft\me\mystra\thealtening\AltService.java:23: error: diamond operator is not supported in -source 1.6
+09:09:12 - 		HashMap<String, URL> userAuthenticationModifies = new HashMap<>();
+09:09:12 - 		                                                              ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\thealtening\AltService.java:30: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 		userAuthenticationModifies.forEach((key, value) -> {
+09:09:12 - 		                                                ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\thealtening\SSLVerification.java:43: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 		HttpsURLConnection.setDefaultHostnameVerifier((hostname, sslSession) -> (hostname.equals("authserver.thealtening.com") || hostname.equals("sessionserver.thealtening.com")));
+09:09:12 - 		                                                                     ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\utils\RaycastUtil.java:32: error: method references are not supported in -source 1.6
+09:09:12 -             final List<Entity> list = MC.theWorld.getEntitiesInAABBexcluding(player, player.getEntityBoundingBox().addCoord(looks.xCoord * range, looks.yCoord * range, looks.zCoord * range).expand(1, 1, 1), Predicates.and(EntitySelectors.NOT_SPECTATING, Entity::canBeCollidedWith));
+09:09:12 -                                                                                                                                                                                                                                                                       ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable method references)
+09:09:12 - src\minecraft\me\mystra\utils\gui\AnimationUtil.java:29: error: multi-catch statement is not supported in -source 1.6
+09:09:12 - 		} catch (InstantiationException | IllegalAccessException e) {
+09:09:12 - 		                                ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable multi-catch statement)
+09:09:12 - src\minecraft\me\mystra\utils\gui\ClipboardUtil.java:23: error: multi-catch statement is not supported in -source 1.6
+09:09:12 - 		} catch (HeadlessException | UnsupportedFlavorException | IOException e) {
+09:09:12 - 		                           ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable multi-catch statement)
+09:09:12 - src\minecraft\me\mystra\utils\particles\ParticleUtil.java:26: error: lambda expressions are not supported in -source 1.6
+09:09:12 - 		this.particles.forEach(particle -> particle.drawParticle());
+09:09:12 - 		                                ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\utils\player\PlayerUtils2.java:49: error: lambda expressions are not supported in -source 1.6
+09:09:12 -         list.sort((entity, entity2) -> {
+09:09:12 -                                     ^
+09:09:12 - 
+09:09:12 -   (use -source 8 or higher to enable lambda expressions)
+09:09:12 - src\minecraft\me\mystra\utils\render\GlyphPage.java:21: error: diamond operator is not supported in -source 1.6
+09:09:12 -     private HashMap<Character, Glyph> glyphCharacterMap = new HashMap<>();
+09:09:12 -                                                                       ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable diamond operator)
+09:09:12 - src\minecraft\me\mystra\utils\render\Strings.java:22: error: multi-catch statement is not supported in -source 1.6
+09:09:12 - 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
+09:09:12 - 		                                  ^
+09:09:12 - 
+09:09:12 -   (use -source 7 or higher to enable multi-catch statement)
+09:09:12 - 55 errors
+09:09:12 - ==================
+09:09:12 - 
+09:09:12 - !! Can not find server sources, try decompiling !!

@@ -35,6 +35,7 @@
       <root url="jar://$PROJECT_DIR$/../lib/twitch-6.5.jar!/" />
       <root url="jar://$PROJECT_DIR$/../lib/twitch-external-platform-4.5-natives-windows-64.jar!/" />
       <root url="jar://$PROJECT_DIR$/../lib/twitch-platform-6.5-natives-windows-64.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../lib/slick.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

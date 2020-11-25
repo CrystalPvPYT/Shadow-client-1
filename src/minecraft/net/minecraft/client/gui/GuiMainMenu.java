@@ -558,7 +558,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     	final String clientname = "by ".concat(Mystra.developer);
     	GL11.glPushMatrix();
     	GL11.glScalef(3F, 3F, 3F);
-    	Mystra.fontManager.getFont("SFL 10").drawStringWithShadow("Mystra", (width - 625 - Mystra.fontManager.getFont("SFL 10").getWidth(clientname)) / 2, height - 330 - Mystra.fontManager.getFont("SFL 10").getHeight(clientname) - 130, novoline(300));
+    	Mystra.fontManager.getFont("SFL 10").drawStringWithShadow("Shadow", (width - 455 - Mystra.fontManager.getFont("SFL 10").getWidth(clientname)) / 2, height - 310 - Mystra.fontManager.getFont("SFL 10").getHeight(clientname) - 130, novoline(300));
         GL11.glPopMatrix();   
     	/*final String menuLogo = "Mystra";
              float scale = 1.5F;
