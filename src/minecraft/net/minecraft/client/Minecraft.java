@@ -574,6 +574,13 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         }
         else
         {
+            try{
+                if(GuiClientLogin.isAllowedToRun()){
+                    Minecraft.getMinecraft().displayGuiScreen(new GuiMainMenu());
+                    return;
+                }
+            } catch (Exception ignored){
+            }
             this.displayGuiScreen(new GuiClientLogin());
         }
 
