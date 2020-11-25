@@ -5,8 +5,8 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
-import me.mystra.event.events.EventSafeWalk;
-import me.mystra.event.events.EventStrafe;
+import store.shadowclient.client.event.events.EventSafeWalk;
+import store.shadowclient.client.event.events.EventStrafe;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;

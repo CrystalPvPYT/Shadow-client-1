@@ -2,7 +2,7 @@ package net.minecraft.util;
 
 import org.lwjgl.input.Keyboard;
 
-import me.mystra.Mystra;
+import store.shadowclient.client.Shadow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 
@@ -16,7 +16,7 @@ public MovementInputFromOptions(GameSettings gameSettingsIn) { this.gameSettings
 
 
 public void updatePlayerMoveState() {
-  if (Mystra.instance.moduleManager.getModuleByName("InvMove").isToggled() && !((Minecraft.getMinecraft()).currentScreen instanceof net.minecraft.client.gui.GuiChat)) { // Shadow InvMove
+  if (Shadow.instance.moduleManager.getModuleByName("InvMove").isToggled() && !((Minecraft.getMinecraft()).currentScreen instanceof net.minecraft.client.gui.GuiChat)) { // Shadow InvMove
     
     this.moveStrafe = 0.0F;
     this.moveForward = 0.0F;
@@ -33,12 +33,12 @@ public void updatePlayerMoveState() {
     if (Keyboard.isKeyDown(this.gameSettings.keyBindRight.getKeyCode())) {
       this.moveStrafe--;
     }
-    if (Mystra.instance.settingsManager.getSettingByName("Jump").getValBoolean()) {
+    if (Shadow.instance.settingsManager.getSettingByName("Jump").getValBoolean()) {
   	  this.jump = Keyboard.isKeyDown(this.gameSettings.keyBindJump.getKeyCode());
     } else {
   	  this.jump = this.gameSettings.keyBindJump.isKeyDown();
     }
-    if (Mystra.instance.settingsManager.getSettingByName("Sneak").getValBoolean()) {
+    if (Shadow.instance.settingsManager.getSettingByName("Sneak").getValBoolean()) {
   	  this.sneak = Keyboard.isKeyDown(this.gameSettings.keyBindSneak.getKeyCode());
     } else {
   	  this.sneak = this.gameSettings.keyBindSneak.isKeyDown();

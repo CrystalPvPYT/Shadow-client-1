@@ -8,13 +8,13 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
-import me.mystra.Mystra;
-import me.mystra.event.events.Event2D;
-import me.mystra.event.events.RenderGuiEvent;
-import me.mystra.hud.notifications.Notification;
-import me.mystra.hud.notifications.NotificationManager;
-import me.mystra.hud.notifications.NotificationType;
-import me.mystra.module.movement.Scaffold;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.event.events.Event2D;
+import store.shadowclient.client.event.events.RenderGuiEvent;
+import store.shadowclient.client.hud.notifications.Notification;
+import store.shadowclient.client.hud.notifications.NotificationManager;
+import store.shadowclient.client.hud.notifications.NotificationType;
+import store.shadowclient.client.module.movement.Scaffold;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -171,14 +171,14 @@ public class GuiIngame extends Gui
         Event2D event2D = new Event2D(scaledresolution.getScaledWidth(), scaledresolution.getScaledHeight());
         event2D.call();
 
-        Mystra.instance.guihook.mystraname();
-        Mystra.instance.guihook.HUDArrayList();
-        if(Mystra.instance.settingsManager.getSettingByName("TabGui").getValBoolean()) {
-        	Mystra.instance.tabgui.drawTabGui();
+        Shadow.instance.guihook.name();
+        Shadow.instance.guihook.HUDArrayList();
+        if(Shadow.instance.settingsManager.getSettingByName("TabGui").getValBoolean()) {
+        	Shadow.instance.tabgui.drawTabGui();
         }
         
-        if(Mystra.instance.moduleManager.getModuleByName("Scaffold").isToggled()) {
-        	if(Mystra.instance.settingsManager.getSettingByName("BlockCount").getValBoolean()) {
+        if(Shadow.instance.moduleManager.getModuleByName("Scaffold").isToggled()) {
+        	if(Shadow.instance.settingsManager.getSettingByName("BlockCount").getValBoolean()) {
         		ScaledResolution sr = new ScaledResolution(mc);
     			int color = getColor(255, 255, 0);
     			Minecraft.getMinecraft().fontRendererObj.drawStringWithShadow(Scaffold.getSuffix() + "", sr.getScaledWidth() - 995 / 2 - Minecraft.getMinecraft().fontRendererObj.getStringWidth("" + Scaffold.getBlockCount() + " Blocks left"), sr.getScaledHeight() / 2 + 12, color);
@@ -374,7 +374,7 @@ public class GuiIngame extends Gui
         }
         NotificationManager.render();
 
-        if(mc.gameSettings.MYSTRA_PERSPECTIVE.isPressed()) {
+        if(mc.gameSettings.PERSPECTIVE.isPressed()) {
         	NotificationManager.show(new Notification(NotificationType.INFO, EnumChatFormatting.WHITE + "Perspective " + EnumChatFormatting.GREEN + "Enabled", 1));
         } else {
         }
@@ -625,8 +625,8 @@ public class GuiIngame extends Gui
             String s1 = ScorePlayerTeam.formatPlayerName(scoreplayerteam1, score1.getPlayerName());
             String s2 = EnumChatFormatting.RED + "" + score1.getScorePoints();
             int l = 0;
-            if(Mystra.instance.moduleManager.getModuleByName("NoScoreboard").isToggled()) {
-            	l = (int) (k1 - k * this.getFontRenderer().FONT_HEIGHT + Mystra.instance.settingsManager.getSettingByName("Position").getValDouble());
+            if(Shadow.instance.moduleManager.getModuleByName("NoScoreboard").isToggled()) {
+            	l = (int) (k1 - k * this.getFontRenderer().FONT_HEIGHT + Shadow.instance.settingsManager.getSettingByName("Position").getValDouble());
             } else {
                 l = k1 - k * this.getFontRenderer().FONT_HEIGHT;
             }

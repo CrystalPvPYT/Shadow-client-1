@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import me.mystra.Mystra;
-import me.mystra.gui.altmanager.GuiAltManager;
-import me.mystra.gui.altmanager.impl.GuiAlteningLogin;
-import me.mystra.gui.altmanager.thread.AccountLoginThread;
-import me.mystra.management.account.Account;
-import me.mystra.thealtening.AlteningAlt;
-import me.mystra.thealtening.TheAltening;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.gui.altmanager.GuiAltManager;
+import store.shadowclient.client.gui.altmanager.impl.GuiAlteningLogin;
+import store.shadowclient.client.gui.altmanager.thread.AccountLoginThread;
+import store.shadowclient.client.management.account.Account;
+import store.shadowclient.client.thealtening.AlteningAlt;
+import store.shadowclient.client.thealtening.TheAltening;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.GuiConnecting;
 import net.minecraft.client.multiplayer.ServerData;
@@ -95,15 +95,15 @@ public class GuiDisconnected extends GuiScreen
 			}
 			if (GuiAltManager.INSTANCE.loginThread != null)
 				GuiAltManager.INSTANCE.loginThread = null;
-			Mystra.instance.getAccountManager().getAccounts().remove(GuiAltManager.INSTANCE.currentAccount);
-			Mystra.instance.getAccountManager().save();
-			Mystra.instance.getAccountManager().setLastAlt(null);
+			Shadow.instance.getAccountManager().getAccounts().remove(GuiAltManager.INSTANCE.currentAccount);
+			Shadow.instance.getAccountManager().save();
+			Shadow.instance.getAccountManager().setLastAlt(null);
 			GuiAltManager.INSTANCE.currentAccount = null;
 
 			status = "&eThe alt has been removed succesfully.";
 		}
 		if (button.id == 5 || button.id == 6) {
-			ArrayList<Account> registry = (button.id == 5 ? Mystra.instance.getAccountManager().getNotBannedAccounts() : Mystra.instance.getAccountManager().getAccounts());
+			ArrayList<Account> registry = (button.id == 5 ? Shadow.instance.getAccountManager().getNotBannedAccounts() : Shadow.instance.getAccountManager().getAccounts());
 			Random random = new Random();
 			if (registry.size() == 0) {
 				status = "&cYou don't have any account eligible for this.";
@@ -118,27 +118,27 @@ public class GuiDisconnected extends GuiScreen
 			GuiAltManager.INSTANCE.currentAccount = randomAlt;
 			try {
 				(GuiAltManager.INSTANCE.loginThread = new AccountLoginThread(user2, pass2)).start();
-				Mystra.instance.getAccountManager().save();
+				Shadow.instance.getAccountManager().save();
 				if (serverData != null)
 					this.mc.displayGuiScreen((GuiScreen) new GuiConnecting(new GuiMainMenu(), this.mc, serverData));
 			} catch (Exception exception) {
 			}
 		}
 		if (button.id == 7) {
-			if (Mystra.instance.getAccountManager().getAlteningKey() == null) {
+			if (Shadow.instance.getAccountManager().getAlteningKey() == null) {
 				status = "&cNo TheAltening key...";
 				return;
 			}
 			useTheAltening = true;
 			try {
-				TheAltening theAltening = new TheAltening(Mystra.instance.getAccountManager().getAlteningKey());
+				TheAltening theAltening = new TheAltening(Shadow.instance.getAccountManager().getAlteningKey());
 				AlteningAlt account = theAltening.generateAccount(theAltening.getUser());
 				if (!((AlteningAlt) Objects.<AlteningAlt>requireNonNull(account)).getToken().isEmpty()) {
-					Mystra.instance.getAccountManager().setAlteningKey(Mystra.instance.getAccountManager().getAlteningKey());
-					Mystra.instance.getAccountManager().setLastAlteningAlt(((AlteningAlt) Objects.<AlteningAlt>requireNonNull(account)).getToken());
+					Shadow.instance.getAccountManager().setAlteningKey(Shadow.instance.getAccountManager().getAlteningKey());
+					Shadow.instance.getAccountManager().setLastAlteningAlt(((AlteningAlt) Objects.<AlteningAlt>requireNonNull(account)).getToken());
 					GuiAlteningLogin.thread = new AccountLoginThread(((AlteningAlt) Objects.<AlteningAlt>requireNonNull(account)).getToken().replaceAll(" ", ""), "nig");
 					GuiAlteningLogin.thread.start();
-					Mystra.instance.getAccountManager().save();
+					Shadow.instance.getAccountManager().save();
 				}
 				if (serverData != null)
 					this.mc.displayGuiScreen((GuiScreen) new GuiConnecting(new GuiMainMenu(), this.mc, serverData));

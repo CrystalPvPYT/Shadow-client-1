@@ -4,7 +4,7 @@ import java.io.File;
 
 import com.mojang.authlib.GameProfile;
 
-import me.mystra.Mystra;
+import store.shadowclient.client.Shadow;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.ImageBufferDownload;
@@ -170,7 +170,7 @@ public abstract class AbstractClientPlayer extends EntityPlayer
             f *= 1.0F - f1 * 0.15F;
         }
         
-        if(Mystra.instance.moduleManager.getModuleByName("NoFov").isToggled()) { // Mystra NoFov Module
+        if(Shadow.instance.moduleManager.getModuleByName("NoFov").isToggled()) { // Shadow NoFov Module
         	return this.isSprinting() ? 1.15F : 1.0F;
         }
 

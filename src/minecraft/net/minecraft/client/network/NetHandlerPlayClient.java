@@ -18,8 +18,8 @@ import com.google.common.util.concurrent.Futures;
 import com.mojang.authlib.GameProfile;
 
 import io.netty.buffer.Unpooled;
-import me.mystra.Mystra;
-import me.mystra.event.events.EventSendPacket;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.event.events.EventSendPacket;
 import net.minecraft.block.Block;
 import net.minecraft.client.ClientBrandRetriever;
 import net.minecraft.client.Minecraft;
@@ -818,7 +818,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
 
     public void addToSendQueue(Packet p_147297_1_)
     {
-    	EventSendPacket eventSendPacket = new EventSendPacket(p_147297_1_); // Mystra Events
+    	EventSendPacket eventSendPacket = new EventSendPacket(p_147297_1_); // Shadow Events
     	eventSendPacket.call();
         this.netManager.sendPacket(p_147297_1_);
     }
@@ -855,7 +855,7 @@ public class NetHandlerPlayClient implements INetHandlerPlayClient
      */
     public void handleChat(S02PacketChat packetIn)
     {
-    	if(Mystra.onReceiveChatMessage(packetIn)) {
+    	if(Shadow.onReceiveChatMessage(packetIn)) {
     		PacketThreadUtil.checkThreadAndEnqueue(packetIn, this, this.gameController);
 
             if (packetIn.getType() == 2)

@@ -3,7 +3,7 @@ package net.minecraft.block;
 import java.util.List;
 import java.util.Random;
 
-import me.mystra.event.events.EventCollide;
+import store.shadowclient.client.event.events.EventCollide;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;

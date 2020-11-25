@@ -21,9 +21,9 @@ import org.lwjgl.util.glu.Project;
 import com.google.common.base.Predicates;
 import com.google.gson.JsonSyntaxException;
 
-import me.mystra.Mystra;
-import me.mystra.event.events.Event3D;
-import me.mystra.event.events.RenderEvent;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.event.events.Event3D;
+import store.shadowclient.client.event.events.RenderEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
@@ -1881,7 +1881,7 @@ public class EntityRenderer implements IResourceManagerReloadListener
             this.mc.mcProfiler.endStartSection("forge_render_last");
             Reflector.callVoid(Reflector.ForgeHooksClient_dispatchRenderLast, new Object[] {renderglobal, Float.valueOf(partialTicks)});
         }
-        Mystra.onRender();
+        Shadow.onRender();
         
         Event3D event3D = new Event3D(partialTicks);
         event3D.call();

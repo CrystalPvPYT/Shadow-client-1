@@ -79,7 +79,7 @@ public class Gui
         GlStateManager.disableBlend();
      }
     
-    public static void drawRect(double x, double y, double d, double e, int color) // Mystra ClickGui
+    public static void drawRect(double x, double y, double d, double e, int color) // Shadow ClickGui
     {
         if (x < d)
         {

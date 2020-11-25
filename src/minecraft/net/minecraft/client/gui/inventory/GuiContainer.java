@@ -7,9 +7,9 @@ import org.lwjgl.input.Keyboard;
 
 import com.google.common.collect.Sets;
 
-import me.mystra.event.events.EventGuiClose;
-import me.mystra.utils.gui.AnimationUtil;
-import me.mystra.utils.gui.easings.Quint;
+import store.shadowclient.client.event.events.EventGuiClose;
+import store.shadowclient.client.utils.gui.AnimationUtil;
+import store.shadowclient.client.utils.gui.easings.Quint;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;

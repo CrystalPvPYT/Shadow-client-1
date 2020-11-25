@@ -11,7 +11,7 @@ import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Maps;
 
-import me.mystra.event.events.EventEntityDamage;
+import store.shadowclient.client.event.events.EventEntityDamage;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

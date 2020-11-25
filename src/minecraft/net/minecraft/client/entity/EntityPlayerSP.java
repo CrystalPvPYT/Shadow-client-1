@@ -1,11 +1,11 @@
 package net.minecraft.client.entity;
 
-import me.mystra.Mystra;
-import me.mystra.event.events.EventItemSpeed;
-import me.mystra.event.events.EventPostMotionUpdate;
-import me.mystra.event.events.EventPreMotionUpdate;
-import me.mystra.event.events.EventSpeed;
-import me.mystra.event.events.EventUpdate;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.event.events.EventItemSpeed;
+import store.shadowclient.client.event.events.EventPostMotionUpdate;
+import store.shadowclient.client.event.events.EventPreMotionUpdate;
+import store.shadowclient.client.event.events.EventSpeed;
+import store.shadowclient.client.event.events.EventUpdate;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MovingSoundMinecartRiding;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -318,7 +318,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
      */
     public void sendChatMessage(String message)
     {
-    	if(Mystra.onSendChatMessage(message)) {
+    	if(Shadow.onSendChatMessage(message)) {
     		this.sendQueue.addToSendQueue(new C01PacketChatMessage(message));
     	}
     }
@@ -813,7 +813,7 @@ public class EntityPlayerSP extends AbstractClientPlayer
         EventItemSpeed eventItemSpeed = new EventItemSpeed();
         eventItemSpeed.call();
         
-        if(Mystra.instance.moduleManager.getModuleByName("NoSlowdown").isToggled()) {
+        if(Shadow.instance.moduleManager.getModuleByName("NoSlowdown").isToggled()) {
         	if (eventItemSpeed.isCancelled() && this.isUsingItem() && !this.isRiding())
             {
         		this.movementInput.moveStrafe *= 0.2F;

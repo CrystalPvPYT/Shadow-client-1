@@ -276,8 +276,8 @@ public class GameSettings
     public KeyBinding ofKeyBindZoom;
     private File optionsFileOF;
     
-    public KeyBinding MYSTRA_GUI_MOD_POSITION = new KeyBinding("Mod Positioning", Keyboard.KEY_GRAVE, "Mystra");
-    public KeyBinding MYSTRA_PERSPECTIVE = new KeyBinding("Toggle Perspective", Keyboard.KEY_U, "Mystra");
+    public KeyBinding GUI_MOD_POSITION = new KeyBinding("Mod Positioning", Keyboard.KEY_GRAVE, "Shadow");
+    public KeyBinding PERSPECTIVE = new KeyBinding("Toggle Perspective", Keyboard.KEY_U, "Shadow");
     
     public GameSettings(Minecraft mcIn, File p_i46326_2_)
     {
@@ -324,8 +324,8 @@ public class GameSettings
     }
 
     private void addClientKeyBinds() {
-		this.keyBindings = ((KeyBinding[])ArrayUtils.add(this.keyBindings, this.MYSTRA_GUI_MOD_POSITION));
-		this.keyBindings = ((KeyBinding[])ArrayUtils.add(this.keyBindings, this.MYSTRA_PERSPECTIVE));
+		this.keyBindings = ((KeyBinding[])ArrayUtils.add(this.keyBindings, this.GUI_MOD_POSITION));
+		this.keyBindings = ((KeyBinding[])ArrayUtils.add(this.keyBindings, this.PERSPECTIVE));
 	}
 
 	/**

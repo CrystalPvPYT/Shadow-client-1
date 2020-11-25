@@ -2,7 +2,7 @@ package net.minecraft.block;
 
 import java.util.Random;
 
-import me.mystra.Mystra;
+import store.shadowclient.client.Shadow;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
@@ -122,7 +122,7 @@ public abstract class BlockLiquid extends Block
 
     public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
     {
-    	if(Mystra.instance.moduleManager.getModuleByName("Jesus").isToggled()) {
+    	if(Shadow.instance.moduleManager.getModuleByName("Jesus").isToggled()) {
     		return AxisAlignedBB.fromBounds(pos.getX()+this.minX, pos.getY()+this.minY, pos.getZ()+this.minZ, pos.getX()+this.maxX, pos.getY()+this.maxY, pos.getZ()+this.maxZ);
     	}
         return null;

@@ -42,7 +42,7 @@ import io.netty.handler.timeout.TimeoutException;
 import io.netty.util.AttributeKey;
 import io.netty.util.concurrent.Future;
 import io.netty.util.concurrent.GenericFutureListener;
-import me.mystra.event.events.EventReceivePacket;
+import store.shadowclient.client.event.events.EventReceivePacket;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.CryptManager;
@@ -205,7 +205,7 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet>
 
     public void sendPacket(Packet packetIn, GenericFutureListener <? extends Future <? super Void >> listener, GenericFutureListener <? extends Future <? super Void >> ... listeners)
     {
-    	/*EventSendPacket eventSendPacket = new EventSendPacket(packetIn); // Mystra Events
+    	/*EventSendPacket eventSendPacket = new EventSendPacket(packetIn); // Shadow Events
     	eventSendPacket.call();
         
         if(eventSendPacket.isCancelled())

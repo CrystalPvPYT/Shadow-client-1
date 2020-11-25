@@ -1,7 +1,7 @@
 package net.minecraft.client.renderer.entity;
 
-import me.mystra.cosmetics.impl.CosmeticCape;
-import me.mystra.cosmetics.impl.CosmeticTopHat;
+import store.shadowclient.client.cosmetics.impl.CosmeticCape;
+import store.shadowclient.client.cosmetics.impl.CosmeticTopHat;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.model.ModelPlayer;

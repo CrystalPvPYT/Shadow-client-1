@@ -13,7 +13,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
-import me.mystra.Mystra;
+import store.shadowclient.client.Shadow;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHopper;
 import net.minecraft.block.BlockLiquid;
@@ -3404,7 +3404,7 @@ public abstract class World implements IBlockAccess
 
     public long getWorldTime()
     {
-        return (long) (Mystra.instance.moduleManager.getModuleByName("Ambiance").isToggled() ? (Mystra.instance.settingsManager.getSettingByName("Time").getValDouble()) : this.worldInfo.getWorldTime());
+        return (long) (Shadow.instance.moduleManager.getModuleByName("Ambiance").isToggled() ? (Shadow.instance.settingsManager.getSettingByName("Time").getValDouble()) : this.worldInfo.getWorldTime());
     }
 
     /**

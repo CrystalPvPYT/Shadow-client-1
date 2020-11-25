@@ -21,10 +21,10 @@ import org.lwjgl.util.glu.Project;
 
 import com.google.common.collect.Lists;
 
-import me.mystra.Mystra;
-import me.mystra.gui.altmanager.GuiAltManager;
-import me.mystra.gui.login.elements.buttons.GuiTexturedButton;
-import me.mystra.utils.particles.ParticleUtil;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.gui.altmanager.GuiAltManager;
+import store.shadowclient.client.gui.login.elements.buttons.GuiTexturedButton;
+import store.shadowclient.client.utils.particles.ParticleUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -195,7 +195,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
     
     public void initGui()
     {
-    	//Mystra.instance.getDiscordRP().update("Idle", "Main Menu");
+    	//Shadow.instance.getDiscordRP().update("Idle", "Main Menu");
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
         Calendar calendar = Calendar.getInstance();
@@ -266,11 +266,11 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
      */
     private void addSingleplayerMultiplayerButtons(int p_73969_1_, int p_73969_2_)
     {
-    	this.buttonList.add(new GuiTexturedButton(1, width / 2 - 249, height / 2 + 60, 100, 100, "mystra/single.png"));
-    	this.buttonList.add(new GuiTexturedButton(2, width / 2 - 149, height / 2 + 60, 100, 100, "mystra/multi.png"));
-    	this.buttonList.add(new GuiTexturedButton(3, width / 2 - 49, height / 2 + 60, 100, 100, "mystra/wheel.png"));
-    	this.buttonList.add(new GuiTexturedButton(4, width / 2 + 151, height / 2 + 60, 100, 100, "mystra/exit.png"));
-    	this.buttonList.add(new GuiTexturedButton(30, width / 2 + 51, height / 2 + 60, 100, 100, "mystra/Alt.png"));
+    	this.buttonList.add(new GuiTexturedButton(1, width / 2 - 249, height / 2 + 60, 100, 100, "client/single.png"));
+    	this.buttonList.add(new GuiTexturedButton(2, width / 2 - 149, height / 2 + 60, 100, 100, "client/multi.png"));
+    	this.buttonList.add(new GuiTexturedButton(3, width / 2 - 49, height / 2 + 60, 100, 100, "client/wheel.png"));
+    	this.buttonList.add(new GuiTexturedButton(4, width / 2 + 151, height / 2 + 60, 100, 100, "client/exit.png"));
+    	this.buttonList.add(new GuiTexturedButton(30, width / 2 + 51, height / 2 + 60, 100, 100, "client/Alt.png"));
     	boolean width = true;
         boolean height = true;
         
@@ -328,7 +328,7 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         if (button.id == 30)
         {
         	this.mc.displayGuiScreen(new GuiAltManager());
-        	//Mystra.instance.getDiscordRP().update("Currently in", "Mystra Alt Manager");
+        	//Shadow.instance.getDiscordRP().update("Currently in", "Shadow Alt Manager");
         }
 
         if (button.id == 4)
@@ -549,22 +549,22 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
         this.drawDefaultBackground();
         //this.particles.drawParticles();
         final String time = LocalTime.now().toString().split("\\.")[0];
-        Mystra.fontManager.getFont("SFL 10").drawStringWithShadow(time, (width - Mystra.fontManager.getFont("SFL 10").getWidth(time)) / 2, 40, -1);
+        Shadow.fontManager.getFont("SFL 10").drawStringWithShadow(time, (width - Shadow.fontManager.getFont("SFL 10").getWidth(time)) / 2, 40, -1);
     	final String date = new Date().toString().substring(0, 10).trim();
-    	Mystra.fontManager.getFont("SFL 10").drawStringWithShadow(date, (width - Mystra.fontManager.getFont("SFL 10").getWidth(date)) / 2, 40 + Mystra.fontManager.getFont("SFL 10").getHeight(time) + 5, 0x00D3D3D3);
-    	final String author = "by ".concat(Mystra.developer);
-    	Mystra.fontManager.getFont("SFL 10").drawStringWithShadow(author, (width - Mystra.fontManager.getFont("SFL 10").getWidth(author)) / 2, height - Mystra.fontManager.getFont("SFL 10").getHeight(author) - 10, -1);
-    	final String clientname = "by ".concat(Mystra.developer);
+    	Shadow.fontManager.getFont("SFL 10").drawStringWithShadow(date, (width - Shadow.fontManager.getFont("SFL 10").getWidth(date)) / 2, 40 + Shadow.fontManager.getFont("SFL 10").getHeight(time) + 5, 0x00D3D3D3);
+    	final String author = "by ".concat(Shadow.developer);
+    	Shadow.fontManager.getFont("SFL 10").drawStringWithShadow(author, (width - Shadow.fontManager.getFont("SFL 10").getWidth(author)) / 2, height - Shadow.fontManager.getFont("SFL 10").getHeight(author) - 10, -1);
+    	final String clientname = "by ".concat(Shadow.developer);
     	GL11.glPushMatrix();
     	GL11.glScalef(3F, 3F, 3F);
-    	Mystra.fontManager.getFont("SFL 10").drawStringWithShadow("Shadow", (width - 455 - Mystra.fontManager.getFont("SFL 10").getWidth(clientname)) / 2, height - 310 - Mystra.fontManager.getFont("SFL 10").getHeight(clientname) - 130, novoline(300));
+    	Shadow.fontManager.getFont("SFL 10").drawStringWithShadow("Shadow", (width - 455 - Shadow.fontManager.getFont("SFL 10").getWidth(clientname)) / 2, height - 310 - Shadow.fontManager.getFont("SFL 10").getHeight(clientname) - 130, novoline(300));
         GL11.glPopMatrix();   
-    	/*final String menuLogo = "Mystra";
+    	/*final String menuLogo = "Shadow";
              float scale = 1.5F;
              int yMid2 = this.height / 2 - 60;
              DrawMenuLogo.drawString(5.02, menuLogo, this.width / 10 - this.fontRendererObj.getStringWidth(menuLogo) / 2, 40, novoline(counter*300));
              /*GL11.glScaled(scale, scale, scale);
-             Mystra.title.drawString("Mystra", this.width - 450 / scale - 85, this.height / 3 / scale - 0.0F, rainbow(counter*300));
+             Shadow.title.drawString("Shadow", this.width - 450 / scale - 85, this.height / 3 / scale - 0.0F, rainbow(counter*300));
              GL11.glScaled(1.0F / scale, 1.0F / scale, 1.0F / scale);*/
              
              /*if (this.mc.isDemo())
@@ -574,14 +574,14 @@ public class GuiMainMenu extends GuiScreen implements GuiYesNoCallback
 
              this.drawString(this.fontRendererObj, s, 2, this.height - 10, -1);
              String s1 = "You are using the latest";
-             String s2 = "version of Mystra";
+             String s2 = "version of Shadow";
              this.drawString(this.fontRendererObj, s1, this.width - this.fontRendererObj.getStringWidth(s1) - 2, this.height - 20, -1);
              this.drawString(this.fontRendererObj, s2, this.width - this.fontRendererObj.getStringWidth(s1) + 20, this.height - 10, -1);
              
-             int xStart = (int)this.animationX + (this.width - Minecraft.getMinecraft().fontRendererObj.getStringWidth("Mystra")) / 2 + 5;
+             int xStart = (int)this.animationX + (this.width - Minecraft.getMinecraft().fontRendererObj.getStringWidth("Shadow")) / 2 + 5;
              int yMid = this.height / 2 - 40;
              Gui.drawRect((float)xStart, (float)(yMid + 20), (float)xStart, (float)(yMid + 20) + 0.5F, -1);
-             Minecraft.getMinecraft().fontRendererObj.drawString("Hacked Client", (float)((int)this.animationX + (res.getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth("Mystra")) / 2), (float)(yMid + 30), -1);
+             Minecraft.getMinecraft().fontRendererObj.drawString("Hacked Client", (float)((int)this.animationX + (res.getScaledWidth() - Minecraft.getMinecraft().fontRendererObj.getStringWidth("Shadow")) / 2), (float)(yMid + 30), -1);
              //this.menu.draw(mouseX, mouseY);
              /*if (this.openGLWarning1 != null && this.openGLWarning1.length() > 0)
              {

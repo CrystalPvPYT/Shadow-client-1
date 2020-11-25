@@ -1,6 +1,6 @@
 package net.minecraft.client.model;
 
-import me.mystra.event.events.EventModelUpdate;
+import store.shadowclient.client.event.events.EventModelUpdate;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

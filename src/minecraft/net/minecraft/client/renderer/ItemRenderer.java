@@ -2,7 +2,7 @@ package net.minecraft.client.renderer;
 
 import org.lwjgl.opengl.GL11;
 
-import me.mystra.Mystra;
+import store.shadowclient.client.Shadow;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -362,27 +362,27 @@ public class ItemRenderer
 
                     case 4:
                     	float var9 = MathHelper.sin(MathHelper.sqrt_float(f1) * 3.1415927F);
-                    	if(Mystra.instance.moduleManager.getModuleByName("SwordAnimation").isToggled()) {
-                    		GL11.glTranslated(Mystra.instance.settingsManager.getSettingByName("X").getValDouble(), Mystra.instance.settingsManager.getSettingByName("Y").getValDouble(), Mystra.instance.settingsManager.getSettingByName("Z").getValDouble());
-                    		if(Mystra.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("OLD")) {
+                    	if(Shadow.instance.moduleManager.getModuleByName("SwordAnimation").isToggled()) {
+                    		GL11.glTranslated(Shadow.instance.settingsManager.getSettingByName("X").getValDouble(), Shadow.instance.settingsManager.getSettingByName("Y").getValDouble(), Shadow.instance.settingsManager.getSettingByName("Z").getValDouble());
+                    		if(Shadow.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("OLD")) {
                     			this.transformFirstPersonItem(f, f1);
                                 this.func_178103_d();
                                 break;
                     		}else {
-                    			if(Mystra.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("High")) {
+                    			if(Shadow.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("High")) {
                     				transformFirstPersonItem(0.2F /*0.2F Por Default */, f1);
                                     GlStateManager.translate(-0.5F, 0.2F, 0.8F);
                                     func_178103_d();
                                     break;
                     			}else {
-                    				if(Mystra.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("EXHIBITION")) {
+                    				if(Shadow.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("EXHIBITION")) {
                     					this.transformFirstPersonItem(f / 2.0F, 0.0F);
                                         GL11.glRotatef(-var9 * 40.0F / 2.0F, var9 / 2.0F, -0.0F, 9.0F);
                                         GL11.glRotatef(-var9 * 30.0F, 1.0F, var9 / 2.0F, -0.0F);
                                         this.func_178103_d();
                                         break;
                     				}else {
-                    					if(Mystra.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("SLIDE")) {
+                    					if(Shadow.instance.settingsManager.getSettingByName("Animation Mode").getValString().equalsIgnoreCase("SLIDE")) {
                     						this.transformFirstPersonItem(f, 0.0F);
                     	                     this.func_178103_d();
                     	                     GL11.glTranslated(-0.3D, 0.3D, 0.0D);
@@ -404,7 +404,7 @@ public class ItemRenderer
                         this.func_178098_a(partialTicks, entityplayersp);
                 }
             } else {
-            	if(Mystra.instance.moduleManager.getModuleByName("SwordAnimation").isToggled()) {
+            	if(Shadow.instance.moduleManager.getModuleByName("SwordAnimation").isToggled()) {
             			this.func_178105_d(f1);
             			transformFirstPersonItem(f, f1);
             		} else {

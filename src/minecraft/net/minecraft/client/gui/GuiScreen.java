@@ -690,7 +690,7 @@ public abstract class GuiScreen extends Gui implements GuiYesNoCallback
         GlStateManager.disableFog();
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
-        mc.getTextureManager().bindTexture(new ResourceLocation("mystra/background2.jpg"));
+        mc.getTextureManager().bindTexture(new ResourceLocation("client/background2.jpg"));
         Gui.drawScaledCustomSizeModalRect(0, 0, 0, 0, this.width, this.height, this.width, this.height, this.width, this.height);
     }
 

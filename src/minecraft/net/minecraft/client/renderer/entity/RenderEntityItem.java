@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
-import me.mystra.Mystra;
+import store.shadowclient.client.Shadow;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -116,7 +116,7 @@ public class RenderEntityItem extends Render<EntityItem>
         IBakedModel ibakedmodel = this.itemRenderer.getItemModelMesher().getItemModel(itemstack);
         int i = this.func_177077_a(entity, x, y, z, partialTicks, ibakedmodel);
         
-        if (Mystra.instance.moduleManager.getModuleByName("ItemPhysics").isToggled()) {
+        if (Shadow.instance.moduleManager.getModuleByName("ItemPhysics").isToggled()) {
         	if (rotation > 360) rotation = 0;
         	if (entity.onGround) rotation = 90;
         	GL11.glRotatef(rotation / 2, 0, 1, 0);
@@ -176,7 +176,7 @@ public class RenderEntityItem extends Render<EntityItem>
     }
     
     public void noRender(EntityItem entity, double x, double y, double z, float entityYaw, float partialTicks) {
-    	if(Mystra.instance.moduleManager.getModuleByName("NoRender").isToggled()) {
+    	if(Shadow.instance.moduleManager.getModuleByName("NoRender").isToggled()) {
     		this.doRender((EntityItem)entity, x, y, z, entityYaw, partialTicks);
     	}
     }

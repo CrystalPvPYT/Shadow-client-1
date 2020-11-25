@@ -9,9 +9,9 @@ import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.Lists;
 
-import me.mystra.Mystra;
-import me.mystra.event.events.EventRendererLivingEntity;
-import me.mystra.event.events.RenderNametagEvent;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.event.events.EventRendererLivingEntity;
+import store.shadowclient.client.event.events.RenderNametagEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.FontRenderer;
@@ -98,7 +98,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
     	
-    	if(Mystra.instance.moduleManager.getModuleByName("WallHack").isToggled() && entity instanceof EntityPlayer) {
+    	if(Shadow.instance.moduleManager.getModuleByName("WallHack").isToggled() && entity instanceof EntityPlayer) {
     		GL11.glEnable(32823);
     		GL11.glPolygonOffset(1.0F, -2000000.0F);
     	}
@@ -208,7 +208,7 @@ public abstract class RendererLivingEntity<T extends EntityLivingBase> extends R
         GlStateManager.enableTexture2D();
         GlStateManager.setActiveTexture(OpenGlHelper.defaultTexUnit);
         GlStateManager.enableCull();
-        if (Mystra.instance.moduleManager.getModuleByName("WallHack").isToggled() && entity instanceof EntityPlayer) { // Mystra WallHack
+        if (Shadow.instance.moduleManager.getModuleByName("WallHack").isToggled() && entity instanceof EntityPlayer) { // Shadow WallHack
   	        GL11.glPolygonOffset(1.0F, 200000.0F);
   	        GL11.glDisable(32823);
   	    }

@@ -24,7 +24,8 @@ import java.util.concurrent.FutureTask;
 
 import javax.imageio.ImageIO;
 
-import me.mystra.gui.login.GuiClientLogin;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.gui.login.GuiClientLogin;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
@@ -57,9 +58,8 @@ import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 
-import me.mystra.Mystra;
-import me.mystra.event.events.ClientTickEvent;
-import me.mystra.event.events.EventKey;
+import store.shadowclient.client.event.events.ClientTickEvent;
+import store.shadowclient.client.event.events.EventKey;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.audio.MusicTicker;
@@ -567,7 +567,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         this.effectRenderer = new EffectRenderer(this.theWorld, this.renderEngine);
         this.checkGLError("Post startup");
         this.ingameGUI = new GuiIngame(this);
-        Mystra.instance.startClient();
+        Shadow.instance.startClient();
 
 
         if (this.serverName != null)
@@ -1045,7 +1045,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
     {
         try
         {
-        	Mystra.instance.stopClient();
+        	Shadow.instance.stopClient();
         	
             this.stream.shutdownStream();
             logger.info("Stopping!");
@@ -1937,7 +1937,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
                     }
                     else
                     {
-                    	Mystra.instance.tabgui.actionEvent(k);
+                    	Shadow.instance.tabgui.actionEvent(k);
                     	
                     	EventKey eventKey = new EventKey(k);
                     	eventKey.call();

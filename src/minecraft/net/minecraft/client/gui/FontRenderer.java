@@ -15,8 +15,8 @@ import com.ibm.icu.text.ArabicShaping;
 import com.ibm.icu.text.ArabicShapingException;
 import com.ibm.icu.text.Bidi;
 
-import me.mystra.Mystra;
-import me.mystra.module.render.NameProtect;
+import store.shadowclient.client.Shadow;
+import store.shadowclient.client.module.render.NameProtect;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -459,7 +459,7 @@ public class FontRenderer implements IResourceManagerReloadListener
      */
     private void renderStringAtPos(String p_78255_1_, boolean p_78255_2_)
     {
-    	if (Mystra.instance.moduleManager.getModuleByName("NameProtect").isToggled()) {
+    	if (Shadow.instance.moduleManager.getModuleByName("NameProtect").isToggled()) {
 			if (Minecraft.getMinecraft().thePlayer != null) {
 				if (p_78255_1_.contains(Minecraft.getMinecraft().thePlayer.getName())) {
 					p_78255_1_ = p_78255_1_.replace(Minecraft.getMinecraft().thePlayer.getName(), NameProtect.fakename);
