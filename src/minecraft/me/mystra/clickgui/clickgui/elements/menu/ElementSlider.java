@@ -69,7 +69,7 @@ public class ElementSlider extends Element {
 		}
 
 		if(percentBar > 0 && percentBar < 1)
-			if(themeslider.equalsIgnoreCase("Shadow")) {
+			if(themeslider.equalsIgnoreCase("Mystra")) {
 				//Gui.drawRect(x + (percentBar Mystra width)-1, y + 12, x + Math.min((percentBar * width), width), y + 13.5, rainbow(0));
 				Gui.drawRect(x + (percentBar * width)+3, y + 14, x + Math.min((percentBar * width), width), y + 11.5, 0xff810081);
 			}

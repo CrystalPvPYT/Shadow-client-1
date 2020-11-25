@@ -20,13 +20,13 @@ public class HUD extends Module {
         Mystra.instance.settingsManager.rSetting(new Setting("ArrayLists", this, "Novoline", options));
         
         ArrayList<String> capes = new ArrayList<>();
-        capes.add("Shadow");
+        capes.add("Mystra");
         capes.add("Small");
         
         Mystra.instance.settingsManager.rSetting(new Setting("Cape Mode", this, "Mystra", capes));
         
         ArrayList<String> theme = new ArrayList<>();
-        theme.add("Shadow");
+        theme.add("Mystra");
         theme.add("Cheese");
         Mystra.instance.settingsManager.rSetting(new Setting("Theme", this, "Mystra", theme));
         Mystra.instance.settingsManager.rSetting(new Setting("ArrayListFont", this, false));

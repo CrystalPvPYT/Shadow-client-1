@@ -41,8 +41,8 @@ public class Mystra {
     public static String name = "Shadow"; // CLIENT NAME
     public static String uiname = "S§fhadow"; // DISPLAYS ON UI
 
-	public String version = "1.0.0"; // BUILD
-	public static String developer = "Crystal"; // DEVELOPER
+	public String version = "1.0.1"; // BUILD
+	public static String developer = "Crystal#8652 & Shrunkie#0001 & Max T.#6686"; // DEVELOPERs yay
 
     public static Mystra instance = new Mystra(); // INSTANCE
     

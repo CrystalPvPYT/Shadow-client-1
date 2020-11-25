@@ -23,14 +23,11 @@ public class CosmeticCape implements LayerRenderer<AbstractClientPlayer> {
 	    this.playerRenderer = playerRendererIn;
 	  }
 	  public void doRenderLayer(AbstractClientPlayer entitylivingbaseIn, float p_177141_2_, float p_177141_3_, float partialTicks, float p_177141_5_, float p_177141_6_, float p_177141_7_, float scale) {
-		  String capes = Mystra.instance.settingsManager.getSettingByName("Cape Mode").getValString();
 		  if(Mystra.instance.moduleManager.getModuleByName("Cosmetics").isToggled()) {
 				if(Mystra.instance.settingsManager.getSettingByName("Cape").getValBoolean()) {
 				    if (entitylivingbaseIn == (Minecraft.getMinecraft()).thePlayer && !entitylivingbaseIn.isInvisible() && entitylivingbaseIn.isWearing(EnumPlayerModelParts.CAPE)) {
-				    	if(capes.equalsIgnoreCase("Mystra")) {
 				    		ResourceLocation Cape = new ResourceLocation("mystra/cape.png");
 				    		this.playerRenderer.bindTexture(Cape);
-				    	}
 				    	
 				      GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 				      GlStateManager.pushMatrix();
