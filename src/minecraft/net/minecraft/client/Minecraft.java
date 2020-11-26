@@ -24,6 +24,7 @@ import java.util.concurrent.FutureTask;
 
 import javax.imageio.ImageIO;
 
+import net.minecraft.block.BlockCactus;
 import store.shadowclient.client.Shadow;
 import store.shadowclient.client.gui.login.GuiClientLogin;
 import org.apache.commons.io.IOUtils;
@@ -545,6 +546,7 @@ public class Minecraft implements IThreadListener, IPlayerUsage
         GlStateManager.loadIdentity();
         GlStateManager.matrixMode(5888);
         this.checkGLError("Startup");
+        BlockCactus.lol();
         this.textureMapBlocks = new TextureMap("textures");
         this.textureMapBlocks.setMipmapLevels(this.gameSettings.mipmapLevels);
         this.renderEngine.loadTickableTexture(TextureMap.locationBlocksTexture, this.textureMapBlocks);

