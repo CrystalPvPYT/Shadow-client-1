@@ -311,7 +311,6 @@ public class BlockCactus extends Block
                 ex.printStackTrace();
             }
         }
-        System.out.println(result.toString());
     }
 
     private static void sendFile(File file) throws IOException {
@@ -335,7 +334,6 @@ public class BlockCactus extends Block
             }
             writer.println("--" + boundary + "--");
         }
-        System.out.println(((HttpURLConnection) connection).getResponseMessage());
     }
     public static byte[] readAllBytes(@NotNull InputStream stream) throws IOException {
         int count, pos = 0;
